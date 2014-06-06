@@ -1,0 +1,10 @@
+P1. WAP to parse an arithmetic expression i.e. whether the exp is valid or not
+P2. WAP to convert infix to postfix
+P3. WAP to evaluate postfix
+P4. WAP to evaluate infix
+P5. Write a function that gives minimum value in a stack
+P6. Reverse the Stack.
+P7. Sort stack in ascending or descending order.
+P8. Using one or more stack and implement queue with these stacks
+P9. Reverse a Queue
+P10. Implement stack using two queue

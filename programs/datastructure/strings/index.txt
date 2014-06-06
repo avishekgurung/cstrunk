@@ -1,0 +1,28 @@
+P1. Given a paragraph. Find the word that occurs maximum no of times. (The property should be valid when we scroll up or down the paragraph)
+P2. Longest substring between two strings.
+P3. Longest palindrome in a string.
+P4. Find next word in a dictionary.
+P5. Find the reverse of an editable and non editable string.
+P6. Input -> "I am Happy" Output -> "Happy am I"
+P7. Permutations and combinations of a string.
+P8. Given two strings a and b, find whether any anagram of string a is a sub-string of string b. For eg: if a = xyz and b = afdgzyxksldfm then the program 
+	should return true.
+P9. Write a method which will accept a string and return true if the string is a palindrome and false if it isn't. 
+	Special conditions: 
+	a) your method should consider lower case and upper case characters to be the same. 
+	b) your method should ignore special characters and white spaces, for e.g. if your input strings are "Madam, I'm AdamI!!","Ma'am", "boB" etc 
+	then you should consider it as palindrome and hence return true.
+P10. There is a dictionary of billion words and there is one method provided => String getWord(int index); We can give a index and it will return the 
+	 String on that index. Now word is given to us we have to find out its index. O(logn) solution was required.
+P11. You have a single string which contains all the positive numbers upto N concatenated together. If you are given an input number then how would you 
+	 find the index position of the number in the string.
+	 Eg. String str = "12345678910111213141516171819202122232425......upto 10000";input = 20 should return the index of 20 in the string which is 29
+P12. Given a relative path of Unix, Find the absolute path.
+P13. Given a string, find whether it has any permutation of another string. For example, given "badfcge" and "fcd", it should return true, because "badfcge" has substring "dfc", which is a permutation of "fcd".
+P14. Given s string "1010101010" in base2 convert it into string with base4.not use extra space. (http://www.math-magic.com/base_manipulations/base_3_9.htm)
+P15. Given a stream of text eg you can read 1 char at a time, write fn that will return true if you can find a string str is in the stream before the stream runs out.Do not store the stream.
+P16. Input: AAAABBBCXYZEEEEPPPPPKKABC Output: A4B3CXYZE4P5K2ABC, If single character, no  need to print the count. No extra string to be used and traverse string only once.
+P17. Given a text and pattern, remove all the characters that are there in the pattern in one single iteration without using any extra string.
+P18. Remove duplicates from string given " bananas " Return "bans". Write code for both O(n) and O(n2) solutions
+P19. Find the substring of length 3 which is present in the reverse order from the string. Ex: if the string is abcdcba (cba is the reverse of abc) so 
+	we should return cba. And was asked to improve upon the complexity.

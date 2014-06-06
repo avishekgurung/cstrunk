@@ -1,0 +1,39 @@
+P1. Find Max element in a binary tree using recursion and iteration
+P2. Searching an element in a binary tree using recursion and iteration
+P3. Deleting a tree
+P4. Level order traversal in reverse manner
+P5. Finding height of a tree by recursion and iteration
+P6. Finding the deepest node by iteration (see if its possible by recursion)
+P7. Finding the leaves node by iteration (see if its possible by recursion)
+P8. Finding the full nodes (nodes with both left and right children) by iteration (see if its possible by recursion)
+P9. Finding the half8nodes (nodes with only one child) by iteration (see if its possible by recursion)
+P10. Finding the level of a tree that has maximum sum.
+P11. Find the diameter of a tree.
+P12. Print all root-leaf paths of a Binary Tree
+P13. Sum of all nodes using recursion
+P14. Make a mirror of a binary tree
+P15. Check if the two given trees are identical. Sub pro: Check if the two trees are mirror of one another
+P16. Create binary tree from preorder and inorder data.
+P17. Find the ancestors of a given node.
+P18. Lowest Common Ancestor of two nodes.
+P19. Zig-zag tree traversal
+P20. Given a preorder string, say ILILL, construct BT. Tree is Strict. I are inner and L are leaf node (P33 from book)
+P21. Given a binary tree with left,right and nextSibling pointer, fill the nextSibling pointer with next sibling
+P22. For a generic tree, find total sum, siblings and children.
+P23. Inserting in Binary Search Tree.
+P24. Maximum and Minumum Element of BST.
+P25. Deleting a node in BST.
+P26. Finding the shortest path between two nodes in BST.
+P27. Finding LCA of BST.
+P28. Check if a given tree is BFS or not.
+P29. Converting BST to Circular Doubly Linked List.
+P30. Convert Doubly Linked List to BST.
+P31. Convert sorted array into BST.
+P32. Find the kth smallest element in BST
+P33. Find the elements that are in the range between k1 and k2 in BST.
+P34. Print left-view and right-view of a tree.
+P35. Given a binary search tree of n nodes, find all the pair of nodes whose sum is equal to a given number k in O(n) time and constant space.
+P36. Determine if a tree is a valid BST with no duplicated values. (This means that if the binary tree has a duplicated number it should return "invalid" even if it's an actual BST)
+P37. Replace each node with the sum of all greater nodes in a given BST.
+P38. Modify BST in such a way that after modification you can have a preorder traversal of it using only right pointers. During modification you can use right as well as left pointers.
+P39. Find cousins of a given node in a Binary tree and BST.(Nodes which are at the same level but does not have same parent are called cousins).

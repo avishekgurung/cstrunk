@@ -1,0 +1,9 @@
+P1. Given an array of n elements. Check if there are any duplicates. (No extra storage to be used)
+P2. Given an array of n elements. Find the elements that occurs maximum number if times. (With and without extra space)
+P3. There are five candidates for voting(say each candidate is represented from 1 to 5). We have a array that contains all the votes. Which candidate wins the vote.(minimize time and space)
+P4. Given two arrays A and B of n elements. Find if there is a number a E A and b E B such that a + b = k
+P5. Given an array of 0's, 1's and 2's. Sort them. aka Dutch Flag problem
+P6. How to find a number which appears maximum no of times in an array.
+P7. Merge K number of sorted list in O(nlogK) time complexity, here n is the total of all list.
+P8. Given two sorted arrays A and B. A is of size (m + n) but contains only m elements. B contains n elements. Merge them in A and sort. 
+

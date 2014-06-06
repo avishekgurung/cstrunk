@@ -1,0 +1,2 @@
+javac ImplementingHeap.java
+java ImplementingHeap
