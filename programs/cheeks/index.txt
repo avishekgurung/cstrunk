@@ -1,0 +1,43 @@
+1.	Conditional Operator
+2.	Display display ascii value of the character read
+3.	Print the ascii values and vice versa
+4.	Sorting numbers
+5.	Sorting Strings
+6.	Largest Number
+7.	Leap Year or not
+8.	Calendar
+9.	Decimal to Binary
+10.	Binary to Decimal
+11.	Numbers from 1 to 100 divisible by 2,3 and 5
+12.	Triangular Number i.e. 5-> 1+2+3+4+5=15
+13.	Perfect square from x to y
+14.	Largest and the smallest out of given numbers
+15.	Performing multiplication without using *
+16.	Performing division without using /
+17.	Displaying numerical positions of alphabets e.g. a=1,b=2 etc
+18.	Given no. 15-> 0 occurs 1, 1 occurs 8 times 
+19.	Sum of digit until single digit
+20.	Armstrong Number 153=13 + 53 + 33 , 370,371 are also Armstrong numbers
+21.	Prime or not
+22.	Prime Numbers from x to y
+23.	Reverse Number
+24.	Number Palindrome
+25.	Reverse String
+26.	Matrix Addition
+27.	Matrix Multiplication
+28.	Finding length of a string without using built in method
+29.	Remove 'the' from the text
+30.	Delete all occurrence of vowels
+31.	String palindrome
+32.	Count words,spaces,sentences,vowels
+33.	LCM of numbers
+34.	HCF of numbers
+35.	Print numbers from 1 to 100 without using loops!
+36.	Input- she is good. Output- ehs si doog.
+37.	Remove duplicates from an array.
+38.	Count occurrences of duplicate values
+39.	Find whether one string is a subset of another
+40.	Merge two arrays into one sorted array, if the number is there in both the arrays then display only once in the final array
+41.	Adding two numbers without using plus operator
+42.	Generate next prime number from a given prime number
+43.	Split a String
