@@ -75,9 +75,14 @@ class LinkedList
 	
 	//reverse by using recursive
 	
-	public void callRecursiveFunction()
+	public Node callRecursiveFunction(Node node, Node prev) //call with head node and null. 
 	{
-		node =  recursiveReverse(node);
+		if(node == null)
+			return prev;
+		Node next = node.next;
+		node.next = prev;
+		prev = node;
+		return callRecursiveFunction(next,prev);
 	}
 }
 
