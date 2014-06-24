@@ -1,15 +1,15 @@
 class Node
 {
-	String data;
+	int data;
 	Node next;
 	
-	Node(String data, Node next)
+	Node(int data, Node next)
 	{
-		this.data =  data;
+		this.data = data;
 		this.next = next;
 	}
 	
-	public String getData()
+	public int getData()
 	{
 		return data;
 	}
@@ -17,56 +17,29 @@ class Node
 
 class LinkedList
 {
-	Node node1;
-	Node node2;
+	Node node;
 	
-	//insert in node1
-	public void insert1(String data)
+	public void insert(int data)
 	{
-		Node pointer = node1;
-		if(node1 == null)
+		if(node == null)
 		{
-			node1 = new Node(data,null);
+			node = new Node(data, null);
 		}
 		else
 		{
+			Node pointer = node;
 			while(pointer.next != null)
 			{
 				pointer = pointer.next;
 			}
-			pointer.next =  new Node(data,null);
+			pointer.next = new Node(data,null);
 		}
 	}
-	
-	//insert2
-	public void insert2(String data)
+
+	public void display(Node node)
 	{
-		Node pointer = node2;
-		if(node2 == null)
-		{
-			node2 =  new Node(data, null);
-		}
-		else
-		{
-			while(pointer.next != null)
-			{
-				pointer = pointer.next;
-			}
-			pointer.next =  new Node(data,null);
-		}
-	}
-	
-	public void display()
-	{
-		Node pointer = node1;
-		while(pointer != null)
-		{
-			System.out.print(pointer.getData()+" --> ");
-			pointer = pointer.next;
-		}
-		System.out.println();
+		Node pointer = node;
 		
-		pointer = node2;
 		while(pointer != null)
 		{
 			System.out.print(pointer.getData()+" --> ");
@@ -75,100 +48,92 @@ class LinkedList
 		System.out.println();
 	}
 	
-	//merge
-	public void merger()
+	public void merger(Node m, Node n)
 	{
-		Node p1 = node1;
-		Node p2 = node2;
+		Node m_pointer = m;
+		Node n_pointer = n;
+		for(int i=1;i<=6;i++)
+			m_pointer = m_pointer.next;
 		
-		for(int i=1;i<=1;i++)
-		{
-			p2 = p2.next;
-		}
+		while(n_pointer.next != null)
+			n_pointer = n_pointer.next;
 		
-		for(int i=1;i<=4;i++)
-		{
-			p1 = p1.next;
-		}
-		
-		p2.next = p1;
-		
+		n_pointer.next = m_pointer;
 	}
 	
-	//finding point of intersection
-	public void pointOfIntersection()
+	public Node intersectingNode(Node m, Node n)
 	{
-		Node p1 = node1;
-		Node p2 = node2;
-		int l1 = 0;
-		int l2 = 0;
-		int diff = 0;
+		int x = 0, y = 0;
+		Node mp = m, np = n;
 		
-		while(p1!= null)
+		while(mp != null)
 		{
-			l1++;
-			p1 = p1.next;
+			x++;
+			mp = mp.next;
 		}
 		
-		while(p2 != null)
+		while(np != null)
 		{
-			l2++;
-			p2 = p2.next;
+			y++;
+			np = np.next;
 		}
 		
-		p1 = node1;
-		p2 = node2;
-		
-		if(l1 > l2)
+		if(y > x)
 		{
-			diff = l1 - l2;
-			for(int i=1;i<=diff;i++)
-			{
-				p1 = p1.next;
-			}
-		}
-		else
-		{
-			diff = l2 - l1;
-			for(int i=1;i<=diff;i++)
-			{
-				p2 = p2.next;
-			}
+			Node temp = m;
+			m = n;
+			n =  temp;
+			int t = x;
+			x = y;
+			y = x;
 		}
 		
-		while(p1 != p2)
+		mp = m;
+		np = n;
+		int diff = x - y;
+		for(int i=0;i<diff;i++)
+			mp = mp.next;
+		
+		while(mp != np)
 		{
-			p1 = p1.next;
-			p2 = p2.next;
+			mp = mp.next;
+			np = np.next;
 		}
 		
-		System.out.println("Point of intersection "+p1.getData());
-		
-		
+		return mp;
 	}
 }
 
 class P17
 {
-	public static void main(String[] args) {
-		LinkedList l = new LinkedList();
-		l.insert1("A");
-		l.insert1("B");
-		l.insert1("C");
-		l.insert1("C");
-		l.insert1("X");
-		l.insert1("D");
-		l.insert1("E");
-		l.insert1("F");
+	public static void main(String[] args) 
+	{
+		LinkedList list1 = new LinkedList();
+		list1.insert(1);
+		list1.insert(2);
+		list1.insert(3);
+		list1.insert(4);
+		list1.insert(5);
+		list1.insert(6);
+		list1.insert(7);
+		list1.insert(8);
+		list1.insert(9);
+		list1.insert(10);
+		Node m = list1.node;
+		list1.display(m);
 		
+		LinkedList list2 = new LinkedList();
+		list2.insert(100);
+		list2.insert(200);
+		list2.insert(300);
+		Node n = list2.node;
+		list2.display(n);
 		
-		l.insert2("M");
-		l.insert2("N");
+		list1.merger(m, n);
 		
-		l.display();
-		l.merger();
-		l.display();
-		l.pointOfIntersection();
+		list1.display(m);
+		list1.display(n);
 		
+		System.out.println("The intersecting node is "+list1.intersectingNode(m, n).getData());
 	}
 }
