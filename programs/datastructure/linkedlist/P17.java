@@ -137,3 +137,12 @@ class P17
 		System.out.println("The intersecting node is "+list1.intersectingNode(m, n).getData());
 	}
 }
+
+/*
+There are few more ways to solve this problem
+1. Brute Force approach where we would compare each node of one list with all the nodes of another list taking O(mn) time
+2. By using stack. We create two stacks, one for each list. Take one node at a time and compare. This takes space complexity O(m) or O(n) whichever is bigger
+3. By using Hash. We put all the elements of one list in Hash. We then traverse next list and check if the element is present. THis again has time complexity = O(n) and space complexity = O(n)
+
+The above process has time complexity = O(n) and space complexity = O(1), constant.
+*/
