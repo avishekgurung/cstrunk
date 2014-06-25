@@ -101,22 +101,14 @@ class LinkedList
 		
 		temp = node;
 		boolean flag = true;
-		Node pointer = null;
 		while(temp != null)
 		{
 			Node x = hashmap.get(temp);
 			x.next = hashmap.get(temp.next);
 			x.random = hashmap.get(temp.random);
 			temp = temp.next;
-			if(flag)
-			{
-				pointer = x;
-				flag = false;
-			}
 		}
-		temp = node;
-		temp.next.next = null;
-		display(pointer);
+		display(node);
 	}
 	
 	public void cloneNodeAnother()//changing the structure but without using hashmap and better complexity
@@ -180,8 +172,8 @@ class P28
 		l.createNode();
 		l.display(l.node);
 		
-		//l.cloneNode();
-		l.cloneNodeAnother();
+		l.cloneNode();
+		//l.cloneNodeAnother();
 	}
 }
 
