@@ -55,6 +55,7 @@ class LinkedList
 		System.out.println();
 	}	
 	
+	//naive way
 	public void sort()
 	{
 		Node pointer = node;
@@ -126,6 +127,51 @@ class LinkedList
 		display(one);
 		
 	}
+
+//This is real way
+	public void dutchFlag()
+	{
+		Node head = node;
+		Node pointer = node;
+		Node tail = null;
+		
+		while(pointer.next != null)
+			pointer = pointer.next;
+		
+		tail = pointer;
+		Node end = tail;
+		pointer = node;
+		
+		while(pointer != end)
+		{
+			if(pointer.next.getData() == 1)
+			{
+				boolean flag = false;
+				if(pointer.next == end)
+					flag = true;
+				Node temp = pointer.next;
+				pointer.next = pointer.next.next;
+				temp.next = head;
+				head = temp;
+				if(flag)
+					break;
+			}
+			else if(pointer.next.getData() == 3)
+			{
+				Node temp = pointer.next;
+				pointer.next = pointer.next.next;
+				tail.next = temp;
+				tail = temp;
+				tail.next = null;
+			}
+			else
+			{
+				pointer = pointer.next;
+			}
+		}
+		node = head;
+		display(node);
+	}
 }
 
 class P21
@@ -147,7 +193,8 @@ class P21
 		
 		l2.display(l2.node);
 		
-		l2.sort();
+		//l2.sort();
+		l2.dutchFlag();
 		
 	}
 }
