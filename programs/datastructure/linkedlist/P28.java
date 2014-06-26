@@ -100,6 +100,7 @@ class LinkedList
 		}
 		
 		temp = node;
+		Node cloneHead = null;
 		boolean flag = true;
 		while(temp != null)
 		{
@@ -107,8 +108,14 @@ class LinkedList
 			x.next = hashmap.get(temp.next);
 			x.random = hashmap.get(temp.random);
 			temp = temp.next;
+			if(flag)
+			{
+				cloneHead = x;
+				flag = false;
+			}
 		}
 		display(node);
+		display(cloneHead);
 	}
 	
 	public void cloneNodeAnother()//changing the structure but without using hashmap and better complexity
@@ -124,7 +131,7 @@ class LinkedList
 		}
 		temp = node;
 		
-		while(temp != null)
+		/*while(temp != null) //THis part is not required
 		{
 			if(temp.random != null)
 			{
@@ -132,7 +139,7 @@ class LinkedList
 			}
 
 			temp = temp.next.next;
-		}
+		}*/
 		
 		Node originalNode = node;
 		Node cloneNode = node.next;
