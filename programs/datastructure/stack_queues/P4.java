@@ -142,3 +142,10 @@ class P4
 		l.evaluate("5+1*3-4/2+2*1*1");
 	}
 }
+
+/*
+So if the infix expression contains brackets, then the above program will not be valid.
+So in such cases, the approach would be 
+1. Convert infix to postfix
+2. Evaluate postfix
+*/

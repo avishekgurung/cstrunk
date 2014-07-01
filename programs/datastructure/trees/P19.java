@@ -121,6 +121,51 @@ class Tree
 		}
 		System.out.println();
 	}
+	
+	//Another approach
+	public void zigzag1 (Node node)
+	{
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(node);
+		q.add(null);
+		
+		int counter = 1;
+		Stack<Node> s = new Stack<Node>();
+		while(!q.isEmpty())
+		{
+			Node temp = q.remove();	
+			if(temp == null)
+			{
+				if(!q.isEmpty())
+				{
+					q.add(null);
+				}
+				counter = 1 - counter;
+				if(counter == 1)
+				{
+					while(!s.isEmpty())
+						System.out.print(s.pop().getData()+" ");
+				}
+				System.out.println();
+			}
+			else
+			{
+				if(counter == 0)
+					s.push(temp);
+				else
+					System.out.print(temp.getData()+" ");
+				
+				if(temp.left != null)
+					q.add(temp.left);
+				if(temp.right != null)
+					q.add(temp.right);
+			}
+		}	
+	}
+	/*
+	This approach is pretty straight forward devised by me. We do normation BFS traversal and print the elements. But if the 
+	elements occurs in odd level then we, put them in a stack and vomit them together later.
+	*/
 }
 
 class P19

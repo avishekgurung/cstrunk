@@ -111,6 +111,18 @@ class Tree
 				q.add(temp.right);
 		}
 	}
+	
+	//Another approach where an API will return the mirror node
+	public Node createMirror(Node node)
+	{
+		if(node == null)
+			return null;
+		Node left = createMirror(node.left);
+		Node right = createMirror(node.right);
+		node.left = right;
+		node.right = left;
+		return node;
+	}
 }
 
 class P14

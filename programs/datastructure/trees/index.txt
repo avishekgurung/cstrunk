@@ -8,8 +8,8 @@ P7. Finding the leaves node by iteration (see if its possible by recursion)
 P8. Finding the full nodes (nodes with both left and right children) by iteration (see if its possible by recursion)
 P9. Finding the half8nodes (nodes with only one child) by iteration (see if its possible by recursion)
 P10. Finding the level of a tree that has maximum sum.
-P11. Find the diameter of a tree.
-P12. Print all root-leaf paths of a Binary Tree
+P11. *Find the diameter of a tree.
+P12. *Print all root-leaf paths of a Binary Tree
 P13. Sum of all nodes using recursion
 P14. Make a mirror of a binary tree
 P15. Check if the two given trees are identical. Sub pro: Check if the two trees are mirror of one another
