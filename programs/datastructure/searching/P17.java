@@ -4,49 +4,30 @@ class P17
 	{
 		int arr[][] = {{1,1,0,0},{1,1,1,0},{1,0,0,0},{1,1,1,0}};
 		
-		System.out.println();
-		for(int i=0;i<arr.length;i++)
-		{
-			for(int j=0;j<arr[i].length;j++)
-			{
-				System.out.print(arr[i][j]+"\t");
-			}
-			System.out.println("\t");
-		}
-		
+		int count 		= 0;
+		int maxCount 	= 0;
+
 		int i = arr.length-1;
-		int j = 0;
-		int count = 0;
-		int maxCount = 0, row = 0;
-		
-		
-		for(;i>=0 && j < arr.length-1;)
-		{
-			System.out.println(i+" "+j);
-			if(arr[j][i] == 0)
-			{
-				i--;
+		int j = arr.length-1;
+		int row = 0;
+
+		while(i >= 0){
+			if(arr[i][j] == 0){
 				count++;
-				if(i == 0)
-				{
-					row = j;
-					System.out.println("Row "+j);
-				}
+				j--;
 			}
-			else
-			{
-				j++;
-				if(count > maxCount)
-				{
+			else{
+				if(count > maxCount){
 					maxCount = count;
-					row = j;
+					row = i;
 				}
-			}
-			
-			
-			
+				i--;
+			}	
 		}
 		
-		System.out.println("\nRow "+row+" has "+count+" no of zeroes "+i+" "+(j-1));
+		System.out.println("Row with max 0s "+row);
 	}
 }
+
+// Take the last element of the array, and start going backward in every row when 0 is encountered.
+//

@@ -45,6 +45,50 @@ class P12
 		}
 		return -1;
 	}
+
+	public static int firstOccurence(int arr[], int element){
+		int left = 0;
+		int right = arr.length - 1;
+
+		while(left <= right){
+			int mid = (left+right)/2;
+			if(element > arr[mid]){
+				left = mid + 1;
+			}
+			else if(element < arr[mid]){
+				right = mid -1;
+			}
+			else{
+				if((mid - 1) < left || arr[mid-1] != element){
+					return mid;
+				}
+				right = mid - 1;
+			}
+		}
+		return -1;
+	}	
+
+	public static int lastOccurence(int arr[], int element){
+		int left = 0;
+		int right = arr.length-1;
+
+		while(left <= right){
+			int mid = (left+right)/2;
+			if(element > arr[mid]){
+				left = mid + 1;
+			}
+			else if(element < arr[mid]){
+				right = mid -1;
+			}
+			else{
+				if((mid + 1) > right || arr[mid+1] != element){
+					return mid;
+				}
+				left = mid + 1;
+			}
+		}
+		return -1;
+	}
 }
 
 

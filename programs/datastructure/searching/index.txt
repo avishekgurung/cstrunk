@@ -8,9 +8,9 @@ P7. Given an array. Find the three elements, i,j and k where a[i2] = a[j2]+a[k2]
 P8. Given an array of +ve and -ve nos. Find the two elements whoes sum is closest to zero.
 P9. Given an array find three integers whose sum is equal to k.
 P10. We have an array with only 1s and 0s. eg [11111 .... 11110000 ....0000]. Assume there are millions of 0 and 1. Find the first index of 0. We do not know the size of an array
-P11. Rotating Arrays or Biotonic Search. Complexity O(logn)
+P11. Searching in Rotating Arrays or Biotonic Search. Complexity O(logn)
 P12. Find the first and the last occurrence of an element in a sorted array in O(logn) time.
-P13. Given a sorted array, find the number of occurrence of a given element.
+P13. Given a sorted array, find the number of occurrence of a given element in O(logn) time.
 P14. Find the majority element. Meaning, an element whose occurrences is more than n/2 where n is the size of a an array.
 P15. Array is of size 2n, one element repeats n times where as all other elements are unique. Find the element.
 P16. An nXn array, where the row and the column are in ascending order. Give O(n) algo to search an element.
