@@ -51,4 +51,28 @@ class P6
 			}
 		}
 	}
+
+	public static void wordReverse2(String s){
+		char arr[] = s.toCharArray();
+		String output = "";
+
+		for(int i=arr.length-1;i >= 0; i--){
+			if(arr[i] == ' '){
+				int j = i+1;
+				while(j < arr.length && arr[j] != ' '){
+					output = output + arr[j];
+					j++;
+				}
+				output = output + " ";
+			}
+		}
+
+		int i = 0;
+		while(arr[i] != ' '){
+			output = output + arr[i];
+			i++;
+		}
+
+		System.out.println(output);
+	}
 }

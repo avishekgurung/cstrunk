@@ -95,3 +95,26 @@ class P10
  * For gallop search too, we simply search elements based on iteration.
  * Both cases use O(logn) time. Not considering compare function 
  */
+
+//Simpler comparewords function
+public static int compareWords(String s, String t){
+		
+		int i=0;
+		int j=0;
+		
+		while(i < s.length() && j < t.length()){
+			if(s.charAt(i) < t.charAt(j))
+				return 1;
+			if(s.charAt(i) > t.charAt(j))
+				return -1;
+			i++;
+			j++;
+		}
+		if(s.length() > t.length())
+			return -1;
+		
+		if(s.length() < t.length())
+			return 1;
+		
+		return 0;
+	}

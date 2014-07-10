@@ -111,4 +111,30 @@ class P8
 		}
 		return -1;
 	}
+
+
+	//Much more simpler way
+	public static void anagramSub(String s, String t){
+		int length = 0;
+		
+		for(int i=0;i<t.length();i++){
+			length = length+(int)t.charAt(i);
+		}
+		System.out.println(length);
+		
+		
+		for(int i=0;i<s.length()-t.length();i++){
+			int x = i;
+			int count = 0;
+			for(int j=0;j<t.length();j++){
+				count = count+s.charAt(x);
+				x++;
+			}
+			if(length == count){
+				System.out.println("true");
+				return;
+			}
+		}
+		System.out.println("false");
+	}
 }

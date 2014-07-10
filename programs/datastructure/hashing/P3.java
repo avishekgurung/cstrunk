@@ -37,6 +37,22 @@ class P3
 			}
 		}
 	}
+
+	//simpler one
+	public static void symmetricPairs(){
+		int arr[][] = {{1,3},{2,6},{3,5},{7,4},{5,3},{8,7},{4,7}};
+		Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+
+		for(int i=0;i<arr.length;i++){
+			int key = arr[i][0];
+			int val = arr[i][1];
+
+			if(map.containsKey(val) && map.containsValue(key)){
+				System.out.println(key+"\t"+val);	
+			}
+			map.put(key,val);
+		}
+	}
 }
 
 /*
