@@ -1,0 +1,150 @@
+*1. Implement Hash Table from scratch
+*2. Implement Max Heap or Min Heap from scratch
+*3. Implement Selection Sort
+*4. Implement Insertion Sort
+*5. Implement Merge Sort
+*6. Implement Bucket Sort
+*7. Implement KMP Algorithm
+*8. Implement Trie DS
+*9. Implement Preorder with iteration
+*10. Implement Inorder with iteration
+*11. Implement Postorder with Iteration
+P1.  Delete all matching elements in the linked list
+P2.  Given an array find three integers whose sum is equal to k.
+P3.  Convert Doubly Linked List to BST.
+P4.  How to find a number which appears maximum no of times in an array.
+P5.  Sorting a linked list
+P6.  **Add two linked list of variable lengths.
+P7.  Given an array of +ve and -ve nos. Find the two elements whoes sum is closest to zero.
+P8.  Deleting a tree
+P9.  Array is of size 2n, one element repeats n times where as all other elements are unique. Find the element.
+P10.  Given two sets of array, find the elements that sum up to k.
+P11.  Using one or more stack and implement queue with these stacks
+P12.  For a generic tree, find total sum, siblings and children.
+P13.  Given an array display all sums whose pair is S(say 7). If a={2,3,4,5,6}. Then we need to display (2,5)(3,4). But the pair should not repeat. i.e. don't display (5,2)and 4,3 alsoP1. How do you find the middle element of a linked list?
+P14.  Permutations and combinations of a string.
+P15.  Given LL, 1-2-3-4-5-6,write a fun to remove all even nodes and a function remove all old nodes
+P16.  Solve Dutch Flag Problem.
+P17.  Given an array. Find the two elements whose sum is equal to k.
+P18.  Given s string "1010101010" in base2 convert it into string with base4.not use extra space. (http://www.math-magic.com/base_manipulations/base_3_9.htm)
+P19.  *Print all root-leaf paths of a Binary Tree
+P20.  Determine if a tree is a valid BST with no duplicated values. (This means that if the binary tree has a duplicated number it should return "invalid" even if it's an actual BST)
+P21.  Finding the full nodes (nodes with both left and right children) by iteration (see if its possible by recursion)
+P22.  WAP to evaluate postfix
+P23.  Give a matrix where elements are only 1s and 0s and all 0s are followed by 1s. Find the row which has max no of zeroes.
+P24.  Given an array of size n+2.All elements are in the range 1 to n and they are non repeated except two elements, which are repeated. Find these two elements
+P25.  Find the kth smallest element in BST
+P26.  WAP to find the first repeating element in an array, eg if arr ={3,2,1,2,2,3} then the ans is 3 and not 2
+P27.  Longest palindrome in a string.
+P28.  Sort stack in ascending or descending order.
+P29.  Deleting a node in BST.
+P30.  How do detect if the LL is odd or even?
+P31.  Given two arrays of unordered numbers. Check if two arrays has same set of numbers.
+P32.  *Given number k, for Singly Linked List, reverse every k elements.
+P33.  Inserting element in Sorted Order
+P34.  Printing the elements in reverse order by recursion
+P35.  Find the first and the last occurrence of an element in a sorted array in O(logn) time.
+P36.  Finding the level of a tree that has maximum sum.
+P37.  Given a string, find the first non repeated character.
+P38.  Finding LCA of BST.
+P39.  Given a relative path of Unix, Find the absolute path.
+P40.  Find the ancestors of a given node.
+P41.  Given 101 elements, 50 elements are distinct, 24 are repeated twice and one is repeated thrice. Find the element repeated thrice.
+P42.  Reverse the Stack.
+P43.  *Given two LL, find the point of intersection. Only their heads are known.
+P44.  Array is of size n-1, elements are non repeating in the range 1 to n. Find the missing element. (asked by Krishna to me in Vizury) **
+P45.  Program to remove duplicates from a sorted linked list
+P46.  Given an array of 0's, 1's and 2's. Sort them. aka Dutch Flag problem
+P47.  Write a function that gives minimum value in a stack
+P48.  Print left-view and right-view of a tree.
+P49.  Given a string, find the first repeating letter in a string. Eg for "asdzddbs", d is the ans.
+P50.  Replace each node with the sum of all greater nodes in a given BST.
+P51.  Implement stack using two queue
+P52.  There are five candidates for voting(say each candidate is represented from 1 to 5). We have a array that contains all the votes. Which candidate wins the vote.(minimize time and space)
+P53.  Check if a given tree is BFS or not.
+P54.  Remove duplicates from an unsorted linked list.
+P55.  Converting BST to Circular Doubly Linked List.
+P56.  Reverse doubly linked list without using any extra space
+P57.  Searching in Rotating Arrays or Biotonic Search. Complexity O(logn)
+P58.  Given an array. Find the three elements, i,j and k where a[i2] = a[j2]+a[k2]. i2 is i square.
+P59.  Sum of all nodes using recursion
+P60.  Write a method which will accept a string and return true if the string is a palindrome and false if it isn't. Special conditions: a) your method should consider lower case and upper case characters to be the same. b) your method should ignore special characters and white spaces, for e.g. if your input strings are "Madam, I'm AdamI!!","Ma'am", "boB" etc then you should consider it as palindrome and hence return true.
+P61.  Finding the leaves node by iteration (see if its possible by recursion)
+P62.  Given two sorted arrays A and B. A is of size (m + n) but contains only m elements. B contains n elements. Merge them in A and sort.
+P63.  Given two strings a and b, find whether any anagram of string a is a sub-string of string b. For eg: if a = xyz and b = afdgzyxksldfm then the program should return true.
+P64.  Input: AAAABBBCXYZEEEEPPPPPKKABC Output: A4B3CXYZE4P5K2ABC, If single character, no  need to print the count. No extra string to be used and traverse string only once.
+P65.  Perform the above ops for Doubly Linked List
+P66.  Given number k, for Single linked list, skip k nodes and then reverse k nodes, till the end.
+P67.  Josephus Circle: N people arrange themselves in circle. They eliminate every Mth people. The last one standing is the leader. Find the leader.
+P68.  *Reversing Linked List (Try using minimum pointers, at the most 2 extra pointers)
+P69.  WAP to evaluate infix
+P70.  Remove duplicates from string given " bananas " Return "bans". Write code for both O(n) and O(n2) solutions
+P71.  Finding height of a tree by recursion and iteration
+P72.  Given a binary tree with left,right and nextSibling pointer, fill the nextSibling pointer with next sibling
+P73.  Inserting in Binary Search Tree.
+P74.  Given two arrays A and B of n elements. Find if there is a number a E A and b E B such that a + b = k
+P75.  Given an array of even and odd numbers, put all the even nos before odd numbers.
+P76.  Find the substring of length 3 which is present in the reverse order from the string. Ex: if the string is abcdcba (cba is the reverse of abc) so we should return cba. And was asked to improve upon the complexity.
+P77.  There is a dictionary of billion words and there is one method provided => String getWord(int index); We can give a index and it will return the String on that index. Now word is given to us we have to find out its index. O(logn) solution was required.
+P78.  Write a function to find kth element from a singly linked List from the end(not from the head) in one pass.
+P79.  Zig-zag tree traversal
+P80.  Array of size 2n with format a1,a2,a3... an,b1,b2,b3... bn. Shuffle it in a1,b1,a2,b2,...,an,bn P1. Given an array of n elements. Check if there are any duplicates. (No extra storage to be used)
+P81.  Longest substring between two strings.
+P82.  Remove specified characters from a given string which are given in another string.
+P83.  You have a single string which contains all the positive numbers upto N concatenated together. If you are given an input number then how would you find the index position of the number in the string.Eg. String str = "12345678910111213141516171819202122232425......upto 10000";input = 20 should return the index of 20 in the string which is 29
+P84.  **Making a copy of Malformed Linked List (http://www.careercup.com/question?id=9304676)
+P85.  Input: 1->9->3->8->5->7->7 Odd nodes in increasing order and even nodes are in decreasing order. Output should be 1->3->5->7->7->8->9
+P86.  Given two integers M and N, retain M and delete next N, continue this process
+P87.  *Linked List containing only three integers 1,2,3. Sort the list without exchanging the values. Input: 1->3->2->1->2->3->2->1->1 Output: 1->1->1->1->2->2->2->3->3
+P88.  Searching an element in a binary tree using recursion and iteration
+P89.  WAP to convert infix to postfix
+P90.  Finding the half8nodes (nodes with only one child) by iteration (see if its possible by recursion)
+P91.  Tortoise Hare problem (Floyd's Alogrithm) proof (http://www.quora.com/How-does-Floyds-cycle-finding-algorithm-work Check comment)
+P92.  Given a text and pattern, remove all the characters that are there in the pattern in one single iteration without using any extra string.
+P93.  An nXn array, where the row and the column are in ascending order. Give O(n) algo to search an element.
+P94.  Given a binary search tree of n nodes, find all the pair of nodes whose sum is equal to a given number k in O(n) time and constant space.
+P95.  Given a singly linked list which may or may not contain loop and loop may or may not start from the head node. Count the number of elements in the linked list.
+P96.  Make a mirror of a binary tree
+P97.  Given an array of size n and all the elements are in the range 0 to n-1. Find the element that appears max no of times. (Best time and space complexity to be used).
+P98.  Given set of integers, find the one which appears maximum no of times.
+P99.  Given a paragraph. Find the word that occurs maximum no of times. (The property should be valid when we scroll up or down the paragraph)
+P100.  Reverse a Queue
+P101.  Given a Circular LL (or LL), simply write a function, that will return "true" if there are any duplicate elements or else false. (making the time complexity as low as possible)
+P102.  *Given two sorted linked lists, write a function to merge them into one
+P103.  Level order traversal in reverse manner
+P104.  Given a sorted array, find the number of occurrence of a given element in O(logn) time.
+P105.  Given an array of characters, write a program to remove the duplicates.
+P106.  Combine two LL so that the resultant list has alternate elements from the two list
+P107.  Given a stream of text eg you can read 1 char at a time, write fn that will return true if you can find a string str is in the stream before the stream runs out.Do not store the stream.
+P108.  Given a preorder string, say ILILL, construct BT. Tree is Strict. I are inner and L are leaf node (P33 from book)
+P109.  *Find the diameter of a tree.
+P110.  Given an array of n elements. Find the elements that occurs maximum number if times. (With and without extra space)
+P111.  Modify BST in such a way that after modification you can have a preorder traversal of it using only right pointers. During modification you can use right as well as left pointers.
+P112.  Find the majority element. Meaning, an element whose occurrences is more than n/2 where n is the size of a an array.
+P113.  Lowest Common Ancestor of two nodes.
+P114.  Finding the deepest node by iteration (see if its possible by recursion)
+P115.  *Reverse a linked list by recursion
+P116.  Find the reverse of an editable and non editable string.
+P117.  Finding the shortest path between two nodes in BST.
+P118.  Given a string, find whether it has any permutation of another string. For example, given "badfcge" and "fcd", it should return true, because "badfcge" has substring "dfc", which is a permutation of "fcd".
+P119.  Convert sorted array into BST.
+P120.  We have an array with only 1s and 0s. eg [11111 .... 11110000 ....0000]. Assume there are millions of 0 and 1. Find the first index of 0. We do not know the size of an array
+P121.  Find Max element in a binary tree using recursion and iteration
+P122.  Given an array of size n and all the elements are in the range 0 to n-1. Find if any duplicates are present. (Best time and space complexity to be used).
+P123.  Create binary tree from preorder and inorder data.
+P124.  Array with 0s and 1s, sort them in one scan.
+P125.  **Detect a loop in LL, if present, find the point where loop starts, find the length of the loop and also remove the loop.
+P126.  With a linked list data structure, find if a given string is palindrome or not.(Coolest Logic used by me)
+P127.  Find next word in a dictionary.
+P128.  Suppose only a pointer to a particular node is given, and we need to delete that node
+P129.  Find the elements that are in the range between k1 and k2 in BST.
+P130.  Check if the Linked List contains Loop or not.
+P131.  Merge K number of sorted list in O(nlogK) time complexity, here n is the total of all list.
+P132.  WAP to parse an arithmetic expression i.e. whether the exp is valid or not
+P133.  Input -> "I am Happy" Output -> "Happy am I"
+P134.  Maximum and Minumum Element of BST.
+P135.  **Given LL is 1-2-3-4-5, the out put should be 2-1-4-3-5 etc.
+P136.  Given a list of pairs {{1,3},{2,6},{3,5},{7,4},{5,3},{8,7},{4,7}}. Print symmetric pairs i.e. {3,5} {5,3} {7,4}{4,7}.
+P137.  Check if the two given trees are identical. Sub pro: Check if the two trees are mirror of one another
+P138.  Append the last n nodes of a linked list to the beginning of the list eg: 1->2->3->4->5->6 if n=2 5->6->1->2->3->4
+P139.  Find cousins of a given node in a Binary tree and BST.(Nodes which are at the same level but does not have same parent are called cousins).
