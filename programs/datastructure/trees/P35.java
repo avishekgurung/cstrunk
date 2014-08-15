@@ -169,6 +169,10 @@ class P35
  *  
  *  For theoritical understanding you can check
  *  http://www.geeksforgeeks.org/find-a-pair-with-given-sum-in-bst/
+
+ 	But the space is not constant here, as it takes O(n) space.
+ 	So if we can solve it in O(n) space, we can traverse BST and put all the elements in array(sorted)
+ 	or even use Hash to solve.
  * 
  */
  

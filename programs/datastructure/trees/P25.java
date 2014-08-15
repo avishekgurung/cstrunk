@@ -99,9 +99,11 @@ class Tree
 			
 			if(node.left != null && node.right != null)
 			{
-				Node temp = max_recursion(node.left);
+				/*Node temp = max_recursion(node.left);
 				node.data = temp.getData();
-				node.left = delete(node.left, temp.getData());
+				node.left = delete(node.left, temp.getData());*/
+				node.data = node.right.getData();
+				delete(node.right,node.right.getData());
 			}
 			else if(node.left != null || node.right != null)
 			{
@@ -140,15 +142,17 @@ class P25
 	public static void main(String[] args) 
 	{
 		Tree t = new Tree();
-		t.iteration_insert(8);
-		t.iteration_insert(14);
+		t.iteration_insert(4);
+		t.iteration_insert(3);
 		t.iteration_insert(6);
-		t.iteration_insert(7);
-		t.iteration_insert(12);
+		t.iteration_insert(1);
+		t.iteration_insert(2);
+		t.iteration_insert(5);
+		//t.iteration_insert(7);
 		
 		t.display();
 		
-		t.delete(t.node,8);
+		t.delete(t.node,4);
 		
 		t.display();
 	}

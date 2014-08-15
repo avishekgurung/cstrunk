@@ -59,7 +59,7 @@ class Tree
       }
 	
 	
-	//utility Function By Iteration if extra space cannot be used  
+	//utility Function By Iteration if extra space can be used  
 	public boolean checkBST(Node node)
 	{
 		boolean flag = true;
@@ -90,7 +90,7 @@ class Tree
 		return flag;
 	}
 	
-	//utility Function By Iteration if extra space can be used 
+
 	static Node prev = null;
 	public boolean checkBST_recur(Node node)
 	{
