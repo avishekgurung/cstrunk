@@ -123,3 +123,27 @@ class P26
 		l.display();
 	}
 }
+
+/*
+	merge two sorted Linked List
+
+	public Node merge(Node x, Node y){
+		if(x == null && y == null)
+			return null;
+
+		if(x == null)
+			return y;
+
+		if(y == null)
+			return x;
+
+		Node node = null;
+		if(x.getData() < y.getData()){
+			node = new Node(x.getData(),merge(x.next,y));
+		}		
+		else{
+			node = new Node(y.getData(),merge(x,y.next));
+		}
+		return node;
+	}
+*/

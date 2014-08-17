@@ -101,17 +101,15 @@ class LinkedList
 		
 		temp = node;
 		Node cloneHead = null;
-		boolean flag = true;
 		while(temp != null)
 		{
 			Node x = hashmap.get(temp);
 			x.next = hashmap.get(temp.next);
 			x.random = hashmap.get(temp.random);
 			temp = temp.next;
-			if(flag)
+			if(cloneHead == null)
 			{
 				cloneHead = x;
-				flag = false;
 			}
 		}
 		display(node);

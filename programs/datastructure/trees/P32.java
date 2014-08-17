@@ -92,27 +92,25 @@ class Tree
 		smallest(node.right, k);
 	}
 	
-	//or while traversing. we can also start pushing the element in an array
 	/*
-	 * else we can do an inorder traversal that will traverse BST in sorted order. We can push the elements traversed in a stack.
-	 * after that we can pup out kth element 
-	 * 
-	 * But if we need to find in one traversal then the following below is the best approach with best space and time complexity
-	 */
+		There are couple of ways to find the kth smallest in O(n) time complexity
+		But since this is a BST, so its complexity has to be reduced to O(logn)
+		as given below.
+	*/
 	
 	public Node kthSmallest(Node node, int k)
 	{
 		while(true)
 		{
-			int leftCount = total(node.left);
-			if(k == leftCount + 1)
+			int num = total(node.left)+1;
+			if(k == num)
 			{
 				System.out.println("Kth Smallest element is "+node.getData());
 				break;
 			}
-			else if(k > leftCount)
+			else if(k > num)
 			{
-				k = k - (leftCount + 1);
+				k = k - num;
 				node = node.right;
 			}
 			else

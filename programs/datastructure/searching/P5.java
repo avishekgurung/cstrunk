@@ -31,7 +31,21 @@ class P5
 				arr[x] = i;
 				x++;
 			}
+		}	
+	}
+
+	//without sorting
+	public static void alternateSol(int arr[]){
+		int arr[] = {4,2,5,1,4,3,2};
+		for(int i=0;i<arr.length;i++){
+			int index = Math.abs(arr[i]);
+			int val = arr[index];
+			if(val < 0){
+				System.out.println(index);
+			}
+			else{
+				arr[index] = -arr[index];
+			}
 		}
-			
 	}
 }

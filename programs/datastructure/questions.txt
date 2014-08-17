@@ -40,7 +40,7 @@ P28.  Sort stack in ascending or descending order.
 P29.  Deleting a node in BST.
 P30.  How do detect if the LL is odd or even?
 P31.  Given two arrays of unordered numbers. Check if two arrays has same set of numbers.
-P32.  *Given number k, for Singly Linked List, reverse every k elements.
+P32.  **Given number k, for Singly Linked List, reverse every k elements.
 P33.  Inserting element in Sorted Order
 P34.  Printing the elements in reverse order by recursion
 P35.  Find the first and the last occurrence of an element in a sorted array in O(logn) time.

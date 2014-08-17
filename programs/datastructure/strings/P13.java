@@ -53,4 +53,11 @@ class P13
  * 1. We will generate all possible permutation of the smaller string
  * 2. For each permutation, we will do a KMP Search or any other search
  * 3. If the substring is present, we return true else return false. 
+
+ 	OR (More simpler approach)
+ 	1. Take the pattern and add all the elements, to get sum s.
+ 	2. Traverse the text, with a window of length of the pattern. Find the sum for every window.
+ 	If the both sums are equal, return true.
+
+ 	THis is similar to finding an anagram.
  */

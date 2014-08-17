@@ -79,6 +79,29 @@ class P3
 		
 		return maxVal;
 	}
+
+	//time complexity is pretty expensive here
+	//We take the longest window and start reducing the size of the window
+	public static String longestPalindromByWindow(String str){
+		if(reverse(str).equals(str))
+			return str;
+		char arr[] = str.toCharArray();
+		int length = str.length();
+		int windowSize = length-2;
+
+		while(windowSize > 1){
+			for(int i=0; i<length-windowSize;i++){
+				String window = "";
+				for(int j=i; j < i+windowSize; j++){
+					window = window + arr[j];
+				}
+				if(reverse(window).equals(window))
+					return window;
+			}
+			windowSize--;
+		}
+		return "";
+	}
 }
 //Time Complexity = O(m*n)
 //Space Complexity = O(m*n)
