@@ -118,54 +118,23 @@ class LinkedList
 	
 	public void cloneNodeAnother()//changing the structure but without using hashmap and better complexity
 	{
-		Node temp = node;
-		while(temp != null)
-		{
-			Node x = new Node(temp.getData(),temp.next,temp.random);
-			Node y = temp.next;
-			
-			temp.next = x;
-			temp = y;
-		}
-		temp = node;
-		
-		/*while(temp != null) //THis part is not required
-		{
-			if(temp.random != null)
-			{
-				temp.next.random = temp.random.next;
+		Node pointer = node;
+		Node prev = null;
+		Node head = null;
+		boolean flag = true;
+		while(pointer != null){
+			Node temp = new Node(pointer.getData(),pointer.next,pointer.random);
+			if(flag){
+				head = temp;
+				flag = false;
 			}
-
-			temp = temp.next.next;
-		}*/
-		
-		Node originalNode = node;
-		Node cloneNode = node.next;
-		Node cloNodePointer = cloneNode;
-		while(originalNode.next != null || cloneNode.next != null)
-		{
-			Node x = cloneNode.next;
-			originalNode.next = x;
-			
-			if(x == null)
-				break;
-			
-			Node y = x.next;
-			cloneNode.next = y;
-			
-			originalNode = x;
-			cloneNode = y;
+			if(prev != null){
+				prev.next = temp;
+			}
+			prev = temp;
+			pointer = pointer.next;
 		}
-		originalNode.next = null;
-		cloneNode.next = null;
-		
-		display(node);
-		display(cloNodePointer);
-		
-		node.next.next.next = null;
-				
-		display(node);
-		display(cloNodePointer);
+		display(head);
 	}
 }
 
