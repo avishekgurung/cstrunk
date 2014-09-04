@@ -89,6 +89,54 @@ class P12
 		}
 		return -1;
 	}
+
+	//simpler
+	public static void occurrence(int arr[],int element){
+		int left = 0;
+		int right = arr.length-1;
+		int firstIndex = 0;
+		int lastIndex = 0;
+
+		while(left < right){
+			int mid = (left + right)/2;
+			if(element > arr[mid])
+				left = mid;
+			else if(element < arr[mid])
+				right = mid;
+			else{
+				if(arr[mid-1] != element){
+					firstIndex = mid;
+					break;
+				}
+				else{
+					right = mid;
+				}
+			}
+		}
+
+		left = 0;
+		right = arr.length-1;
+
+		while(left < right){
+			int mid = (left + right)/2;
+			if(element > arr[mid])
+				left = mid;
+			else if(element < arr[mid])
+				right = mid;
+			else{
+				if(arr[mid+1] != element){
+					lastIndex = mid;
+					break;
+				}
+				else{
+					left = mid;
+				}
+			}
+		}
+
+		System.out.println("First Index "+firstIndex);
+		System.out.println("Last Index "+lastIndex);
+	}
 }
 
 

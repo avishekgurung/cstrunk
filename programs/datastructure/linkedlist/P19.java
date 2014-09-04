@@ -99,6 +99,33 @@ class LinkedList
 			altMerge(a, x, true);
 		}
 	}
+
+	//smarter way by recursion
+	public Node merge_recur(Node n, Node m){
+		if(n == null && m == null)
+			return null;
+		if(n == null)
+			return m;
+		if(m == null)
+			return n;
+
+		n.next = merge_recur(m,n.next);
+		return n;
+	}
+
+	//smarter way by iteration
+	public Node merge_itr(Node n, Node m){
+		Node head = n;
+		while(n != null && m != null){
+			Node temp = n.next;
+			n.next = m;
+			Node temp1 = m.next;
+			m.next = temp;
+			n = temp;
+			m = temp1;
+		}
+		return head;
+	}
 }
 
 class P19

@@ -29,6 +29,26 @@ class P4
 		else
 			System.out.println("The sum does NOT exits");
 	}
+
+	//simpler method
+	public static void utility(int a[], int b[], int k){
+		int left = 0;
+		int right = b.length-1;
+
+		while(left < a.length && right >= 0){
+			int sum = a[left] + b[right];
+			if(sum == k){
+				System.out.println(a[left]+"\t"+b[right]);
+				left++;
+			}
+			else if(sum > k){
+				right--;
+			}
+			else{
+				left++;
+			}
+		}
+	}
 	
 	public static boolean binarySearch(int arr[], int element)
 	{

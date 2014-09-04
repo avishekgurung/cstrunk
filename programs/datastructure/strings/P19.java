@@ -105,4 +105,10 @@ class P19
  * Iterate the string. Take three words at a time(i.e creating a window of size three). Reverse them. And do a KMP search on the main string.
 So to iterate through string, it takes O(n). Reverse will take O(3) which is constant. And KMP search will take O(n). So total time complexity = O(n2)
 And space complexity = O(3) for prefix function of KMP. Using suffix tree mite reduce the complexity.
+
+Else another approach would be,
+Iterate the string and create window of size 3. Put all the window in Map.
+Iterate the string and create window of size 3. Reverse each window and search in map.
+Time and Space Complexity = O(n)
+
  * */

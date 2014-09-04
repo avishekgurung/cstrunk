@@ -1,6 +1,8 @@
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.Map;
+import java.util.HashMap;
 
 class Node
 {
@@ -80,6 +82,7 @@ class Tree
 		System.out.println();
 	}
 	
+	//Dont know if we can do in constant space. THis is not constant space.
 	public void sum(Node node, int k)
 	{
 		Stack<Node> s = new Stack<Node>();
@@ -126,6 +129,20 @@ class Tree
 			}
 		}
 	}
+
+
+	//ELSE we can do it in shorter way like this. very simple
+	Map<Integer,Integer> map = new HashMap<Integer,Integer>();
+
+	public void shortWay(Node node, int k){
+		if(node == null)
+			return;
+		if(map.containsKey(k-node.getData()))
+			System.out.println(node.getData()+" "+(k-node.getData()));
+		map.put(node.getData(),0);
+		shortWay(node.left,k);
+		shortWay(node.right,k);
+	}
 }
 
 
@@ -143,7 +160,8 @@ class P35
 		t.insert(7);
 		
 		t.display(t.node);
-		t.sum(t.node, 9);
+		//t.sum(t.node, 9);
+		t.shortWay(t.node,9);
 		
 		
 	}

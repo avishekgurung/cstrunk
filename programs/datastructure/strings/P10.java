@@ -16,21 +16,6 @@ class P10
 		return dict[index];
 	}
 	
-	public static int utilityWithoutLength(String word) //Gallop search
-	{
-		if(word.equals(dict[0]))
-			return 0;
-		
-		int i = 1;
-		while(compareWords(dict[i], word) != 0)
-		{
-			i = i * 2;
-		}
-		
-		while(!dict[i].equals(word))
-			i--;
-		return i;
-	}
 	
 	public static int utilityWithLength(String word)
 	{
@@ -52,41 +37,40 @@ class P10
 		}
 		return -1;
 	}
-	
-	public static int compareWords(String s, String t) //if s comes before t then return 1 else return 0
+
+	public static int utilityWithoutLength(String word) //Gallop search
 	{
-		char a[] = new char[s.length()+1];
-		char b[] = new char[t.length()+1];
+		if(word.equals(dict[0]))
+			return 0;
 		
-		int i = 0;
-		for(i=0;i<s.length();i++)
-			a[i] = s.charAt(i);
-		a[i] = '\0';
-		
-		i = 0;
-		for(i=0;i<t.length();i++)
-			b[i] = t.charAt(i);
-		b[i] = '\0';
-		
-		int l = a.length;
-		if(l < b.length)
-			l = b.length;
-		
-		for(i=0;i<l;i++)
+		int i = 1;
+		while(compareWords(dict[i], word) != 0)
 		{
-			if(a[i] != b[i])
-			{
-				if(a[i] == '\0')
-					return 1;
-				if(b[i] == '\0')
-					return 0;
-				if(a[i] <= b[i])
-					return 1;
-				if(a[i] > b[i])
-					return 0;
-			}
+			i = i * 2;
 		}
-		return -1;
+		
+		while(!dict[i].equals(word))
+			i--;
+		return i;
+	}
+	
+	public static int compareWords(String a, String b) //if s comes before t then return 1 else return 0
+	{
+		if(a.equals(b))
+			return 0 ;
+		char[] s = a.toCharArray();
+		char[] t = b.toCharArray();
+
+		for(int i=0;;i++){
+			if(s[i] < t[i])
+				return 1;
+			else if(s[i] > t[i])
+				return -1;
+			if(i== s.length-1)
+				return 1;
+			if(i == t.length-1)
+				return -1;
+		}
 	}
 }
 
@@ -96,25 +80,3 @@ class P10
  * Both cases use O(logn) time. Not considering compare function 
  */
 
-//Simpler comparewords function
-public static int compareWords(String s, String t){
-		
-		int i=0;
-		int j=0;
-		
-		while(i < s.length() && j < t.length()){
-			if(s.charAt(i) < t.charAt(j))
-				return 1;
-			if(s.charAt(i) > t.charAt(j))
-				return -1;
-			i++;
-			j++;
-		}
-		if(s.length() > t.length())
-			return -1;
-		
-		if(s.length() < t.length())
-			return 1;
-		
-		return 0;
-	}

@@ -9,17 +9,12 @@ CABD
 CADB 
 CDAB
 
-Ans. Would use my naive way to do it. Generate a string = ABCD, i.e by combining two strings. Create a permutation of these strings and put it in a string array.
-Iterate through the array and print only those strings where B comes after A. But that will be very very naive. So need to work on permutation and customize it.
-
 Ques 2. Given a string, find the substring with minimum length from it which contains exactly equal no of characters given in a hashmap which contains key 
 as character and values as count of character needed in substring. 
 For example: 
 String str ="abcrefbda"; 
 map = {{"b"=1},{"d"=1"},{"a"=1}}; 
 Output = "bda";
-
-Ans. From the hashmap, get the value and make a string abd, create all permutation and search for each permutation in the main String.
 
 Ques 3. Given a list of words and a dictionary with many words. The dictionary may or may not include the the given list of words. 
 From the given list of words,you need to print only those words which are present in dictionary. 

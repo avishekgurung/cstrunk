@@ -131,7 +131,7 @@ P119.  Convert sorted array into BST.
 P120.  We have an array with only 1s and 0s. eg [11111 .... 11110000 ....0000]. Assume there are millions of 0 and 1. Find the first index of 0. We do not know the size of an array
 P121.  Find Max element in a binary tree using recursion and iteration
 P122.  Given an array of size n and all the elements are in the range 0 to n-1. Find if any duplicates are present. (Best time and space complexity to be used).
-P123.  Create binary tree from preorder and inorder data.
+P123.  **Create binary tree from preorder and inorder data.
 P124.  Array with 0s and 1s, sort them in one scan.
 P125.  **Detect a loop in LL, if present, find the point where loop starts, find the length of the loop and also remove the loop.
 P126.  With a linked list data structure, find if a given string is palindrome or not.(Coolest Logic used by me)

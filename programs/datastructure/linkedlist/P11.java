@@ -19,7 +19,6 @@ class LinkedList
 {
 	Node node;
 	
-	//insert
 	public void insert(String data)
 	{
 		Node pointer = node;
@@ -33,17 +32,17 @@ class LinkedList
 			{
 				pointer = pointer.next;
 			}
-			pointer.next = new Node(data,null);
+			pointer.next =  new Node(data, null);
 		}
 	}
 	
-	//display
-	public void display()
+	public void display(Node node)
 	{
 		Node pointer = node;
+		
 		if(node == null)
 		{
-			System.out.println("List is Empty");
+			System.out.println("Empty List");
 		}
 		else
 		{
@@ -55,49 +54,64 @@ class LinkedList
 		}
 		System.out.println();
 	}
-	
-	//reverse
-	public void reverse()
-	{
-		Node current_pointer = node; //current pointer
-		Node prev_pointer = null;
-		Node next_pointer = null;
-		
-		while(current_pointer != null)
-		{
-			next_pointer = current_pointer.next;
-			current_pointer.next = prev_pointer;
-			prev_pointer = current_pointer;
-			current_pointer = next_pointer;
+
+	//only two pointers
+	public void reverse_iteration(Node node){
+		Node prev = null;
+		while(node != null){
+			Node next = node.next;
+			node.next = prev;
+			prev = node;
+			node = next;
 		}
-		node = prev_pointer; // So on following the above operation we get datas as E --> D -- > C ... So we just pointer our node which is our head pointer to it
+		display(prev);
 	}
-	
-	//reverse by using recursive
-	
-	public Node callRecursiveFunction(Node node, Node prev) //call with head node and null. 
-	{
-		if(node == null)
-			return prev;
+
+	//here too only two pointers
+	public void reverse_recursion(Node node, Node prev){
+		if(node == null){
+			return;
+		}
 		Node next = node.next;
 		node.next = prev;
-		prev = node;
-		return callRecursiveFunction(next,prev);
+		reverse_recursion(next,node);
+	}
+
+	public Node lastNode(Node node){
+		Node pointer = node;
+		while(pointer.next != null)
+			pointer = pointer.next;
+		return pointer;
 	}
 }
 
-public class P11
+class P11
 {
-	public static void main(String[] args) {
-		LinkedList ll =  new LinkedList();
-		ll.insert("A");
-		ll.insert("B");
-		ll.insert("C");
-		ll.insert("D");
-		ll.insert("E");
+	public static void main(String[] args) 
+	{
+		LinkedList l =  new LinkedList();
 		
-		ll.display();
-		ll.reverse();
-		ll.display();
+		l.insert("A");
+		l.insert("B");
+		l.insert("C");
+		l.insert("D");
+		l.insert("E");
+		l.insert("F");
+		l.insert("G");
+		l.insert("H");
+		l.insert("I");
+		l.insert("J");
+		l.insert("K");
+		
+		Node node = l.node;
+		l.display(node);
+
+		//By recursion
+		/*Node last = l.lastNode(node);
+		l.reverse_recursion(l.node,null);
+		l.display(last);*/
+
+		//By iteration
+		l.reverse_iteration(node);
 	}
 }

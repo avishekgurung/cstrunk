@@ -39,7 +39,7 @@ class LinkedList
 		}
 	}
 	
-	public void display()
+	public void display(Node node)
 	{
 		Node pointer = node;
 		
@@ -57,43 +57,24 @@ class LinkedList
 		}
 		System.out.println();
 	}
-	
-	public void alternateDelete(int m, int n)
-	{
-		Node pointer = node;
-		int count = 1;
-		Node x = null, y = null;
-		boolean flag = false;
-		while(pointer.next != null)
-		{
-			if(count == m)
-			{
-				x = pointer;
-			}
-			if(count == m+n+1)
-			{
-				y = pointer;
-				flag = true;
-			}
-			
-			if(flag)
-			{
-				x.next = y;
-				flag = false;
-				count = 1;
-			}
-			
-			count++;
-			pointer = pointer.next;
-			
-			if(pointer.next == null)
-			{
-				if(count > m && count < m+n+1)
-				{
-					x.next = null;
-				}
-			}
+
+	public Node sort(Node n, Node m){
+		if(n == null && m == null)
+			return null;
+		if(n == null)
+			return m;
+		if(m == null)
+			return n;
+		Node temp = null;
+		if(n.getData() < m.getData()){
+			temp = new Node(n.getData(),null);
+			temp.next = sort(n.next,m);
 		}
+		else{
+			temp = new Node(m.getData(),null);
+			temp.next = sort(n,m.next);
+		}
+		return temp;
 	}
 }
 
@@ -104,46 +85,29 @@ class P26
 		LinkedList l =  new LinkedList();
 		
 		l.insert(1);
-		l.insert(2);
-		l.insert(3);
 		l.insert(4);
-		l.insert(5);
-		l.insert(6);
 		l.insert(7);
-		l.insert(8);
-		l.insert(9);
 		l.insert(10);
-		l.insert(11);
-		l.insert(12);
-		l.insert(13);
-		l.insert(14);
+		l.insert(15);
+		l.insert(16);
+		l.insert(17);
+		l.insert(18);
 		
-		l.display();
-		l.alternateDelete(3, 4);
-		l.display();
+		Node node1 = l.node;
+		l.display(node1);
+
+		LinkedList m =  new LinkedList();
+		
+		m.insert(2);
+		m.insert(3);
+		m.insert(9);
+		m.insert(10);
+		m.insert(20);
+		
+		Node node2 = m.node;
+		m.display(node2);
+
+		Node node = m.sort(node1,node2);
+		m.display(node);
 	}
 }
-
-/*
-	merge two sorted Linked List
-
-	public Node merge(Node x, Node y){
-		if(x == null && y == null)
-			return null;
-
-		if(x == null)
-			return y;
-
-		if(y == null)
-			return x;
-
-		Node node = null;
-		if(x.getData() < y.getData()){
-			node = new Node(x.getData(),merge(x.next,y));
-		}		
-		else{
-			node = new Node(y.getData(),merge(x,y.next));
-		}
-		return node;
-	}
-*/

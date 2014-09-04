@@ -2,56 +2,28 @@ class P16
 {
 	public static void main(String[] args) 
 	{
-		int arr[][] = {{1,3,4,5,6},{10,13,14,15,16},{25,26,27,28,29},{43,44,48,49,50},{63,65,66,68,72}};
-		int n = arr.length; //rememeber array is of size nxn
-		display2d(arr);
-		int element = 28;
+		int arr[][] = {{1,2,3,4,5},{6,7,8,9,10},{11,12,13,14,15},{16,17,18,19,20},{21,22,23,24,25}};
+		int element = 17;
 
-		int i = arr.length-1;
-		int j = arr.length-1;
+		int row = 0;
 
-		while(arr[i][j] > element){
-			i--;
-			j--;
-		}
-
-		boolean found = false;
-		int a = 0, b = 0;
-
-		while(j < arr.length){
-			if(arr[i][j] == element){
-				found = true;
-				a = i;
-				b = j;
+		for(int i=0; i< arr.length;i++){
+			if(element >= arr[i][0] && element <= arr[i][arr.length-1]){
+				row = i;
 				break;
 			}
-			j++;
 		}
 
-		if(!found){
-			i = i + 1;
-			j = 0;
-
-			while(j < arr.length){
-				if(arr[i][j] == element){
-					found = true;
-					a = i;
-					b = j;
-				}
-				j++;
+		for(int j=0;j<arr.length;j++){
+			if(arr[row][j] == element){
+				System.out.println("Found at "+row+","+j);
+				break;
 			}
-		}
-
-		if(found){
-			System.out.println("Element found at "+a+","+b+" position");
-		}
-		else{
-			System.out.println("element not found");
 		}
 	}
 }
 
 /*
-Search diagonally and get an element which is just smaller than the element to be searched.
-Once u get that, just iterate along x axis and find the desired element.
+Search in which row it lies.
+Then search that row.
 */

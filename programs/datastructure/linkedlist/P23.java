@@ -1,4 +1,5 @@
-import java.util.HashSet;
+import java.util.Map;
+import java.util.HashMap;
 
 class Node
 {
@@ -20,8 +21,6 @@ class Node
 class LinkedList
 {
 	Node node;
-	HashSet set;
-	int count = 0;
 	
 	public void insert(String data)
 	{
@@ -29,7 +28,6 @@ class LinkedList
 		if(node == null)
 		{
 			node =  new Node(data,null);
-			set = new HashSet<String>();
 		}
 		else
 		{
@@ -38,10 +36,7 @@ class LinkedList
 				pointer = pointer.next;
 			}
 			pointer.next =  new Node(data, null);
-		}
-		
-		set.add(data);
-		count++;
+		}	
 	}
 	
 	public void display()
@@ -65,14 +60,17 @@ class LinkedList
 	
 	public void checkDuplicates()
 	{
-		if(set.size() < count)
-		{
-			System.out.println("Duplicate Elements present");
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		Node pointer = node;
+		while(pointer != null){
+			if(map.containsKey(pointer.getData())){
+				System.out.println("Has Duplicates");
+				return;
+			}
+			map.put(pointer.getData(),0);
+			pointer = pointer.next;
 		}
-		else
-		{
-			System.out.println("All elements are Unique");
-		}
+		System.out.println("Has NO Duplicates");
 	}
 }
 
@@ -102,10 +100,5 @@ class P23
 	}
 }
 
-/*
- * Traverse through the ciruclar list or linked list.
- * In each traversal, put the value of the node in HashSet (Remember HashSet does not take any duplicate data)
- * In each traversal, increment the count so that we can get total no of nodes present in the LL
- * Finally, when traversal is compelte, compare the no of node present in LL with that of num of elements present in HashSet
- * If they are equal then no duplicates else duplicates (No of elements in HashSet will always be equal or less than the no elements of LL)
+/*Simply put the elements in the Map and check
 */
