@@ -124,3 +124,17 @@ class ShortestPathNonWeightedGraph{
 		g.showPathAndDistance();
 	}
 }
+
+/*
+	Create a distance table with all values 0, except self loop
+	Get a particular vertex.
+	Add it in a queue. 
+
+	While q is not empty, add all vertices adjacent to the said vertex in a queue.
+	Calculate the distance and above vertex adding if the distance is -1.
+
+	Learn Dijkstra's Algo.
+	Bellman Ford to calculate negative edges too.
+	Minimal Spanning tree: Prims and Kruskal's algo.
+
+*/

@@ -146,4 +146,10 @@ class TopologicalSort{
 	The problem does not involve complicated logics. Its just the use of several arrays and their manupulations
 	The solution becomes easy if we implement and write all the arrays in the paper for reference and then code.
 	For the logic please follow the book too.
+
+	Logic:
+	All the vertices with indegrees 0 are placed in the queue. While the queue is not empty, a vertex v is removed
+	and all the vertices adjacent v will have their vertices decremented. A vertex is put in a queue as soon
+	as its indegree falls to 0. So the topological order is the order in which we remove vertices from the 
+	Queue
 */
