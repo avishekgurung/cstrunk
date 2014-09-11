@@ -1,0 +1,8 @@
+1. Check if a simple path exists between two vertices in a graph.
+2. Count the no of simple path from a source to a destination.
+3. Finding short paths between all pairs of vertices.
+4. Check if the graph is connected.
+5. Check if the graph is bipartite
+6. Detect a cycle in undirected graph.
+7. Detect a cycle in directed graph.
+8. Detect if a graph is a tree.
