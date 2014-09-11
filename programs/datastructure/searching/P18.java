@@ -23,6 +23,7 @@ class P18
 			case 0:
 				swap(arr, left, mid);
 				left++;
+				mid++;
 				break;
 				
 			case 1:
