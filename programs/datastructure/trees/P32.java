@@ -130,6 +130,23 @@ class Tree
 		return left + 1 + right;
 	}
 	
+	//By Recursion
+	public int kthSmallest(Node node, int k){
+		if(node == null){
+			return -1;
+		}
+		int sum = total(node.left)+1;
+		if(sum == k){
+			return node.getData();
+		}
+		else if(k > sum){
+			k = k - sum;
+			return kthSmallest(node.right,k);
+		}
+		else{
+			return kthSmallest(node.left,k);
+		}
+	}
 }
 
 
