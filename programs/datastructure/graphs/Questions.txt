@@ -6,3 +6,5 @@
 6. Detect a cycle in undirected graph.
 7. Detect a cycle in directed graph.
 8. Detect if a graph is a tree.
+9. Find articulation points in a graph.
+10. Find strongly connected components in a graph.
