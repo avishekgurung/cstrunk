@@ -42,11 +42,13 @@ class Graph{
 		while(!q.isEmpty()){
 			Character temp = q.remove();
 			int index = getIndex(temp);
-			if(visited[index] == 0){		// The check here is important else duplicate vertices will be added in the queue.
+			// The check here is important else duplicate vertices will be added in the queue.
+			if(visited[index] == 0){		
 				System.out.print(temp+"  ");
 				visited[index] = 1;
 				for(int i=0;i<count;i++){
-					if(adjMatrix[index][i] == 1 && visited[i] == 0){ //add only those vertices which are adjacent and which are not visited before
+					//add only those vertices which are adjacent and which are not visited before
+					if(adjMatrix[index][i] == 1 && visited[i] == 0){ 
 						q.add(vertexList[i]);
 					}
 				}
