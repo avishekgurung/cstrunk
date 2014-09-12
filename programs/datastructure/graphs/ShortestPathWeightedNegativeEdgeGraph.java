@@ -39,7 +39,7 @@ class Graph{
 			for(int i=0;i<count;i++){
 				if(adjmatrix[index][i] != 0){
 					int newPath = distanceTable[index] + adjmatrix[index][i];
-					if(newPath < distanceTable[i]){
+					if(newPath < distanceTable[i] || distanceTable[i] == -1){
 						distanceTable[i] = newPath;
 						q.add(vertexList[i]);
 						path[i] = path[index]+" -> "+vertexList[i];
