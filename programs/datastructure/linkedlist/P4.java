@@ -21,43 +21,21 @@ class LinkedList
 	
 	public void insert(int data)
 	{
-		Node pointer = node;
-		if(node == null)
-		{
-			node =  new Node(data,null);
+		if(node == null){
+			node = new Node(data,null);
 		}
-		else if(node.next == null || node.getData() > data)
-		{
-			if(node.getData() > data)
-			{
-				Node x =  new Node(data,node);
-				node = x;
-			}
-			else
-			{
-				node.next =  new Node(data,null);
-			}
+		else if(data < node.getData()){
+			Node temp = new Node(data,node);
+			node = temp;
 		}
-		else
-		{
-			while(pointer.next != null)
-			{
-				if(pointer.next.getData() > data)
-				{
-					pointer.next =  new Node(data,pointer.next);
-					break;
-				}
-				else
-				{
-					pointer = pointer.next;
-				}
+		else {
+			Node p1 = node;
+			Node p2 = node.next;
+			while(p2 != null && p2.getData() < data){
+				p1 = p1.next;
+				p2 = p2.next;
 			}
-			
-			if(pointer.next == null)
-			{
-				pointer.next = new Node(data,null);
-			}
-			
+			p1.next = new Node(data,p2);
 		}
 	}
 	
