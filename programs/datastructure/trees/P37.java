@@ -96,7 +96,16 @@ class Tree
 		return temp;
 	}
 	
-	
+	//recursive way
+	int sum = 0;
+	public void utility(Node node){
+		if(node == null)
+			return;
+		utility(node.right);
+		sum = sum + node.getData();
+		node.data = sum;
+		utility(node.left);
+	}
 }
 
 
