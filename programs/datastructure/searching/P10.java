@@ -27,4 +27,5 @@ class P10
 /*
  * Time Complexity = O(logn)
  * Space Complexity = O(1)
+ * This seaching is also called Gallop Search
  */
