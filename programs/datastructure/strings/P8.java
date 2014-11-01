@@ -9,6 +9,7 @@ class P8
 	
 	static String arr[];
 	static int index = 0;
+	//Simpler logic to check anagram would be to 1. see if their lengths are same 2. Sort them and compare
 	public static void checkIfAnagram(String a, String b)
 	{
 		arr = new String[factorial(b)];
