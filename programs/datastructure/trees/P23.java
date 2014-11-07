@@ -115,15 +115,13 @@ class P23
 		t.iteration_insert(7);
 		t.iteration_insert(12);
 		t.display();
-		t.node = null;
-		
-		
+
 		System.out.println("\nRecursion");
-		t.node=t.recursion_insert(t.node,8);
-		t.node=t.recursion_insert(t.node,14);
-		t.node=t.recursion_insert(t.node,6);
-		t.node=t.recursion_insert(t.node,7);
-		t.node = t.recursion_insert(t.node,12);
+		t.node=t.recursion_insert(null,8);
+		t.recursion_insert(t.node,14);
+		t.recursion_insert(t.node,6);
+		t.recursion_insert(t.node,7);
+		t.recursion_insert(t.node,12);
 		
 		t.display();
 	}

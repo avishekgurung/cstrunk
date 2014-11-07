@@ -115,6 +115,25 @@ class LinkedList
 		return result;
 	}
 	
+	//more simpler
+	public void utility(Node node){
+		Node pointer = node;
+		Node head = node.next;
+		while(pointer != null){
+			Node x = pointer.next;
+			Node y = x.next;
+			x.next = pointer;
+
+			if(y == null || y.next == null){
+				pointer.next = y;
+				break;
+			}
+			pointer.next = y.next;
+			pointer = y;
+		}
+		display(head);
+	}
+	
 }
 
 class P15
