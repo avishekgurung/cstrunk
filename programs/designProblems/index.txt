@@ -1,0 +1,8 @@
+P1. (AMAZON) Design a valet parking system. Requirements of the valet parking system should be: 
+1. Customer are given a ticket that they can use to redeem to get their vehicle back 
+2. Parking spots come in three sizes, small, med, large 
+3. Thee types of vehicles, small, med, large 
+  	small vehicle can park in a small, medium, and large spot 
+	medium vehicle can park in a medium and large spot 
+	large vehicle can park in a large spot
+
