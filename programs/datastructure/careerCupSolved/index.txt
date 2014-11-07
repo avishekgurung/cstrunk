@@ -1,0 +1,38 @@
+P1. (AMAZON) Given ~300k words with an average length of 7 in a file. 
+All words are dictionary correct words. 
+Print all the anagrams that are present in this list of words without repeating them. 
+
+E.g. if the list has: 
+ACT 
+BAT 
+CAT 
+TAB 
+TAC 
+
+print: 
+ACT, CAT, TAC 
+BAT, TAB
+
+2. (Google) Write a program to implement Double Linked List from Stack with min. complexity.
+
+3. (EPIC) Generate stepping number from a given range. Stepping are those numbers where the difference between adjacent number is one. And the last and first number's difference is also one. Eg 1232, 6545 etc
+
+4. (FACEBOOK) You're given an array of integers(eg [3,4,7,1,2,9,8]) Find the index of values that satisfy A+B = C + D, where A,B,C & D are integers values in the array. 
+
+Eg: Given [3,4,7,1,2,9,8] array 
+The following 
+3+7 = 1+ 9 satisfies A+B=C+D 
+so print (0,2,3,5)
+
+5. We have 'n' patients and 'm' problems. The problems are of boolean type. Eg diabetes problem would be 'T' if a patient has it or 'F' otherwise. Suggest the data structure you would store this scenario on? 
+
+6. (EPIC) We have a set of problems {diabetes, liver disease, kidney disease} find all the patients who have 
+at least the 3 problems from the set. 
+The number of patients can be huge (n). 
+The number of problems not comparatively huge (m). 
+Which would be the best data structure to store these kind of records, so that we have a better search time.
+
+7. (KOMLI) Designing LRU Cache.
+
+8. (KOMLI) How will you reverse a string word by word without using to much of extra space.
+
