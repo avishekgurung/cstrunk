@@ -79,3 +79,8 @@ class P4{
 		System.out.println("Is Connected: "+g.isConnected('A'));
 	}
 }
+
+/*
+	If same question is asked for directed graph then for the graph to be connected,
+	all the edges should be present, hence the no of edges should be n(n-1)/2
+*/

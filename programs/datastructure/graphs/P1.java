@@ -52,7 +52,7 @@ class Graph{
 
 	boolean pathExists = false;
 
-	public void simplePathExists(char start, char end){
+	public boolean simplePathExists(char start, char end){
 		if(start == end){
 			pathExists = true;
 			return;
@@ -62,9 +62,13 @@ class Graph{
 		vertexList[index].visited = true;
 		for(int i=0;i<count;i++){
 			if(adjMatrix[index][i] == 1 && !vertexList[i].visited){
-				simplePathExists(vertexList[i].label,end);
+				boolean flag = simplePathExists(vertexList[i].label,end);
+				if(flag){
+					return true;
+				}
 			}
 		}
+		return false;
 	}
 
 	public void showVertices(){

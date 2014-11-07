@@ -45,6 +45,23 @@ class Graph{
 		return false;
 	}
 
+	public boolean hasCycleAlter(char start, char parent){
+		int index = getIndex(start);
+		visited[index] = 1;
+		for(int i=0;i<count;i++){
+			if(adjMatrix[index][i] == 1 && visited[i] == 1 && vertexList[i] != parent){
+				return true;
+			}
+			if(adjMatrix[index][i] == 1 && visited[i] != 1){
+				boolean flag = hasCycleAlter(vertexList[i],start);
+				if(flag){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	public int getIndex(char label){
 		for(int i=0;i<count;i++){
 			if(vertexList[i] == label){
@@ -80,7 +97,7 @@ class P7{
 		g.addEdge('D','E');
 		//g.addEdge('E','A');
 
-		//g.hasCycle('A','\0');
-		System.out.println(g.hasCycle('A'));
+		//System.out.println(g.hasCycle('A'));
+		System.out.println(g.hasCycleAlter('A','\0'));
 	}
 }
