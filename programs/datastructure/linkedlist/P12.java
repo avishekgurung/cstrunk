@@ -1,3 +1,4 @@
+import java.util.Stack;
 class Node
 {
 	String data;
@@ -68,20 +69,37 @@ class LinkedList
 	}
 
 	//here too only two pointers
-	public void reverse_recursion(Node node, Node prev){
+	public Node reverse_recursion(Node node, Node prev){
 		if(node == null){
-			return;
+			return prev;
 		}
 		Node next = node.next;
 		node.next = prev;
-		reverse_recursion(next,node);
+		return reverse_recursion(next,node);
 	}
 
-	public Node lastNode(Node node){
+	//use stack to reverse if they do not want us to use minimum pointers
+	public void reverseUsingMinumumPointers(Node node){
+
+		Stack<Node> stack = new Stack<Node>();
 		Node pointer = node;
-		while(pointer.next != null)
+		while(pointer != null){
+			stack.push(pointer);
 			pointer = pointer.next;
-		return pointer;
+		}
+
+		pointer = stack.pop();
+		Node lastNode = pointer;
+
+		while(!stack.isEmpty()){
+			pointer.next = stack.pop();
+			pointer = pointer.next;
+		}
+		pointer.next = null;
+		display(lastNode);
+
+		//So if they do not want us to display then we do not need lastPointer
+		//Hence we need only one pointer
 	}
 }
 
@@ -107,11 +125,12 @@ class P12
 		l.display(node);
 
 		//By recursion
-		/*Node last = l.lastNode(node);
-		l.reverse_recursion(l.node,null);
-		l.display(last);*/
+		//l.display(l.reverse_recursion(node,null));
 
 		//By iteration
-		l.reverse_iteration(node);
+		//l.reverse_iteration(node);
+
+		//Minimum pointer
+		l.reverseUsingMinumumPointers(node);
 	}
 }

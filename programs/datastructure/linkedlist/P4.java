@@ -61,6 +61,21 @@ class LinkedList
 		}
 	}
 	
+	//Alternate way
+	public Node insertAlt(Node node, int data){
+		Node p1 = null;
+		Node p2 = node;
+
+		while(p2 != null && data > p2.getData()){
+			p1 = p2;
+			p2 = p2.next;
+		}
+
+		Node temp = new Node(data,p2);
+		p1.next = temp;
+		return node;
+	}
+
 	public void display()
 	{
 		Node pointer = node;

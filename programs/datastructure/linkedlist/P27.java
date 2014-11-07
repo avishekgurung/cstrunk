@@ -60,7 +60,7 @@ class LinkedList
 	 * If the same function was to be written in C then they write it as
 	 * public Node	 add(Node *node1, Node *node2, int *carry, Node ** result)
 	 * That means they are passing carry and result by reference and not by value.
-	 * But since in Java we do not have call by reference and call by value , so we are obliged to use static
+	 * But since in Java we do not have call by reference  , so we are obliged to use static
 	 * 
 	 * http://algorithmsandme.blogspot.in/2013/10/linked-list-add-two-numbers-represented.html
 	 */

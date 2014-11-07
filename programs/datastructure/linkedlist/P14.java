@@ -76,6 +76,8 @@ class LinkedList
 		else
 			System.out.println("Not Palindrome");
 	}
+
+	//else put all data in a Stack and iterate again and compare
 	
 }
 class P14
