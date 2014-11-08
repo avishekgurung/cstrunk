@@ -9,7 +9,7 @@ P8. Append the last n nodes of a linked list to the beginning of the list eg: 1-
 P9. Given LL, 1-2-3-4-5-6,write a fun to remove all even nodes and a function remove all old nodes
 P10. Printing the elements in reverse order by recursion
 P11. *Reversing Linked List (Try using minimum pointers, at the most 2 extra pointers)
-P12. *Reverse a linked list by recursion
+P12. *Reverse a linked list by recursion (Used only one pointer)
 P13. Reverse doubly linked list without using any extra space
 P14. With a linked list data structure, find if a given string is palindrome or not.(Coolest Logic used by me)
 P15. **Given LL is 1-2-3-4-5, the out put should be 2-1-4-3-5 etc.

@@ -56,7 +56,7 @@ class LinkedList
 	}
 
 	//only two pointers
-	public void reverse_iteration(Node node){
+	public Node reverse_iteration(Node node){
 		Node prev = null;
 		while(node != null){
 			Node next = node.next;
@@ -64,25 +64,19 @@ class LinkedList
 			prev = node;
 			node = next;
 		}
-		display(prev);
+		return prev;
 	}
 
 	//here too only two pointers
-	public void reverse_recursion(Node node, Node prev){
+	public Node reverse_recursion(Node node, Node prev){
 		if(node == null){
-			return;
+			return prev;
 		}
 		Node next = node.next;
 		node.next = prev;
-		reverse_recursion(next,node);
+		return reverse_recursion(next,node);
 	}
 
-	public Node lastNode(Node node){
-		Node pointer = node;
-		while(pointer.next != null)
-			pointer = pointer.next;
-		return pointer;
-	}
 }
 
 class P11
@@ -103,15 +97,9 @@ class P11
 		l.insert("J");
 		l.insert("K");
 		
-		Node node = l.node;
-		l.display(node);
+		l.display(l.node);
 
-		//By recursion
-		/*Node last = l.lastNode(node);
-		l.reverse_recursion(l.node,null);
-		l.display(last);*/
-
-		//By iteration
-		l.reverse_iteration(node);
+		//l.display(l.reverse_iteration(l.node));
+		l.display(l.reverse_recursion(l.node,null));
 	}
 }

@@ -64,14 +64,7 @@ class LinkedList
 		{
 			if(pointer.getData() == pointer.next.getData())
 			{
-				if(pointer.next.next == null)
-				{
-					pointer.next = null;
-				}
-				else
-				{
-					pointer.next = pointer.next.next;
-				}
+				pointer.next = pointer.next.next;
 			}
 			else
 			{
@@ -80,6 +73,9 @@ class LinkedList
 		}
 	}
 }
+
+//We have assumed that the linked list is sorted but if its not, then we will use Map
+//traverse and see if the next element is already present in map, if present remove else put inside map
 
 class P6
 {

@@ -76,6 +76,21 @@ class LinkedList
 		}
 		return temp;
 	}
+
+	//Compressing the above logic
+	public Node sort_compressed(Node n, Node m){
+		if(n == null && m == null)
+			return null;
+		if(n == null)
+			return m;
+		if(m == null)
+			return n;
+		Node temp = null;
+		if(n.getData() < m.getData()){
+			return temp = new Node(n.getData(),sort(n.next,m));
+		else
+			return temp = new Node(m.getData(),sort(n,m.next));
+	}
 }
 
 class P26

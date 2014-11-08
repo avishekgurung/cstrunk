@@ -102,6 +102,14 @@ class LinkedList
 		
 		return mp;
 	}
+
+	/*
+		No of solutions.
+		1. Brute Force: For every code, compare with the nodes of another linked list
+		2. Use Map: Store first ll's element in map, iterate the second one and find it
+		3. Use Stacks: Insert nodes in each stacks. Start popping elements from stacks, whenever the popped
+		elements are different, the element popped before is the intersection
+	*/
 }
 
 class P17

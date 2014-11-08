@@ -88,6 +88,8 @@ class LinkedList
 		
 		System.out.println("The "+n+" element from the last is "+p2.getData());
 	}
+
+	//put the nodes in the stack and pop out the nth one
 }
 
 class P3
