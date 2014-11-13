@@ -1,1 +1,173 @@
-sssss
+INTRO
+
+JavaScript is a lightweight, interpreted programming language with object-oriented capabilities that
+gives interactivity to the static web pages. Javascript was developed by Netscape in 1995.
+Its an open source and works across all major browsers.
+
+JavaScript uses the Unicode character set.
+Unicode covers (almost) all the characters, punctuations, and symbols in the world.
+
+
+ADVANTAGES
+
+Less server interaction: You can validate user input before sending the page off to the server. This saves server traffic, which means less load on your server. 
+Rich Interface and Immediate feedback to the visitors are few of them.
+
+
+DISADVANTAGES
+
+Cannot read files. No multithreading concepts.
+
+EXTERNAL JAVASCRIPT
+
+<script src="myScript.js"></script>
+External scripts cannot contain <script> tags.
+
+
+WHERE TO PLACE JS CODE?
+
+This completely depends upon the requrements.
+Placing in Head:
+If we place the JS code on the head, then the code is executed before body loads. Hence if any tags
+are calling JS from body then our JS code will always be available.
+
+EG.
+<html><head><title>My Page</title>
+</head>
+<body>
+<a href="javascript:myFunction();">Click here</a>
+<script language="javascript" type="text/javascript">
+function myFunction() {
+	alert('Hello world');
+}
+</script>
+</body>
+</html>
+
+Here if the user manages to click the link "Click here" before the function has loaded then it
+will throw and error.
+
+Placing at the end of body:
+But if we have a javascript code that does some DOM manipulation or accessing some values from webpage
+then its best to keep the JS code after body tag, as all DOM elements will be available to our JS code
+.
+
+Hence, we can conclude that if our javascript code has to do some DOM manipulation, then its good to palce JS code 
+at the bottom as all the tags will be loaded. But if we are to execute our JS codebased on some HTML tags, 
+then its best to keep our JS code in the head.
+
+
+STATEMENTS
+
+If we are js statements in different line, then semicolon is optional but if we write more than
+one statements in the same line then semicolon is required. Eg.
+
+Semicolon not required.
+var1 = 10
+var2 = 20
+
+Semicolon required.
+var1 = 10; var2 = 20;
+
+document.getElementById("demo").innerHTML =
+    "Hello Dolly."; //Works in javascript
+
+document.getElementById("demo").innerHTML = "Hello \
+    Dolly!"; //also works, to split strings
+
+
+ COMMENTS
+
+ Javascript supports single line and multipline comments,eg // and /* */.
+ It also recognizes HTML comments, that means, if any HTML tags are placed in comments then JS cannot 
+ access them.
+
+
+ ** If a javascript is disabled in the browser. But if we want to show some messages to the user then
+ we can use <noscript> tags. Eg.
+
+ 	<noscript>
+  		Sorry...JavaScript is needed to go ahead.
+	</noscript>
+
+
+VARIABLES
+
+Javascript supports three types of data type and they are Number, Strings, Boolean.
+They also support Objects. Both int and float are Number in JS.
+
+
+If you re-declare a JavaScript variable, it will not lose its value.
+var carName = "Volvo"; 
+var carName; 
+console.log(carName)    //prints volvo
+
+var carName = "Volvo"; 
+var carName = "avi"; 
+console.log(carName)    //prints avi
+
+if you add a number to a string, both will be treated as strings.
+console.log(2+"3"+4+5); gives 2345
+Where as
+console.log(1+2+"3"+4+5); gives 3344
+
+When a JavaScript variable is declared with the keyword "new", the variable is created as an object.
+var x = new String();          // Declares x as a String object
+var y = new Number();          // Declares y as a Number object
+var z = new Boolean();         // Declares z as a Boolean object
+
+There are two types of variables in JS
+1. Local : Defined inside a function and its scope is inside the function.
+2. Global: Defined outside/inside the function with scope throughout the page.
+
+If we declare a variable inside a function without a keyword var, then it will
+be a global variable.
+
+
+UNDEFINED AND NULL
+
+undefined means a variable has been declared but has not yet been assigned a value.
+Eg. 
+var x;
+console.log(x);
+
+null is an assignment value. It can be assigned to a variable as a representation of no value or empty.
+var x = null;
+console.log(x);
+
+The typeof undefined itself is undefined whereas the typeof null is object.
+
+NaN
+
+NaN is a JavaScript reserved word indicating that a value is not a number.
+var x = 100 / "Apple";  // x will be NaN (Not a Number)
+var x = 100 / "10";     // x will be 10
+You can use the global JavaScript function isNaN() to find out if a value is a number.
+var x = 100 / "Apple";
+isNaN(x);               // returns true because x is Not a Number
+Watch out for NaN. If you use NaN in a mathematical operation, the result will also be NaN.
+NaN is a number: typeOf NaN returns number.
+
+toString() returns a number as a string.
+Eg. x.toString();
+
+toPrecision() returns a string, with a number written with a specified length
+x.toPrecision();        // returns 9.656
+x.toPrecision(2);       // returns 9.7
+x.toPrecision(4);       // returns 9.656
+x.toPrecision(6);       // returns 9.65600
+
+parseInt and Number are used to convert string to number.
+The difference being as follows:
+var x = "10 10";
+Number(x);        // returns NaN
+parseInt(x);   // returns 10
+parseInt("10avishek"); //returns 10
+parseInt("years 10");   // returns NaN
+
+The unary + operator can be used to convert a variable to a number.
+var y = "5";      // y is a string
+var x = + y;      // x is a number
+
+var y = "John";   // y is a string
+var x = + y;      // x is a number (NaN)
