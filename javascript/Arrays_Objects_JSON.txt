@@ -1,0 +1,222 @@
+ARRAYS
+
+Array are heterogeneous in Javascript unlike any other programming languages.
+Array is also an object. 
+
+Declaration of array can be done as follows:
+var fruits = [];
+var fruits = new Array();
+
+Initialization of Array can be done as follows:
+var fruits = new Array( "apple", "orange", "mango" );
+var fruits =  ["apple", "orange", "mango" ];
+
+We can iterate them as:
+for(i in fruits)
+  console.log(fruits[i]);
+
+var points = new Array(40, 100);  // Creates an array with two elements (40 and 100)
+var points = new Array(40); // Creates an array with 40 undefined elements !!!!!
+We can use push and pop with arrays
+
+** How to Recognize an Array? (Can be done for other data types also)
+A common question is: How do I know if a variable is an array?
+The problem is that the JavaScript operator typeof returns "object" because a JavaScript array is 
+an object.
+arr.constructor.toString().indexOf("Array") !== -1 returns true for array else false :)
+
+Since JavaScript arrays are objects, elements can be deleted by using the JavaScript operator delete
+Using delete on array elements leaves undefined holes in the array. Use pop() or splice() instead.
+
+SPLICE in Array
+The splice() method can be used to add new items or delete items to an array.
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+The first parameter (2) defines the position where new elements should be added (spliced in).
+The second parameter (0) defines how many elements should be removed.
+The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+
+It can be used smartly to delete an element from the array.
+eg. to delete Orange and Apple, we can use
+fruits.splice(1,2);
+
+OR to add elements
+fruits.splice(0,0,"Kiwi","Lichie");
+
+The concat() method creates a new array by concatenating two or more arrays.
+var arr1 = ["Cecilie", "Lone"];
+var arr2 = ["Emil", "Tobias","Linus"];
+var arr3 = ["Robin", "Morgan"];
+var myChildren = arr1.concat(arr2, arr3);     // Concatenates arr1 with arr2 and arr3
+
+
+OBJECTS
+
+Initialization
+var person = {};
+var person = new Object();
+
+Setting up the properties
+person.name = "avishek";
+person.age = 26
+
+Small example of Object. Take note of colons, semi-colons and commas.
+
+var person = {
+  name: null,
+  age: null,
+  
+  set: function(name, age){
+    this.name = name;
+    this.age = age;
+  },
+  
+  getName: function(){
+    return person.name;
+  },
+  
+  getAge: function(){
+    return person.age;
+  }
+};
+
+person.set("avishek",26);
+
+console.log(person.getName());
+console.log(person.getAge());
+
+
+Iterating through object.
+
+for(x in person) console.log(x+" ||| "+person[x]);
+
+		name ||| avishek
+		age ||| 26
+
+		set ||| function (name, age){
+		    this.name = name;
+		    this.age = age;
+		  }
+
+		getName ||| function (){
+		    return person.name;
+		  }
+
+		getAge ||| function (){
+		    return person.age;
+		  }
+
+
+JSON (JavaScript Object Notation)
+JSON is a format for storing and transporting data.
+JSON is language independent.
+The JSON format is syntactically identical to the code for creating JavaScript objects.
+Because of this similarity, a JavaScript program can easily convert JSON data into native 
+JavaScript objects.
+
+Data is in name/value pairs
+Data is separated by commas
+Curly braces hold objects
+Square brackets hold arrays
+
+JSON is very flexible when it comes to transporting data. JSON can be a combination of Object and 
+Arrays.
+
+Its very much similar to xml, just that it does not too contain many un-necessary tags and is simple.
+
+JSON is normally transported as String. We parse them in the receiving application.
+
+EXAMPLES:
+
+1. Create a very simple JSON 
+
+var employee = {};
+employee.name = "avishek";
+employee.age = 25;
+employee.sex = "male";
+employee.companies = ["flipkart","amazon","symphony"];
+
+var text = JSON.stringify(employee);
+
+console.log("JSON TEXT "+text);
+
+var jsonObject = JSON.parse(text);
+
+for(x in jsonObject){
+		console.log(typeof(x)+"  "+x+" : "+jsonObject[x]);	
+}
+
+2. The above example is only for one employee. Say we want to create collection of such employee. The
+we just need to create an array and push these employee object inside it. Thus making a collection of Object.
+
+var employees = [];
+
+//1st Employee
+var employee = {};
+employee.name = "avishek";
+employee.age = 25;
+employee.sex = "male";
+employee.companies = ["flipkart","amazon","symphony"];
+employees.push(employee);
+
+//2nd Employee
+var employee = {}; //We cannot resuse the same object, a new object has to be created everytime
+employee.name = "Junith";
+employee.age = 24;
+employee.sex = "male";
+employee.companies = ["yahoo","google"];
+employees.push(employee);
+
+var text = JSON.stringify(employees);
+console.log(text+"\n");
+
+for(key in employees){
+	var singleObj = employees[key];
+	for(x in singleObj){
+		console.log(x+" : "+singleObj[x]);
+	}
+	console.log(" --------------- ");
+}
+
+
+One more example of JSON
+
+var collections = [];
+
+var person1 = {};
+person1.name = "avishek";
+person1.age = 26;
+person1.company = ["symphony","vizury"];
+
+var person2 = {};
+person2.name = "shiraz";
+person2.age = 26;
+person2.company = ["mindtech","vizury"];
+
+var fruits = {};
+fruits.name = "apple";
+fruits.color = "red";
+
+
+collections.push(person1);
+collections.push(person2);
+collections.push(fruits);
+
+for(x in collections){
+  console.log("Name: "+collections[x].name);
+  console.log("Age: "+collections[x].age);
+  console.log("Color: "+collections[x].color);
+}
+
+RESULT
+
+Name: avishek
+Age: 26
+Color: undefined
+Name: shiraz
+Age: 26
+Color: undefined
+Name: apple
+Age: undefined
+Color: red
