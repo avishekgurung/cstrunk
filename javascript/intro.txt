@@ -165,6 +165,9 @@ parseInt(x);   // returns 10
 parseInt("10avishek"); //returns 10
 parseInt("years 10");   // returns NaN
 
+** parseInt() always gives us the whole number and not the decimal part
+Eg parseInt("2.22"); gives 2
+
 The unary + operator can be used to convert a variable to a number.
 var y = "5";      // y is a string
 var x = + y;      // x is a number
