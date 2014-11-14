@@ -31,18 +31,36 @@ Using delete on array elements leaves undefined holes in the array. Use pop() or
 SPLICE in Array
 The splice() method can be used to add new items or delete items to an array.
 
-var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.splice(2, 0, "Lemon", "Kiwi");
-The first parameter (2) defines the position where new elements should be added or deleted.
-The second parameter (0) defines how many elements should be added or removed counting from the first parameter.
-The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.
+Syntax
+array.splice(index, howMany[, element1[, ...[, elementN]]]);
 
-It can be used smartly to delete an element from the array.
-eg. to delete Orange and Apple, we can use
-fruits.splice(1,2);
+index = Index at which we can start changing the array. If greater than the length of the array, actual 
+starting index will be set to the length of the array. If negative, will begin that many elements from the end.
 
-OR to add elements
-fruits.splice(0,0,"Kiwi","Lichie");
+howMany = An integer indicating the number of old array elements to remove. If howMany is 0, no elements are removed. 
+In this case, you should specify at least one new element. If howMany is greater than the number of elements 
+left in the array starting at index, then all of the elements through the end of the array will be deleted. 
+If no howMany parameter is specified (second syntax above, which is a SpiderMonkey extension), all elements after
+index are removed.
+
+elements: The elements to add to the array. If you don't specify any elements, splice simply removes 
+elements from the array.
+
+Examples:
+var arr = ["apple","banana","orange"];
+
+Remove apple;
+arr.splice(0,1);
+
+Remove orange
+arr.splice(2,1);
+
+Add grapes between apple and banana
+arr.splice(1,0,"grapes");
+
+Replace banana by grapes
+arr.splice(1,1,"grapes")
+
 
 The concat() method creates a new array by concatenating two or more arrays.
 var arr1 = ["Cecilie", "Lone"];
