@@ -79,6 +79,10 @@ Setting up the properties
 person.name = "avishek";
 person.age = 26
 
+An object always end with semicolon ;
+The name and value is seperated by colon :
+The name and value pairs are seperated from one another by comma ,
+
 Small example of Object. Take note of colons, semi-colons and commas.
 
 var person = {
