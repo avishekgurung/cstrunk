@@ -188,3 +188,13 @@ var readyStateCheckInterval = setInterval(function() {
         clearInterval(readyStateCheckInterval);
     }
 }, 1000);
+
+Self Invoking function.
+(
+	function(){
+		console.log("I am self Invoking");
+	}
+)();
+
+
+
