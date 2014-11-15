@@ -1,0 +1,66 @@
+COOKIES
+
+Cookies are some information that can be stored in the client's browser and retrieve it later. It thus allows us to identify
+the client later. Cookie consists of name and value pairs. And each name=value pair in a cookie is seperated from one another
+by semicolon ';'.
+
+A Cookie has five different fields and they are:
+1. name
+2. expires (expiry date)
+3. domain (domain name of the site)
+4. path (path to the directory or the webpage where we need to set the cookie)
+5. secure (if set, the cookie will retrieve with secure server)
+
+If the expiry date is not set then the cookie will expiry on closing the browser.
+The value of field 'name' cannot take space, comma and semicolon. If it contains any of them then we need to encode them by using
+encodeURIComponent and again while retrieveing the value, we need to decode them by using decodeURICompoment.
+
+The maximum size of a cookie that all browser supports is 4kb. If the cookie name is too large then we cannot delete the cookie.
+The cookie is deleted by updating its expiry time.
+
+FORMAT
+
+The general format of cookie is as follows
+cookie_name1=value1;cookie_name2=value2; ...;expires=Sun, 21 Sep 2014 15:35:19 GMT;domain=.myntra.com;path=/
+
+
+Setting up a cookie
+
+function setCookie(name,value,days){
+	var expiryDate = new Date();
+	expiryDate.setDate(expiryDate.getDate()+parseInt(days));
+	document.cookie = name+"="+encodeURIComponent(value)+";expires="+expiryDate.toUTCString()+";path=/"; 
+}
+//In this same function we can store more than one cookie like
+//document.cookie = name1+"="+encodeURIComponent(value1)+name2+"="+encodeURIComponent(value2)+";expires="+expiryDate.toUTCString()+";path=/";
+// and so on
+
+The toUTCString converts Date object to String according to universal time (GMT).
+If the days is given as -1 then the cookie will expire.
+
+If there are many cookies stamped for a given site then 
+document.cookie will gives us the values as
+cookie_name1=value1;cookie_name2=value2;cookie_name3=value3;...;cookie_nameN=valueN
+Other fields of cookie like expiry time, path, domain name etc are not given.
+
+So in order to get our respective cookie value, we can just split or use some regex (simple).
+
+function getCookie(name){
+  var cookieVal = '';
+  var arr1 = document.cookie.split(name+"=");
+  if(typeof arr1[1] !== 'undefined' && arr1[1] != null){
+    var arr2 = arr1[1].split(';');
+    if(typeof arr2[0] !== 'undefined' && arr2[0] != null){
+      cookieVal = arr2[0];
+    }
+  }
+  return cookieVal;
+}
+
+console.log(getCookie('avi'))
+
+* we cannot access the cookies of other sites. 
+* if we stamp a cookie in sub-domain, we cannot access in domain. But if we stamp a cookie in domain, we can access them in sub-domain.
+Eg. We stamp a cookie in secure.myntra.com, then we cannot access this cookie in myntra.com. But we stamp the cookie in myntra.com then we
+    can access the cookie in secure.myntra.com
+
