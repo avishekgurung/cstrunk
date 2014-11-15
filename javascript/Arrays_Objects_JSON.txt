@@ -112,6 +112,11 @@ person.set("avishek",26);
 console.log(person.getName());
 console.log(person.getAge());
 
+Difference between dot and array syntax
+The property of objects can be accessed by using both array and dot syntax as follows:
+person.age and person['age'] both gives us the same result. But the difference is suppose we have a property name in
+a variable, say var prop_age = 'age';
+Now person[prop_age] gives me the correct value where as person.prop_age gives me undefined.
 
 Iterating through object.
 
@@ -133,6 +138,19 @@ for(x in person) console.log(x+" ||| "+person[x]);
 		    return person.age;
 		  }
 
+
+If we are very keen on creating constructor of Object then we go ahead like this
+//THis is also another way of creating an object
+var person = function(name,age){
+  this.name = name;
+  this.age = age;
+};
+
+var p1 = new person("avishek",22);
+var p2 = new person("samir",28);
+
+console.log(p1.name);
+console.log(p2.name);
 
 JSON (JavaScript Object Notation)
 JSON is a format for storing and transporting data.
@@ -246,3 +264,44 @@ Color: undefined
 Name: apple
 Age: undefined
 Color: red
+
+Good Example for Practice and for good grip on Json and Objects.
+Say we need to create an object that stores a name of a person, age and the list of companies he has worked.
+And we need to display them accordingly.
+
+We start by creating a constructor where the first parameter will be the name, second will the age and the
+remaining will be the companies.
+
+//We create a constructor that can take any number of parameters
+var person = function(){
+  this.name = arguments[0];
+  this.age =  arguments[1];
+  var comps = [];
+  for(var i=2;i < arguments.length;i++)
+    comps.push(arguments[i]);
+  this.org = comps;
+}
+
+
+var p1 = new person("avishek",23,"symphony","vizury");
+var p2 = new person("sandee",30,"deutsche","ocwen","oracle","headstrong");
+var p3 = new person("bidhya",28,"B Ed");
+
+var persons = [];
+persons.push(p1);
+persons.push(p2);
+persons.push(p3);
+
+
+var text = JSON.stringify(persons);
+console.log(text);
+
+//Lets Iterate and display them accordingly
+
+for(i in persons){
+  var obj = persons[i];
+  var comps = "";
+  for(j in obj.org)
+    comps =  comps + " " +obj.org[j];
+  console.log("Name: "+obj.name+" Age: "+obj.age+" Companies: "+comps);
+}
