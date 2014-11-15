@@ -196,5 +196,13 @@ Self Invoking function.
 	}
 )();
 
+Funtion that can take any number of arguements
 
+function util(){
+  console.log(arguments.length);
+  //so arguments is an array, hence we can use them as per our requirements
+}
+
+util("avi","amit","ron");
+util("avi","amit");
 
