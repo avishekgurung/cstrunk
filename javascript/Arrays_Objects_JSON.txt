@@ -25,6 +25,10 @@ The problem is that the JavaScript operator typeof returns "object" because a Ja
 an object.
 arr.constructor.toString().indexOf("Array") !== -1 returns true for array else false :)
 
+OR
+
+(arr instanceof Array) returns true if its an array
+
 Since JavaScript arrays are objects, elements can be deleted by using the JavaScript operator delete
 Using delete on array elements leaves undefined holes in the array. Use pop() or splice() instead.
 
