@@ -1,0 +1,50 @@
+REGULAR EXPRESSIONS (Regex)
+
+Regular Expression is a sequence of characters that forms a search pattern. Regex is basically used to 
+1. SEARCH some pattern in a string
+2. REPLACE some pattern in a string
+3. EXTRACT some values from a string
+
+Syntax: /pattern/modifiers
+
+Simple Example:
+var str = "he is my Lord";
+console.log(/he/.test(str));
+console.log(/he is/.test(str));
+console.log(/he is My/i.test(str));
+All the results are true.
+
+Modifiers
+i		Ignore Case
+g		Global Match
+
+Metacharacters of Regex:
+\w 		denotes word character
+\W 		denotes non word character
+\d 		denotes digits
+\D 		denotes non digit
+\s 		denotes white-space
+\S 		denotes non white space
+\0 		denotes null character
+\n 		denotes new line character
+.		denotes any characters
+
+[abc]	searches for any characters present inside the bracket.
+[^abc]	searches for any characters present NOT inside the bracket.
+[0-9]   searches for any digits present inside the bracket.
+[^0-9]  searches for any digits NOT present inside the bracket.
+
+a+		Must contain atleast one 'a'
+a*		Can contain zero or any number of 'a'
+a? 		Must contain one or zero 'a'
+a{n}	Must contain n number of 'a's
+a{m,n}	Must contain 'a's in the range m to n
+a{n,}	Must contain atleast n number of 'a's
+a$		Must end with 'a'
+^a		Must start with 'a'
+
+Methods:
+
+str.replace(regex);
+str.match(regex);
+regex.test(str);
