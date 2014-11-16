@@ -1,0 +1,43 @@
+JAVASCRIPT CLOSURES
+
+Whenever we have a function inside another function then its called a closure.
+Thats it ??? No!!! It does not end here. The closure property has lots of interesting features.
+
+We know that when a function has a variable defined inside it, the scope of that variable is within the function. 
+The local variable defined in the function will be garbage collected or removed after the function has been called. But
+the significance of Closure is that, it helps us to access those local variables even after the function has been called.
+
+Eg.
+
+function person(){
+  var wish = "HELLOW";
+  function wishing(name){
+    return wish+" "+name;
+  }
+  return wishing;
+}
+
+var x = person();
+console.log(x("Avishek"));
+
+Here person is function with local variable as wish. 
+The line var x = person(); calls person() which returns another function called wishing().
+The person() has already been called yet we are able to access its local variable wish when we call the function wishing().
+
+The importance of closure is that it really helps us to protect our code.
+
+Another Example.
+function incrementor(intialValue){
+  var count = intialValue;
+  return function(val){
+    count = count + val;
+    return count;
+  }
+}
+
+var counter = incrementor(4);
+console.log(counter(10));
+console.log(counter(2));
+console.log(counter(-8));
+
+The variable count cannot be accessed by others and is protected. Had it been global, it could have been changed by any other scripts.
