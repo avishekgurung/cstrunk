@@ -1,0 +1,81 @@
+JAVASCRIPT DOM (Document Object Model)
+
+The way the contents of the HTML document is modified and accessed is called Document Object Model.
+The Objects in DOM are organized in hierarchy.
+
+1. Window Object
+2. Document Oject
+3. Form Object
+
+We know that in a browser, we have a window and inside that window, the HTML document is present.
+
+1. Window Object
+	
+	The window object accesses and modifies the window in which the HTML document is loaded, i.e.
+	the window object has control over the window in which the HTML document is loaded.
+
+	This window object can access the properties of the current window like, window history, window 
+	length, window.innerHeight, window.innerWidth etc but to resizing the width and height can be done 
+	only for thos windows which has been created from script.
+
+	Eg. var obj = open("","","width=200","height=200");
+		obj.close();
+
+	The document object can be considered to be lying inside window object. So window object has access
+	to everything that document object has access.
+
+	Eg, document.getElementsByTagName("div"); can also be written as 
+	window.document.getElementsByTagName("div");
+	console belongs to Window object
+
+	All global variables are properties of window object.
+
+2. Document object
+	The document object accesses and modifies the HTML document which is inside the window.
+	Common use:
+
+	document.getElementById('id_name'); //gives a tag with the given id
+	document.getElementsByTagName('span');//gives an array of span tags
+
+	var node = document.createElement("div");
+	node.innerHTML = "Avishek";
+	node.setAttribute("id","wrapper");
+	node.style.color = "Blue";
+	node.style.margin = "10px 10px 10px 10px";
+	document.body.appendChild(node);
+
+	var obj = document.getElementById("wrapper");
+	obj.getAttribute("id");
+
+	parentNode.removeChild(childNode); // the childNode will be removed
+	parentNode.appendChild(childNode); //Node appended at the end of all the children
+
+3. Form Objects
+  	Now inside the document obhect, is the form object, that allows us to access the form information
+  	efficiently.
+
+  	Lets say we have a form as follows:
+
+  	<form>
+		<input type="text" name="name" id="txt_name" size="30"><br>
+		<textarea name="address" id="txta_address" rows="3" cols="35"></textarea><br>
+		<input type="hidden" name="number_of_skillsets" value="12">
+	</form>
+
+	One way to access them is to use the name attribute 
+
+	var form1 = document.forms[0];
+	console.log(form1.elements['name'].value);
+	console.log(form1.elements['address'].value);            
+	console.log(form1.elements['number_of_skillsets'].value);
+
+	Another wayto access is to use the index value
+
+	var form1 = document.forms[0];
+	console.log(form1.elements[0].value);
+	console.log(form1.elements[1].value);            
+	console.log(form1.elements[2].value); 
+
+	The other way is to access is to use DOM properties and access them.
+	That is pretty simple.
+
