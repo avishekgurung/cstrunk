@@ -3,9 +3,10 @@ JAVASCRIPT CLOSURES
 Whenever we have a function inside another function then its called a closure.
 Thats it ??? No!!! It does not end here. The closure property has lots of interesting features.
 
-We know that when a function has a variable defined inside it, the scope of that variable is within the function. 
-The local variable defined in the function will be garbage collected or removed after the function has been called. But
-the significance of Closure is that, it helps us to access those local variables even after the function has been called.
+We know that when a function has a variable defined inside it, the scope of that variable is within 
+the function. The local variable defined in the function will be garbage collected or removed after 
+the function has been called. But the significance of Closure is that, it helps us to access those 
+local variables even after the function has been called.
 
 Eg.
 
@@ -22,7 +23,8 @@ console.log(x("Avishek"));
 
 Here person is function with local variable as wish. 
 The line var x = person(); calls person() which returns another function called wishing().
-The person() has already been called yet we are able to access its local variable wish when we call the function wishing().
+The person() has already been called yet we are able to access its local variable wish when we call 
+the function wishing().
 
 The importance of closure is that it really helps us to protect our code.
 
@@ -40,4 +42,41 @@ console.log(counter(10));
 console.log(counter(2));
 console.log(counter(-8));
 
-The variable count cannot be accessed by others and is protected. Had it been global, it could have been changed by any other scripts.
+The variable count cannot be accessed by others and is protected. Had it been global, it could have 
+been changed by any other scripts.
+
+THE COUNTER DILEMMA: Say we have function called add() and we want to count the number of times this
+function has been called. So the usual way of doing would be
+
+var counter = 0;
+
+function add(){
+	counter++;
+}
+
+We see that counter is declared as global variable and other scripts or codes too will have access
+to counter and is not protected. Any script can change the counter variable.
+
+But if we want to keep the counter variable as local to the add function then it cannot be accessed
+outside the function add.
+
+So the Javascript closures becomes significant here. We can make the variable local and use
+closure to access them.
+
+Eg.
+
+function add(){
+	counter = 0;
+	return function(){
+		counter++;
+		return counter;
+	}
+}
+
+var count = add();
+console.log(count()); //gives 1
+console.log(count()); //gives 2
+console.log(count()); //gives 3
+console.log(count()); //gives 4
+
+So this protects our variable counter, as it local and can be changed by only add(). 
