@@ -206,3 +206,6 @@ function util(){
 util("avi","amit","ron");
 util("avi","amit");
 
+"use strict"; can be used either at the beginning of the page or can be used inside a function.
+Using it will make the code very strict, it throws error if no proper syntax etc are given.
+Its a good practice
