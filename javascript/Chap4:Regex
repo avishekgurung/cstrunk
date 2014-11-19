@@ -65,3 +65,5 @@ console.log(str.match(/salary=([0-9\.]+)/)[1]); ** Check it out
 console.log(str.match(/phone=([0-9]+)/)[1]);
 
 
+Replacing salary
+console.log(str.replace(/salary=[0-9\.]+/,'X'));
