@@ -48,3 +48,20 @@ Methods:
 str.replace(regex);
 str.match(regex);
 regex.test(str);
+
+
+Example:
+var str = "https://www.google.co.in/webhp?name=avishek&age=24#sex=male/company=vizury&salary=1223232.22#phone\
+=9986913279&location=bangalore";
+
+console.log(str.match(/name=([^&#/]+)/)[1]); //gives avishek
+/name=([^&#/]+)/ means we want to select everything that comes after 'name=' but should not contain
+& or / or # and should be more than one
+
+Similarly,
+console.log(str.match(/sex=([^/]*)/)[1]);
+console.log(str.match(/salary=([^#]*)/)[1]); **
+console.log(str.match(/salary=([0-9\.]+)/)[1]); ** Check it out
+console.log(str.match(/phone=([0-9]+)/)[1]);
+
+
