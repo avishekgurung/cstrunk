@@ -79,6 +79,20 @@ class LinkedList
 			System.out.println("Even");
 		}
 	}
+	
+	public boolean isOdd(Node node){
+		Node pointer = node;
+		boolean flag = false;
+		while(pointer != null){
+			pointer = pointer.next;
+			flag = !flag;
+			
+		}
+		return flag;
+	}
+	
+	//Brute Force method would be to count the total no of nodes and divide them by 2.
+	//Over all, there are three methods
 }
 
 class P2
