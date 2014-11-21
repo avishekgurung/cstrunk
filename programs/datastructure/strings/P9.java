@@ -27,4 +27,6 @@ class P9
 		else
 			return false;
 	}
+	//Simple remove the spaces by using regex
+	//String str1 = str.replaceAll("[^0-9A-z]*","").toLowerCase(); and reverse and compare
 }
