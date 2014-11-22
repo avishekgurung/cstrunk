@@ -191,6 +191,11 @@ class P35
  	But the space is not constant here, as it takes O(n) space.
  	So if we can solve it in O(n) space, we can traverse BST and put all the elements in array(sorted)
  	or even use Hash to solve.
+ 	
+ 	ANOTHER APPROACH
+ 	Do a normal inorder traversal and put the nodes or values in stack and queue.
+ 	Once completed, pop out elements one at a time from Stack and Queue and compare
+ 	Or we can use hashmap or array etc...
  * 
  */
  
