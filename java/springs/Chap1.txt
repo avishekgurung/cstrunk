@@ -1,0 +1,147 @@
+Introduction
+
+Spring is a light weight and open source framework created by Rod Johnson in 2003.	Spring is a 
+complete and a modular framework, meaning Spring can used to implement all the layers of an 
+application or it can be used to implement only particular layer of an application. Eg, Struts
+is basically used for front end layers and Hybernate is basically used for database layer, but
+Spring can be used for any layers. 
+
+Spring is light weight framework because of its POJO model. POJO is an acronym for Plain Old
+Java Object, meaning, its just a simple class that does not follow any Object models or any 
+conventions.
+
+If we consider Java Beans, then they are classes that follow specific rules like constructor 
+should not have any arguements, the properties of the class are set and accessed by using only
+getter and setter methods and the class must be Serializable. 
+
+
+Benefits of Spring
+
+1. Testability
+	Actually for writing the spring application, server [Container] is not mandatory, but for  struts
+	applications we need a server, and for EJB too.  If we want to test the application it may need 
+	lot of changes in the source and each time we must restart the server to view the changes, which 
+	is little tedious and time taking but we can over come this in Spring,as for testing spring application 
+	server is not mandatory spring has it own container to run the applications.
+	Spring can be used to develop any kind of java application, meaning we can develop  console application to 
+	enterprise level application
+
+2. Organize
+	Spring is organized in a modular fashion. Even though the number of packages and classes are 
+	substantial, you have to worry only about ones you need and ignore the rest.
+
+3. Predefined Templates
+	Spring framework provides templates for JDBC, Hibernate, JPA etc. technologies. So there is no 
+	need to write too much code. It hides the basic steps of these technologies.
+
+4. Loose Coupling
+	The Spring applications are loosely coupled because of dependency injection.
+
+The modular diagram of Spring is given in the image.
+
+Describing the modular diagram of the Spring in brief:
+1.	Core Container: The core container defines how your beans are created, configured and managed. 	
+	BeanFactory, the heart of any Spring-based application is found in the Core container. 
+
+2. 	Application Context: is a configuration file that provides context information to the Spring 
+	framework. The Spring context includes enterprise services such as JNDI, EJB, e-mail, 
+	internalization, validation, and scheduling functionality.
+
+3.	AOP module: supports for aspect-oriented programming. It helps us to interoperate between Spring 
+	and other AOP frameworks.
+
+4.	JDBC and DAO: provides accessiblity to databases.
+
+5.	O/R Mapping: module helps us to integrate ORM frameworks like Hibernate,JDO,iBATIS SQL Maps in our 
+	Spring project 
+
+6.	Web module: is built on the application context module and provides a context that is appropriate 
+	for web-based applications. 
+
+7.	MVC framework: allows us to built MVC web applications.
+
+
+Installing Spring plugins in eclipse
+1.	Go go the help ---> Install new Software
+2.	Enter the url "http://www.springide.org/updatesite"
+3.	Choose the ones that you need else choose everything 
+4. 	Install
+
+Creating and running simple program in Spring.
+
+1.	File
+2.	New
+3.	Java Project (No need to select for Spring Project or Dynamic Project and all)
+4. 	Give any name of the Project (say SpringDemo).
+5.	Finish.
+6.	In your project, you will just have 'src' and 'JRE System Library'.
+7.	Create a folder called 'lib' inside SpringDemo, in the same level of src.
+8.	Put all the spring jars in this 'lib' folder.
+9.	Select all the jars, right click, add to build path.
+10.	Now in a src folder create any pojo class, say Student as follows:
+
+	package com.avishek;
+
+	public class Student {
+		String name;
+		int age;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+	}
+
+11. Now create a Spring Bean Configuration File in the source ('src') folder. 
+	Say we take the name of this file as "student", then student.xml file is generated,having 
+	contents as:
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	</beans>
+
+12. Now add the bean properties as follows:
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		<bean id="studentBean" class = "com.avishek.Student">
+			<property name="name" value = "Avishek Gurung"> </property>
+			<property name="age" value = "25"></property>
+		</bean>
+	</beans>
+
+13. Now create a class containing main method anywhere within 'src' folder as shown:
+	package com.avishek;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+	import com.avishek.Student;
+
+	public class Main {
+		public static void main(String[] args) {
+			ClassPathXmlApplicationContext context  = new ClassPathXmlApplicationContext("student.xml");
+			Student s = (Student)context.getBean("studentBean");
+			System.out.println(s.getName());
+		}
+	}
+
+14. Run it to get the required result.
+
+
+
+Links
+http://www.tutorialspoint.com/spring/spring_overview.htm
+http://www.java4s.com/spring/spring-core-module-spring-ioc-tutorial/
+http://www.javatpoint.com/steps-to-create-spring-application
+http://javabeginnerstutorial.com/spring-framework-tutorial/spring-hello-world/
+http://jsltech.blogspot.in/2012/05/spring-framework-ioc.html
+http://www.avishek-gurung.appspot.com/spring2.jsp
