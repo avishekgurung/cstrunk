@@ -548,7 +548,7 @@ that class, and give the name of the method in Spring Bean Configuration File.
 	}
 
 
-
+BEAN SCOPES
 
 	
 
