@@ -253,6 +253,301 @@ Dependency Injection can be achieved by using three ways:
 	}
 
 
+Bean Factory
+
+We can also inject dependency by using Bean Factory as follows:
+
+	BeanFactory factory = new XmlBeanFactory(new ClassPathResource("beansInfoList.xml"));
+	Student st = (Student)factory.getBean("studentBean");
+	System.out.println(st.getName());
+	System.out.println(st.getAge());
+
+The creation of Spring Bean Configuration File is the same.
+
+Difference between BeanFactory and ApplicationContext
+
+Both BeanFactory and ApplicationContext are IOC containers.Both of them are used to manage life cycle of beans. 
+ApplicationContext is derived from BeanFactory to provide added functionality to work in web application.
+BeanFactory and ApplicationContext are interfaces.As the ApplicationContext includes all functionality of the 
+BeanFactory, it is generally recommended that it be used in preference to the BeanFactory. 
+ApplicationContext has added functionalities like Automatic BeanPostProcessor registration,
+Automatic BeanFactoryPostProcessor,registration Convenient MessageSource access (for i18n),ApplicationEvent 
+publication
+
+Difference between setter and construction injection.
+
+1. Partial Dependency: Setter injection can be used for Partial Dependency. Say we have a class with three members. 
+If we have setter injection and if we want to initialize only one member then we can do it by setter injection. 
+But if this class has constructor injection with three arguements then we cannot initialize only one member.
+
+2. Overriding: If a class has both constructor and setter injection then setter injection will always override 
+constructor injection.
+
+3. Changes: We can easily change the values by using setter injection.
+
+AUTOWIRING
+
+In a large application, where there are many classes, explicit wiring of constructor or property will make XML 
+lengthy and hard to debug. So Spring provides autowiring features. Autowiring allows us to automatically inject 
+the object dependency.
+
+Advantage: 
+Requires less code.
+
+Disadvantage:
+No control to the programmer.
+Cannot be used for primitive data types and Strings.
+
+There are five modes of Autowiring and they are:
+
+1.	no: It is the default autowiring mode. It means no autowiring bydefault.
+
+2.	byName- Attempts to find a bean in the container whose name (or ID) is same as the name of the property to 
+	be wired. If a matching bean 	is not found, the property will remain unwired. Here, the name of the 
+	property of the bean must be same as the name of the other bean to be wired. 
+
+3. 	byType- Here even if the name of the bean and the property name are different, still injection is done 
+	if the type is the same. The type of the property to be wired must be same as the type of another bean. Check 
+	the example below.
+
+4. 	by Constructor: The bean has a constructor. This constructor has an argument. The type of this argument 
+	must be same the type of another bean
+
+5. 	Autodetect: Deprecated since Spring 3.
+	Example: AUTOWIRE BY NAME
+
+	File: Student.java
+	package com.avishek;
+
+	public class Student {
+		String name;
+		Address add;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public Address getAdd() {
+			return add;
+		}
+		public void setAdd(Address add) {
+			this.add = add;
+		}
+	}
+
+	File. Address.java
+	package com.avishek;
+
+	public class Address {
+		String city;
+		int pincode;
+		public String getCity() {
+			return city;
+		}
+		public void setCity(String city) {
+			this.city = city;
+		}
+		public int getPincode() {
+			return pincode;
+		}
+		public void setPincode(int pincode) {
+			this.pincode = pincode;
+		}
+	}
+
+	File: beansInfoList.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id="add" class="com.avishek.Address">
+			<property name="city" value="Bangalore"></property>
+			<property name="pincode" value="560095"></property>
+		</bean>
+
+		<bean id="studentBean" class="com.avishek.Student" autowire="byName">
+			<property name="name" value="Avishek"></property>
+		</bean>
+
+	</beans>
+
+	Main.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("beansInfoList.xml");
+			Student student = (Student)context.getBean("studentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAdd().getCity());
+			System.out.println(student.getAdd().getPincode());
+		}
+	}
+
+
+	Example: AUTOWIRE BY TYPE
+
+	All the files will be same as above, only the Spring Bean Configuration File is changed a bit as follows:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id="addressBean" class="com.avishek.Address">
+			<property name="city" value="Bangalore"></property>
+			<property name="pincode" value="560095"></property>
+		</bean>
+
+		<bean id="studentBean" class="com.avishek.Student" autowire="byType">
+			<property name="name" value="Avishek"></property>
+		</bean>
+
+	</beans>
+
+	Here, we see that the bean name is "addressBean" where as the property name is "Address" still autowiring 
+	happens. This is because the type of property add is Address and the bean with class ="com.avishek.Address" 
+	matches with it. Hence autowiring takes place.
+
+	EXAMPLE: AUTOWIRE BY CONSTRUCTOR
+
+	FILE: Student.java
+	package com.avishek;
+
+	public class Student {
+		String name;
+		Address add;
+		Student(String name, Address add){
+			this.name = name;
+			this.add = add;
+		}
+		public String getName() {
+			return name;
+		}
+		public Address getAdd() {
+			return add;
+		}
+	}
+
+	FILE: Address.java
+	package com.avishek;
+
+	public class Address {
+		String city;
+		int pincode;
+		public String getCity() {
+			return city;
+		}
+		public void setCity(String city) {
+			this.city = city;
+		}
+		public int getPincode() {
+			return pincode;
+		}
+		public void setPincode(int pincode) {
+			this.pincode = pincode;
+		}
+	}
+
+	FILE: beansInfoList.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id="addressBean" class="com.avishek.Address">
+			<property name="city" value="Bangalore"></property>
+			<property name="pincode" value="560095"></property>
+		</bean>
+
+		<bean id="studentBean" class="com.avishek.Student" autowire="constructor">
+			<constructor-arg value="Avishek Gurung"></constructor-arg>
+		</bean>
+
+	</beans>
+
+	FILE: Main.java
+
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("beansInfoList.xml");
+			Student student = (Student)context.getBean("studentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAdd().getCity());
+			System.out.println(student.getAdd().getPincode());
+		}
+	}
+
+
+FACTORY METHOD
+
+We have seen instantiating classes by using Constructors and setters method. There is another way to instantiate 
+object in Spring called the Factory Method. We need to declare a method which is static and returns the object of 
+that class, and give the name of the method in Spring Bean Configuration File.
+
+	FILE: Student.java
+	package com.avishek;
+
+	public class Student {
+		String name;
+		int age;
+		
+		public static Student instantiate(){
+			Student student = new Student();
+			student.name = "Avishek Gurung";
+			student.age = 23;
+			return student;
+		}
+		
+		public String getName() {
+			return name;
+		}
+
+		public int getAge() {
+			return age;
+		}
+	}
+
+
+	FILE: beansInfoList
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean id="studentBean" class="com.avishek.Student" factory-method="instantiate"/>
+	</beans>
+
+	FILE: Main.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("beansInfoList.xml");
+			Student student = (Student)context.getBean("studentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAge());
+		}
+	}
+
+
 
 
 	
