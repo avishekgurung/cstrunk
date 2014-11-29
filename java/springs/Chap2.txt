@@ -548,7 +548,99 @@ that class, and give the name of the method in Spring Bean Configuration File.
 	}
 
 
-BEAN SCOPES
+Bean Scope
+
+In Spring user can control the scope of the objects created from a particular bean definition. This can be achieved by the attribute "scope" in the tag. Following are the scopes available in the Spring. 
+
+singleton - Returns a single bean instance per Spring IoC container (By Default). 
+
+prototype - Returns a new bean instance each time when requested. 
+
+request - Returns a single bean instance per HTTP request. 
+
+session - Returns a single bean instance per HTTP session. 
+
+globalSession - Returns a single bean instance per global HTTP session.
+
+We will discuss the first two, the remaining three scopes are used in Application Context.
+
+Lets learn through examples:
+
+	FILE: Student.java
+
+	package com.avishek;
+
+	public class Student {
+		String name;
+		int age;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public int getAge() {
+			return age;
+		}
+		public void setAge(int age) {
+			this.age = age;
+		}
+	}
+
+
+	FILE: Main.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("beansInfoList.xml");
+			Student s1 = (Student)context.getBean("studentBean");
+			s1.setAge(24);
+			s1.setName("Avishek");
+			
+			System.out.println(s1.getName());
+			System.out.println(s1.getAge());
+			
+			Student s2 = (Student)context.getBean("studentBean");
+			System.out.println(s2.getName());
+			System.out.println(s2.getAge());
+		}
+	}
+
+	For SINGLETON BEAN
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean id="studentBean" class="com.avishek.Student" scope="singleton"/>
+	</beans>
+
+	Output:
+	Avishek
+	24
+	Avishek
+	24
+
+	FOR PROTOTYPE BEAN
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean id="studentBean" class="com.avishek.Student" scope="singleton"/>
+	</beans>
+
+	Output:
+	Avishek
+	24
+	null
+	0
+
+	By default, the bean scopes are singleton.
 
 	
 
