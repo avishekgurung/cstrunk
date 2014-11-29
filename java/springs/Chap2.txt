@@ -146,6 +146,8 @@ Dependency Injection can be achieved by using three ways:
 
 	Here the addressBean should be available only for the employeeBean.
 	And also if no type is defined in constructor-arg, then by default String is taken.
+	The constructor-arg created in the bean should be in the same order in which the parameters
+	are present in the constructor.
 
 
 2. Setter Injection
