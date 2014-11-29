@@ -18,6 +18,9 @@ getter and setter methods and the class must be Serializable.
 Benefits of Spring
 
 1. Testability
+	The Spring applications are loosely coupled because of dependency injection. Hence, its very easy
+	to test a module as it is loosely coupled or independent of other modules.
+	
 	Actually for writing the spring application, server [Container] is not mandatory, but for  struts
 	applications we need a server, and for EJB too.  If we want to test the application it may need 
 	lot of changes in the source and each time we must restart the server to view the changes, which 
@@ -33,9 +36,7 @@ Benefits of Spring
 3. Predefined Templates
 	Spring framework provides templates for JDBC, Hibernate, JPA etc. technologies. So there is no 
 	need to write too much code. It hides the basic steps of these technologies.
-
-4. Loose Coupling
-	The Spring applications are loosely coupled because of dependency injection.
+	
 
 The modular diagram of Spring is given in the image.
 
