@@ -67,6 +67,7 @@ Installing Spring plugins in eclipse
 2.	Enter the url "http://www.springide.org/updatesite"
 3.	Choose the ones that you need else choose everything 
 4. 	Install
+Installing will take some time. Be patience.
 
 Creating and running simple program in Spring.
 
