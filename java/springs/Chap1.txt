@@ -80,7 +80,7 @@ Creating and running simple program in Spring.
 7.	Create a folder called 'lib' inside SpringDemo, in the same level of src.
 8.	Put all the spring jars in this 'lib' folder.
 9.	Select all the jars, right click, add to build path.
-10.	Now in a src folder create any pojo class, say Student as follows:
+10.	Now in a src folder create any pojo class (inside any package u want), say Student as follows:
 
 	package com.avishek;
 
