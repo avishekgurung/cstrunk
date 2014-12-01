@@ -29,7 +29,7 @@ Benefits of Spring
 	Spring can be used to develop any kind of java application, meaning we can develop  console application to 
 	enterprise level application
 
-2. Organize
+2. Organized
 	Spring is organized in a modular fashion. Even though the number of packages and classes are 
 	substantial, you have to worry only about ones you need and ignore the rest.
 
