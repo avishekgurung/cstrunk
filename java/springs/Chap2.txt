@@ -551,7 +551,8 @@ that class, and give the name of the method in Spring Bean Configuration File.
 
 Bean Scope
 
-In Spring user can control the scope of the objects created from a particular bean definition. This can be achieved by the attribute "scope" in the tag. Following are the scopes available in the Spring. 
+In Spring user can control the scope of the objects created from a particular bean definition. 
+This can be achieved by the attribute "scope" in the tag. Following are the scopes available in the Spring. 
 
 singleton - Returns a single bean instance per Spring IoC container (By Default). 
 
