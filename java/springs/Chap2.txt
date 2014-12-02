@@ -616,7 +616,8 @@ Lets learn through examples:
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
 		<bean id="studentBean" class="com.avishek.Student" scope="singleton"/>
 	</beans>
@@ -631,7 +632,8 @@ Lets learn through examples:
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		
 		<bean id="studentBean" class="com.avishek.Student" scope="singleton"/>
 	</beans>
@@ -645,5 +647,407 @@ Lets learn through examples:
 	By default, the bean scopes are singleton.
 
 	
+	
+AUTOWIRING By ANNOTATION
+
+So far, we saw that we can autowire Beans in the xml by using "autowire" keyword and giving the respective 
+values like "byName","byType" and "constructor". But we can also perform autowiring by using 
+Annotation => @Autowired
+
+Annotations are like metadata on the code. It gives information about the code.
+To use @Autowired annotation, we need to register AutowiredAnnotationBeanPostProcessor, which can be 
+done in two ways:
+
+1. Include <context:annotation-config /> 
+	
+	Include <context:annotation-config /> in the context xml file as follows:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		
+		<context:annotation-config/>
+
+		<bean id="Blah" class="blah.blah.blah">
+		</bean>
+	</beans>
+
+	Rememeber xmlns:context="http://www.springframework.org/schema/context" is added in beans property and
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	is addded in schema location
+
+2. Include AutowiredAnnotationBeanPostProcessor
+	Include ‘AutowiredAnnotationBeanPostProcessor’ directly in bean configuration file.
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+		<bean id="Blah" class="blah.blah.blah">
+		</bean>
+	</beans>
+
+	No need to add any extralinks here
+
+So coming back to @Autowired, we can perform @Autowired annotation in setter method, constructor or property name. 
+Lets see them one by one.
+
+1. @Autowired in Setter Methods
+
+	FILE: Student.java
+	package com.avishek.start;
+
+	import org.springframework.beans.factory.annotation.Autowired;
+
+	public class Student {
+		String name;
+		Address address;
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		
+		public Address getAddress() {
+			return address;
+		}
+		
+		@Autowired
+		public void setAddress(Address address) {
+			this.address = address;
+		}
+	}
+
+	FILE: Address.java
+	package com.avishek.start;
+
+	public class Address {
+		String city;
+		int pincode;
+		public String getCity() {
+			return city;
+		}
+		public void setCity(String city) {
+			this.city = city;
+		}
+		public int getPincode() {
+			return pincode;
+		}
+		public void setPincode(int pincode) {
+			this.pincode = pincode;
+		}
+	}
+
+	FILE: Config.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+		<bean id="StudentBean" class="com.avishek.start.Student">
+			<property name="name" value="Avishek Gurung"/>
+		</bean>
+		
+		<bean id="AddressBean" class="com.avishek.start.Address">
+			<property name="city" value="Bangalore"/>
+			<property name="pincode" value="560095"/>
+		</bean>
+
+	</beans>
+
+	FILE: Main.java
+	package com.avishek.start;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("Config.xml");
+			Student student = (Student)context.getBean("StudentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAddress().getCity());
+			System.out.println(student.getAddress().getPincode());
+		}
+	}
+
+2. @Autowired in Constructor
+
+	The Autoring of Constructor by annotation is pretty similar to above.
+	Just that the Student class must have a constructor and @Autowired keyword in Constructor as follows:
+
+	FILE: Student.java
+	package com.avishek.start;
+
+	import org.springframework.beans.factory.annotation.Autowired;
+
+	public class Student {
+		String name;
+		Address address;
+		
+		@Autowired
+		Student(String name, Address address){
+			this.name = name;
+			this.address = address;
+		}
+		
+		public Address getAddress() {
+			return address;
+		}
+		
+		public String getName() {
+			return name;
+		}
+	}
+
+	FILE: Address.java
+	package com.avishek.start;
+
+	public class Address {
+		String city;
+		int pincode;
+		public String getCity() {
+			return city;
+		}
+		public void setCity(String city) {
+			this.city = city;
+		}
+		public int getPincode() {
+			return pincode;
+		}
+		public void setPincode(int pincode) {
+			this.pincode = pincode;
+		}
+	}
+
+	FILE: Config.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+		<bean id="StudentBean" class="com.avishek.start.Student">
+			<constructor-arg value="Avi"/>
+		</bean>
+		
+		<bean id="AddressBean" class="com.avishek.start.Address">
+			<property name="city" value="Bangalore"/>
+			<property name="pincode" value="560095"/>
+		</bean>
+
+	</beans>
+
+	FILE: Main.java
+	package com.avishek.start;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("Config.xml");
+			Student student = (Student)context.getBean("StudentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAddress().getCity());
+			System.out.println(student.getAddress().getPincode());
+		}
+	}
+
+3. @Autowired in Property Name
+	
+	This the simplest of all.
+	Just add  @Autowired before the property name and thats it.
+
+	FILE: Student.java
+	package com.avishek.start;
+
+	import org.springframework.beans.factory.annotation.Autowired;
+
+	public class Student {
+		String name;
+		
+		@Autowired
+		Address address;
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public Address getAddress() {
+			return address;
+		}
+		public void setAddress(Address address) {
+			this.address = address;
+		}	
+	}
+
+	FILE: Address.java
+	package com.avishek.start;
+
+	public class Address {
+		String city;
+		int pincode;
+		public String getCity() {
+			return city;
+		}
+		public void setCity(String city) {
+			this.city = city;
+		}
+		public int getPincode() {
+			return pincode;
+		}
+		public void setPincode(int pincode) {
+			this.pincode = pincode;
+		}
+	}
+
+	FILE: Config.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+		<bean id="StudentBean" class="com.avishek.start.Student">
+			<property name="name" value="Avishek"/>
+		</bean>
+		
+		<bean id="AddressBean" class="com.avishek.start.Address">
+			<property name="city" value="Bangalore"/>
+			<property name="pincode" value="560095"/>
+		</bean>
+
+	</beans>
+
+	FILE: Main.java
+	package com.avishek.start;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("Config.xml");
+			Student student = (Student)context.getBean("StudentBean");
+			System.out.println(student.getName());
+			System.out.println(student.getAddress().getCity());
+			System.out.println(student.getAddress().getPincode());
+		}
+	}
+
+
+Now when Autowired Annotation is used, the Spring will check for the matching bean, eg Address in the above case. 
+But if it does not find any matching bean then it throws an exception. So in order to disable this 
+check, we can set 'required' attribute to false.
+
+Eg. 
+	FILE: Student.java
+	package com.avishek.start;
+
+	import org.springframework.beans.factory.annotation.Autowired;
+
+	public class Student {
+		String name;
+		
+		@Autowired(required=false)
+		Address address;
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public Address getAddress() {
+			return address;
+		}
+		public void setAddress(Address address) {
+			this.address = address;
+		}	
+	}
+
+
+But lets say the Spring finds more than one matching bean, then which one should be used? In such cases we need 
+to use @Qualifier annotation
+
+All the files will be same as above, the changed files are given below:
+
+	FILE: Config.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+		<bean id="StudentBean" class="com.avishek.start.Student">
+			<property name="name" value="Avishek"/>
+		</bean>
+		
+		<bean id="AddressBean1" class="com.avishek.start.Address">
+			<property name="city" value="Bangalore"/>
+			<property name="pincode" value="560095"/>
+		</bean>
+		
+		<bean id="AddressBean2" class="com.avishek.start.Address">
+			<property name="city" value="Darjeeling"/>
+			<property name="pincode" value="734101"/>
+		</bean>
+	</beans>
+
+
+	FILE:Student.java
+	package com.avishek.start;
+
+	import org.springframework.beans.factory.annotation.Autowired;
+	import org.springframework.beans.factory.annotation.Qualifier;
+
+	public class Student {
+		String name;
+		
+		@Autowired
+		@Qualifier("AddressBean2")
+		Address address;
+		
+		public String getName() {
+			return name;
+		}
+		public void setName(String name) {
+			this.name = name;
+		}
+		public Address getAddress() {
+			return address;
+		}
+		public void setAddress(Address address) {
+			this.address = address;
+		}
+	}
 
 
