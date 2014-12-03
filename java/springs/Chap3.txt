@@ -1,0 +1,379 @@
+
+
+ASPECT ORIENTED PROGRAMMING
+
+The another important feature of Spring is Aspect Oriented Programming aka AOP. The meaning of ASPECT is, 
+particular part or feature of something. Lets start learning AOP from example as given below:
+
+Lets say we have a class that has 20 different methods. Whenever we call each method, we need to send a 
+notification or say, we need to maintain a log. Then the normal way of approach would be to create a method 
+that provides notification or log. And then, write a code that calls this method in all 20 methods. So we see 
+that we are writing a code (code that calls the notification method or log method) in 20 different methods. 
+Say next day, this requirement is no longer needed and we need to remove these notifications or logs, then wat?
+We again need to change the code in 20 different methods.
+
+So AOP provides solution for this. We need not write or change code in 20 different methods. Just changing 
+the configuration xml does the Job.
+
+Spring AOP (Aspect-oriented programming) framework is used to modularize cross-cutting concerns in aspects. 
+Put it simple, it’s just an interceptor to intercept some processes, for example, when a method is executed, 
+Spring AOP can hijack the executing method, and add extra functionality before or after the method execution.	
+
+
+Aspect: in AOP is a class where AOP will be implemented.
+
+Join Point: is any point in our program like method execution, exception handling, field access etc. Spring 
+supports only method execution as Join point.
+
+Advice: is an action taken at join point by the aspect.
+There are four different kinds of advices and their description and implementation is defined below:
+
+	1. Before: It executes before the method is called.
+	2. After returning: It executes after the method is called.
+	3. After throwing: It executes when the method throws an exception
+	4. Around: Combines all the above.
+
+First we need to download another jar called CLIB for using proxy.
+Go here: https://github.com/cglib/cglib
+And download from: https://github.com/cglib/cglib/releases/tag/RELEASE_3_1
+Add to Build Path
+
+1.Before Example.
+	
+	//target class
+	FILE: SampleClass
+	package com.avishek;
+
+	public class SampleClass {
+		public void display(){
+			System.out.println("The display method of sample class");
+		}
+		public void show(){
+			System.out.println("The show method of sample class");
+		}
+	}
+
+	//interceptor class
+	FILE: BeforeAdvisor.java
+	package com.avishek;
+
+	import java.lang.reflect.Method;
+
+	import org.springframework.aop.MethodBeforeAdvice;
+
+	class BeforeAdvisor implements MethodBeforeAdvice{
+		@Override
+		public void before(Method arg0, Object[] arg1, Object arg2)throws Throwable {
+			System.out.println("Before method called");
+		}
+	}
+	//contains only the target class information
+
+
+	FILE: AppContext.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id="SampleClassBean" class="com.avishek.SampleClass"/>
+		<bean id="BeforeAdvisor" class="com.avishek.BeforeAdvisor"/>
+		
+		<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+			<property name="target" ref="SampleClassBean"/>
+			<property name="interceptorNames">
+				<list>
+					<value>BeforeAdvisor</value>
+				</list>
+			</property>
+		</bean>
+	</beans>
+
+	FILE: Main.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("AppContext.xml");
+			SampleClass sc = (SampleClass)context.getBean("proxy",SampleClass.class);
+			sc.display();
+			sc.show();
+		}
+	}
+
+	OUTPUT:
+	Before method called
+	The display method of sample class
+	Before method called
+	The show method of sample class
+
+
+Explanation: 
+
+We create three beans in xml. One for the class that will be targetted (SampleClass in the above example), 
+another for the interceptor,i.e. the class that intercepts(BeforeAdvisor in the above example) and finally a 
+proxy bean. The proxy bean that is for ProxyFactoryClass.
+
+The ProxyFactoryBean class is provided by Spring Famework. It contains 2 properties target and interceptorNames.
+The instance of SampleClass class will be considered as target object and the instance of BeforeAdvisor class 
+as interceptor. You need to pass the advisor object as the list object as in the xml file
+
+the "before" method takes three arguements as shown above:
+before(Method arg0, Object[] arg1, Object arg2)
+
+The arg0 is basically the method that we want to target, so here in the above case it returns "show" and "display"
+
+Object[] arg1 is basically the array of parameters that we pass to the method show() and display(). Say if 
+the method display is defined as  display(String name, int age, String comp) and it is called as 
+display("avishek",23,"viz") then 
+
+	for(x : arg1){
+		System.out.println(x);
+	}
+	gives us the output
+	avishek
+	23
+	viz
+
+	And arg2 is the target class
+
+2. After Returning
+
+	FILE: Sample.java //target class
+	package com.avishek;
+
+	public class Sample {	
+		public String displayInfo(String name, int age, String occuption){
+			System.out.println(name+" "+age+" "+occuption);
+			return "successful";
+		}
+	}
+
+	FILE: AfterAdvice.java //interceptor class
+	package com.avishek;
+
+	import java.lang.reflect.Method;
+	import org.springframework.aop.AfterReturningAdvice;
+
+	public class AfterAdvice implements AfterReturningAdvice{
+		@Override
+		public void afterReturning(Object arg0, Method arg1, Object[] arg2,
+				Object arg3) throws Throwable {
+			System.out.println("AfterReturningAdvice called");
+			System.out.println("The returned param: "+arg0);
+			System.out.println("The method called: "+arg1.getName());
+			System.out.println("The parameters of the method:");
+			for(Object x : arg2){
+				System.out.print(x+" ");
+			}
+			System.out.println();
+			System.out.println(arg3.getClass());
+		}
+	}
+
+	FILE: context.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="SampleBean" class="com.avishek.Sample"/>
+	<bean id="AfterAdviceBean" class="com.avishek.AfterAdvice"/>
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="SampleBean"/>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterAdviceBean</value>
+			</list>
+		</property>
+	</bean>
+	</beans>
+
+	FILE: MainClass.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class MainClass {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+			Sample sample = (Sample)context.getBean("proxy",Sample.class);
+			sample.displayInfo("Avishek", 23, "Software Engineer");
+		}
+	}
+
+	OUTPUT:
+	Avishek 23 Software Engineer
+	AfterReturningAdvice called
+	The returned param: successful
+	The method called: displayInfo
+	The parameters of the method:
+	Avishek 23 Software Engineer 
+	class com.avishek.Sample
+
+3. After Throwing
+	
+	FILE: Sample.java
+	package com.avishek;
+
+	public class Sample {	
+		public void displayInfo(){
+			System.out.println("Display called");
+			throw new IllegalArgumentException();
+		}
+	}
+
+	FILE: AfterThrow.java
+	package com.avishek;
+
+	import org.springframework.aop.ThrowsAdvice;
+
+	public class AfterThrow implements ThrowsAdvice{
+		public void afterThrowing(IllegalArgumentException e) throws Throwable{
+			System.out.println("After Throwing Called");
+		}
+	}
+
+	FILE: context.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="SampleBean" class="com.avishek.Sample"/>
+	<bean id="AfterThrowBean" class="com.avishek.AfterThrow"/>
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="SampleBean"/>
+		<property name="interceptorNames">
+			<list>
+				<value>AfterThrowBean</value>
+			</list>
+		</property>
+	</bean>
+
+	</beans>
+
+	FILE: MainClass.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class MainClass {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+			Sample sample = (Sample)context.getBean("proxy",Sample.class);
+			try{
+				sample.displayInfo();
+			}
+			catch(Exception e){
+				System.out.println("Exception Caught");
+			}
+			
+		}
+	}
+
+	OUTPUT:
+	Display called
+	After Throwing Called
+	Exception Caught
+
+
+4. AROUND
+
+	Implementation of all the above advices done here.
+
+	FILE: Sample.java
+	package com.Hijack;
+
+	public class Sample {
+		public String show(String name, int age, String occupation){
+			System.out.println("Show method called");
+			return "success";
+		}
+	}
+
+	FILE: Around.java
+	package com.Hijack;
+
+	import org.aopalliance.intercept.MethodInterceptor;
+	import org.aopalliance.intercept.MethodInvocation;
+
+	public class Around implements MethodInterceptor{
+		@Override
+		public Object invoke(MethodInvocation methodInvocation) throws Throwable {
+			//before code can be executed here
+			
+			//method name of target class
+			String targetMethodName = methodInvocation.getMethod().getName();
+			Object arr[] = methodInvocation.getArguments();
+			System.out.println("Before Advice called here");
+			System.out.println("Method Name "+targetMethodName);
+			for(Object x : arr){
+				System.out.print(x+" ");
+			}
+			System.out.println();
+			
+			try{
+				//the method of the target class is now called
+				Object result = methodInvocation.proceed();
+				
+				//after advice code can be written here
+				System.out.println("After Returning Advice called here");
+			}
+			catch(IllegalArgumentException e){
+				//after throwing advice code can be written here
+				System.out.println("After Throwing Advice called here");
+			}
+			return null;
+		}
+	}
+
+
+	FILE: AroundContext.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="SampleBean" class="com.Hijack.Sample"/>
+	<bean id="AroundBean" class="com.Hijack.Around"/>
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="SampleBean"/>
+		<property name="interceptorNames">
+			<list>
+				<value>AroundBean</value>
+			</list>
+		</property>
+	</bean>
+
+	</beans>
+
+	FILE: Main.java
+	package com.avishek;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("AppContext.xml");
+			SampleClass sc = (SampleClass)context.getBean("proxy",SampleClass.class);
+			sc.display("avi",22,"viz");
+			sc.show();
+		}
+	}
+
+	OUTPUT: 
+	Before Advice called here
+	Method Name show
+	Avishek Gurung 24 Software Engineer 
+	Show method called
+	After Returning Advice called here
