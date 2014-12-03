@@ -29,21 +29,21 @@ class Employee{
 }
 
 The class Employee does not worry about Address class, it does not have to create an object of
-Address class or worry about how to create it, how parameters its constructors takes and all. 
+Address class neither worry about how it is being created. 
 By DI the responsibility of creating objects of dependent class is shifted from our 
 application code to Spring container hence the phenomenon is called IOC. All these things are
 taken care by Spring Container by this feature of Dependency Injection. So we see that DI is 
 making the classes less dependent on one another. 
 
 So we can say that DI is like a glue that binds the two classes together yet at the same time 
-make them independant from one another. So as a result of DI, we testing class Employee will 
-be pretty easy as it does not depend upon Address and it also makes the class Address as 
+make them independant from one another. So as a result of DI, the testing of class Employee will 
+be pretty easy as it does not depend upon Address and it also makes the class Address 
 resuable by other classes.
 
-Inversion of Control (IOC) and Dependency Injection (DI) are used interchangeably. IOC is 
+The term Inversion of Control (IOC) and Dependency Injection (DI) are used interchangeably. IOC is 
 achieved through DI. 
 
-The IoC container is responsible to instantiate, configure and assemble the objects. These objects are 
+The IoC container is responsible to create, configure and manage the objects. These objects are 
 called Beans.
 
 
@@ -129,7 +129,8 @@ Dependency Injection can be achieved by using three ways:
 3.	Interface Injection.
 
 1. 	Constructor Injection.
-	The constructor based injection is shown above.
+	The constructor based injection is shown above. It does not matter whether the Address is
+	using constructor or setter method.
 	We can also create bean configuration as follows for the above example, using contructor
 	injection as follows:
 
@@ -304,17 +305,26 @@ There are five modes of Autowiring and they are:
 1.	no: It is the default autowiring mode. It means no autowiring bydefault.
 
 2.	byName- Attempts to find a bean in the container whose name (or ID) is same as the name of the property to 
-	be wired. If a matching bean 	is not found, the property will remain unwired. Here, the name of the 
-	property of the bean must be same as the name of the other bean to be wired. 
+	be wired. If a matching bean is not found, the property will remain unwired. Here, the name of the 
+	property of the bean (or class) must be same as the name of the other bean to be wired. 
+	The class property must be set by using setter method.Does not work for constructor.
 
 3. 	byType- Here even if the name of the bean and the property name are different, still injection is done 
-	if the type is the same. The type of the property to be wired must be same as the type of another bean. Check 
-	the example below.
+	if the type is the same. The type of the property to be wired must be same as the type of another bean.
+	The class property must be set by using setter method.Does not work for constructor.
+	Check the example below.
 
-4. 	by Constructor: The bean has a constructor. This constructor has an argument. The type of this argument 
-	must be same the type of another bean
+4. 	Constructor: The bean has a constructor. This constructor has an argument. The type of this argument 
+	must be same the type of another bean. The class property must be set by using constructor.Does not 
+	work for setter method.
+	
 
 5. 	Autodetect: Deprecated since Spring 3.
+	
+	In almost all the examples, plesae remember, that how we configure Address bean does not matter.
+	Infact this is what is the significance of Spring. We are not dependent on Address Bean.
+	So whether the property is set by using constructor or setter is hardly a concern for Student classs.
+	
 	Example: AUTOWIRE BY NAME
 
 	File: Student.java
@@ -877,6 +887,7 @@ Lets see them one by one.
 	
 	This the simplest of all.
 	Just add  @Autowired before the property name and thats it.
+	This does not work with constructor, works only with setter methods
 
 	FILE: Student.java
 	package com.avishek.start;
