@@ -1,3 +1,4 @@
+
 DEPENDENCY INJECTION and INVERSION OF CONTROL (IOC) 
 
 One of the most important concept of Spring is Dependency Injection and Inversion of Control.
@@ -36,7 +37,7 @@ taken care by Spring Container by this feature of Dependency Injection. So we se
 making the classes less dependent on one another. 
 
 So we can say that DI is like a glue that binds the two classes together yet at the same time 
-make them independant from one another. So as a result of DI, the testing of class Employee will 
+makes them independant from one another. So as a result of DI, the testing of class Employee will 
 be pretty easy as it does not depend upon Address and it also makes the class Address 
 resuable by other classes.
 
@@ -304,18 +305,20 @@ There are five modes of Autowiring and they are:
 
 1.	no: It is the default autowiring mode. It means no autowiring bydefault.
 
-2.	byName- Attempts to find a bean in the container whose name (or ID) is same as the name of the property to 
+2.	byName- The name of the property must be same as the name of the dependent bean.
+	Attempts to find a bean in the container whose name (or ID) is same as the name of the property to 
 	be wired. If a matching bean is not found, the property will remain unwired. Here, the name of the 
 	property of the bean (or class) must be same as the name of the other bean to be wired. 
 	The class property must be set by using setter method.Does not work for constructor.
 
-3. 	byType- Here even if the name of the bean and the property name are different, still injection is done 
-	if the type is the same. The type of the property to be wired must be same as the type of another bean.
+3. 	byType- The type of the property must be same as the type of the dependent bean.
+	Here even if the name of the bean and the property name are different, still injection is done 
+	if the type is the same. The type of the property to be wired must be same as the type of the dependent bean.
 	The class property must be set by using setter method.Does not work for constructor.
 	Check the example below.
 
-4. 	Constructor: The bean has a constructor. This constructor has an argument. The type of this argument 
-	must be same the type of another bean. The class property must be set by using constructor.Does not 
+4. 	constructor: The bean has a constructor. This constructor has an argument. The type of this argument 
+	must be same the type of the dependent bean. The class property must be set by using constructor.Does not 
 	work for setter method.
 	
 
@@ -502,7 +505,10 @@ There are five modes of Autowiring and they are:
 		}
 	}
 
-
+	if there is one more argument say int age in constructor, then the above example throws some error
+	so in that case give type="int" in SPCF, as follows:
+	<constructor-arg value="22" type="int"/>
+	
 FACTORY METHOD
 
 We have seen instantiating classes by using Constructors and setters method. There is another way to instantiate 
@@ -882,6 +888,9 @@ Lets see them one by one.
 			System.out.println(student.getAddress().getPincode());
 		}
 	}
+	
+	use type="particular_type" in case of any error.
+	Its a good practice to use type when configuring beans with constructor
 
 3. @Autowired in Property Name
 	
