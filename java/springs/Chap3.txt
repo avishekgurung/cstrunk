@@ -20,7 +20,7 @@ Put it simple, it’s just an interceptor to intercept some processes, for examp
 Spring AOP can hijack the executing method, and add extra functionality before or after the method execution.	
 
 
-Aspect: in AOP is a class where AOP will be implemented.
+Aspect: in AOP Aspect is a class where AOP will be implemented.
 
 Join Point: is any point in our program like method execution, exception handling, field access etc. Spring 
 supports only method execution as Join point.
