@@ -378,3 +378,359 @@ display("avishek",23,"viz") then
 	Avishek Gurung 24 Software Engineer 
 	Show method called
 	After Returning Advice called here
+
+
+
+So far we have seen the implementation of AOP. But the AOP implementation used above is old style. The Spring 
+Framework recommends us to use Spring AspectJ AOP implementation over the Spring 1.2 old style dtd based AOP 
+implementation because it provides us more control and it is easy to use. AspectJ AOP provides many annotation 
+but before that we will learn what is Pointcut.
+
+Pointcut can be considered as RULES which states that, at which particular jointpoints, the advice can be used.
+
+The pointcut annotation is given as follows:
+@Pointcut("execution(ReturnType ClassName.methodName(parameterList))")
+public void pointCutName(){}
+
+Examples:
+
+@Pointcut("execution(public * *(..))") 
+pointcut will be applied on all the public methods in all classes.
+
+@Pointcut("execution(public Operation.*(..))")  
+pointcut will be applied on all the public methods of Operation class.
+
+@Pointcut("execution(* Operation.*(..))") 
+pointcut will be applied on all the methods of Operation class.
+
+@Pointcut("execution(public Employee.set*(..))") 
+pointcut will be applied on all public methods of Employee that starts with the name "set"
+
+@Pointcut("execution(int Operation.*(..))") 
+pointcut will be applied on all the methods of Operation class that returns int value.
+
+AspectJ AOP annotations are of various types like @Before, @After, @AfterReturning, @AfterThrowing and @Around
+
+Like the old style AOP, @Around implements all the other AspectJ Annotations. 
+The difference between @After and @AfterReturning advice is @After can get us the method name and 
+@AfterReturning can give us the return value.
+
+We will discuss the examples one by one. 
+
+Most of the files  will remain the same throughout only the file that uses AspectJ AOP will change.
+
+Lets create the following files that remains constant in all the examples.
+
+	FILE: Target.java
+	package com.gurung;
+
+	public class Target {
+		public String method1(String name, int age){
+			System.out.println("Method 1 called");
+			return "true";
+		}
+		
+		public String method2(){
+			System.out.println("Method 2 called");
+			return "false";
+		}
+		
+		public void method3(String name, int age){
+			System.out.println("Method 3 called");
+		}
+		
+		public void method4(){
+			System.out.println("Method 4 called");
+			throw new IllegalArgumentException();
+		}
+	}
+
+
+	FILE: AppContext.xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"/>
+		<bean id="TargetBean" class="com.gurung.Target"/>
+		<bean id="MyInterceptorBean" class="com.gurung.MyInterceptor"/>
+
+	</beans>
+
+
+	FILE: Main.java
+	package com.gurung;
+
+	import org.springframework.context.ApplicationContext;
+	import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+	public class Main {
+		public static void main(String[] args) {
+			ApplicationContext context = new ClassPathXmlApplicationContext("AppContext.xml");
+			Target target = (Target)context.getBean("TargetBean");
+			
+			target.method1("avi", 22);
+			System.out.println();
+			
+			target.method2();
+			System.out.println();
+			
+			target.method3("abc", 20);
+			System.out.println();
+			
+			try{
+				target.method4();
+			}
+			catch(IllegalArgumentException ex){
+				System.out.println("Exception Caught");
+			}
+			
+			System.out.println();
+		}
+	}
+
+
+1. @Before AspectJ AOP
+
+	FILE: MyInterceptor.java
+	package com.gurung;
+
+	import org.aspectj.lang.JoinPoint; 
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Before;
+	import org.aspectj.lang.annotation.Pointcut;
+
+	@Aspect
+	public class MyInterceptor {
+		@Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+		
+		@Before("myPointCut()")
+		public void beforeAdvice(JoinPoint jointPoint){
+			System.out.println("Before Advice called for "+jointPoint.getSignature().getName());
+			System.out.println("Arguments: ");
+			Object arr[] = jointPoint.getArgs();
+			for(Object x: arr){
+				System.out.println(x);
+			}
+		}
+	}
+
+	OUTPUT: 
+	Before Advice called for method1
+	Arguments: 
+	avi
+	22
+	Method 1 called
+
+	Before Advice called for method2
+	Arguments: 
+	Method 2 called
+
+	Before Advice called for method3
+	Arguments: 
+	abc
+	20
+	Method 3 called
+
+	Before Advice called for method4
+	Arguments: 
+	Method 4 called
+	Exception Caught
+
+
+2. @After Advice
+	
+	FILE: MyInterceptor.java
+
+	package com.gurung;
+
+	import org.aspectj.lang.JoinPoint; 
+	import org.aspectj.lang.annotation.After;
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Pointcut;
+
+	@Aspect
+	public class MyInterceptor {
+		@Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+		
+		@After("myPointCut()")
+		public void afterAdvice(JoinPoint joinPoint){
+			System.out.println("After Advice Called for "+joinPoint.getSignature().getName());
+			
+		}
+	}
+
+	OUTPUT:
+	Method 1 called
+	After Advice Called for method1
+
+	Method 2 called
+	After Advice Called for method2
+
+	Method 3 called
+	After Advice Called for method3
+
+	Method 4 called
+	After Advice Called for method4
+	Exception Caught
+
+3. @AfterReturning
+
+	FILE: MyInterceptor.java
+	package com.gurung;
+
+	import org.aspectj.lang.annotation.AfterReturning;
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Pointcut;
+
+	@Aspect
+	public class MyInterceptor {
+		@Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+		
+		@AfterReturning(pointcut = "myPointCut()", returning = "returnVal")
+		public void afterReturningAdvice(Object returnVal){
+			System.out.println("After returning advice called "+returnVal);
+		}
+	}
+
+	OUTPUT: 
+	Method 1 called
+	After returning advice called true
+
+	Method 2 called
+	After returning advice called false
+
+	Method 3 called
+	After returning advice called null
+
+	Method 4 called
+	Exception Caught
+
+4. @AfterThrowing
+
+	FILE: MyInterceptor.java
+
+	package com.gurung;
+
+	import org.aspectj.lang.annotation.AfterThrowing;
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Pointcut;
+
+	@Aspect
+	public class MyInterceptor {
+		@Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+		
+		@AfterThrowing(pointcut="myPointCut()", throwing="ex")
+		public void afterThrowingAdvice(IllegalArgumentException ex){
+			System.out.println("After throwing advice called "+ex);
+		}
+	}
+
+	OUTPUT: 
+	Method 1 called
+
+	Method 2 called
+
+	Method 3 called
+
+	Method 4 called
+	After throwing advice called java.lang.IllegalArgumentException
+	Exception Caught
+
+5. @Around
+	
+	FILE: MyInterceptor.java
+
+	package com.gurung;
+
+	import org.aspectj.lang.ProceedingJoinPoint;
+	import org.aspectj.lang.annotation.AfterThrowing;
+	import org.aspectj.lang.annotation.Around;
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Pointcut;
+
+	@Aspect
+	public class MyInterceptor {
+		@Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+		
+		@Around("myPointCut()")
+		public void aroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
+			//Before Advice code here
+			System.out.println("Before Called in Around Advice");
+			Object arr[] = proceedingJoinPoint.getArgs();
+			System.out.println("Method Name: "+proceedingJoinPoint.getSignature().getName());
+			System.out.println("Arguments: ");
+			for(Object x: arr){
+				System.out.println(x);
+			}
+			
+			try{
+				//After returning advice code here
+				Object result = proceedingJoinPoint.proceed();
+				System.out.println("After Returning called in Around Advice");
+				System.out.println("Return type "+result);
+			}
+			catch(Throwable ex){
+				//after throwing advice code here
+				System.out.println("After Throwing called in Around Advice");
+			}
+		}
+	}
+
+	OUTPUT:
+	Before Called in Around Advice
+	Method Name: method1
+	Arguments: 
+	avi
+	22
+	Method 1 called
+	After Returning called in Around Advice
+	Return type true
+
+	Before Called in Around Advice
+	Method Name: method2
+	Arguments: 
+	Method 2 called
+	After Returning called in Around Advice
+	Return type false
+
+	Before Called in Around Advice
+	Method Name: method3
+	Arguments: 
+	abc
+	20
+	Method 3 called
+	After Returning called in Around Advice
+	Return type null
+
+	Before Called in Around Advice
+	Method Name: method4
+	Arguments: 
+	Method 4 called
+	After Throwing called in Around Advice
+
+
+Some explanation of few lines
+1. @Aspect
+	public class MyInterceptor
+
+	This means that the class MyInterceptor is our Aspect class, meaning the class where we are implemnting AOP.
+
+2. @Pointcut("execution(* Target.*(..))")
+		public void myPointCut(){}
+
+	Here we are first defining the rules for the point cut. The rules is then glued to the identifier 
+	of the pointcut named "myPointCut".
+
+Remembering @Around advice can give us a solution for all the other advices. :)
+
+
+We can also implement AspectJ AOP by xml. 
+Please refer here http://www.javatpoint.com/spring-aop-aspectj-xml-configuration-example 
