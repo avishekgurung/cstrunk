@@ -596,7 +596,16 @@ Lets create the following files that remains constant in all the examples.
 			System.out.println("After returning advice called "+returnVal);
 		}
 	}
-
+	
+	/* here we are specifying pointcut and return value. We can also do the usual implementation like
+	@AfterReturning("myPointCut()") if we do not want the return type.
+	
+	This method public void afterReturningAdvice(Object returnVal) can also be written as
+	public void afterReturningAdvice(JoinPoint joinPoint, joinObject returnVal)
+	and use the properties of JoinPoint like find the signature, or methodname, or arguments etc etc
+	*/
+	
+	
 	OUTPUT: 
 	Method 1 called
 	After returning advice called true
