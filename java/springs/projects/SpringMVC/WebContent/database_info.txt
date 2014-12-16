@@ -1,0 +1,4 @@
+Database
+
+create database if not exists springData;
+create table employeeRecord (id int(10), name varchar(30), company varchar(30));
