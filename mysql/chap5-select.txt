@@ -1,0 +1,72 @@
+MYSQL SELECT
+
+The select statement is used to retrieve the information from the table.
+
+The overall syntax of the select statment is as follows:
+
+SELECT column_1,column_2,...
+FROM table_1
+[INNER | LEFT |RIGHT] JOIN table_2 ON conditions
+WHERE conditions
+GROUP BY group 
+HAVING group_conditions
+ORDER BY column_1 [ASC | DESC]
+LIMIT offset, row_count
+
+lets consider the table below with the name "employee" and use query corresponding to it:
+
+mysql> select * from employee;
++------+--------+------------+----------+----------+----------+
+| id   | name   | occupation | login    | company  | salary   |
++------+--------+------------+----------+----------+----------+
+|  123 | Saroj  | engineer   | 09:30:00 | vizury   |  5000.99 |
+|  124 | rajiv  | engineer   | 09:30:00 | vizury   |  6000.99 |
+|  125 | Manoj  | developer  | 09:00:00 | oracle   | 20000.99 |
+|  130 | Suraj  | HR         | 09:00:00 | Amazon   | 29000.99 |
+|  188 | Amit   | Operations | 09:12:00 | Flipkart | 29400.99 |
+|  190 | Danish | SDE        | 09:12:00 | Flipkart | 99400.99 |
+|  192 | Perse  | SDE        | 09:12:00 | Flipkart | 99400.99 |
+|  193 | Robben | SDE        | 09:12:00 | Flipkart | 99400.99 |
++------+--------+------------+----------+----------+----------+
+
+
+USES OF SELECT STATEMENTS
+
+SELECT
+
+select * from table_name;
+select column1,column2,...,columnK from table_name;
+
+
+SELECT WITH WHERE
+
+mysql> select * from employee where name = "rajiv";
+mysql> select * from employee where name = "rajiv" OR name = "Suraj";
+mysql> select * from employee where company = "Flipkart" AND occupation = "Operations";
+mysql> select * from employee where salary >= 30000;
+mysql> select * from employee where id BETWEEN 120 and 180;
+mysql> select * from employee where id NOT BETWEEN 120 AND 180;
+mysql> select *  from employee where login BETWEEN '09:00:00' AND '09:15:00';
+mysql> select * from employee where name LIKE "S%";
+mysql> select * from employee where name LIKE '%j';
+mysql> select * from employee where name LIKE 'S___j'; underscore acts like any character.
+But if we want to search for _ and % then we need to escape them by using \
+mysql> select * from employee where id IN (123,124,125,130); Rather than using too many OR conditions
+mysql> select * from employee where id IN (124,125,130) AND company IN ("VIZURY");
+
+
+SELECT with ORDER
+
+Whenever we want to sort the results given by select query in ascending or decending order, we use "order by" query. We need to specify ascending by ASC and descending by DESC. If nothing is specified then by default its ASC.
+
+mysql> select * from employee ORDER BY id ASC;
+mysql> select * from employee ORDER BY id DESC;
+mysql> select * from employee ORDER BY company ASC, occupation DESC;
+mysql> select id * salary AS total from employee ORDER BY total DESC;
+
+So if we want to customize the sort on the basis of say company where  I want in the order "vizury", then "oracle", then "flipkart" and finally "amazon".then we need to use FIELD with SELECT query,
+
+mysql> select * from employee ORDER BY FIELD (company,"oracle","vizury","Flipkart","Amazon");
+
+
+

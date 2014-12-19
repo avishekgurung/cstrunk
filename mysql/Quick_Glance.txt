@@ -1,0 +1,17 @@
+Quick Glance
+
+mysql -u root -p 
+create database if not exists database_name;
+show databases;
+show tables;
+use database_name;
+drop database if exists database_name;
+drop table if exists table_name;
+desc table_name; or describe table_name;
+alter table table_name modify column_name_and_info;
+alter table table_name add column column_name_and_info after column_name;
+alter table table_name drop column column_name;
+alter table table_name change old_column to new_column column_info;
+alter table table_name rename to new_table_name;
+truncate table table_name1, table_name2,..., table_namek;
+show warnings; to see the warnings or errors

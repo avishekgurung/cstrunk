@@ -1,0 +1,48 @@
+ALTER TABLE
+
+The ALTER TABLE query changes the existing table structure such as adding or removing column, changing 
+column attribute, etc.
+
+The syntax of ALTER TABLE query is 
+alter table table_name action1[,action2,action3, ...];
+
+
+ALTERING THE COLUMN PROPERTIES
+
+Let us suppose that we have a schema table as below, with the name student:
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(4)      | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| age   | int(2)      | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+Lets us the "alter table" query to change the column properties.
+
+mysql> alter table student modify name varchar(30);
+mysql> alter table student modify name varchar(30) unique;
+mysql> alter table student modify age int(3) not null;
+mysql> alter table student modify age int(2) default 18;
+mysql> alter table student modify id int(5) not null auto_increment primary key;
+
+Say we need to remove primary key, then we have to remove auto_increment and then drop primary key as follows:
+
+REMOVING PRIMARY KEY
+mysql> alter table student modify id int(3);
+mysql> alter table student drop PRIMARY KEY;
+
+ADDING COLUMNS
+mysql> alter table student add column grade enum ('A','B','F') after id;
+
+REMOVING COLUMNS
+mysql> alter table student drop column age;
+
+RENAMING COLUMN
+mysql> alter table student change id student_info int(5);
+
+RENAME TABLE
+mysql> alter table student rename to student_info;

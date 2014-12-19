@@ -1,0 +1,78 @@
+CREATE TABLE
+
+The syntax of the create table query is as follows:
+
+create table [if not exists] table_name (
+	column1_name_and_info,
+	column2_name_and_info,
+	column3_name_and_info,
+	.
+	.
+	.
+	columnk_name_and_info,
+	PRIMARY KEY(column_name)
+)engine = storage_engine;
+
+The column_name_and_info is of the format
+column_name data_type[size][null|not null][default value][AUTO_INCREMENT]
+
+column_name 	- Name of the column
+data_type		- Data type of the column
+size			- size of the column
+null			- column can have null value
+not null		- column cannot have null value
+default VALUE 	- Column will have default value
+AUTO_INCREMENT	- The value of the column is increased one by one. Each table can have one Auto 
+increment. If we using a primary key, then this column has to be the primary key.
+
+Problem. Lets say we need to create a table that stores employee's information.
+The column properties will be as follows:
+1. Employee ID: an integer and unique
+2. Employee Name: String
+3. Date of birth: date, default = "01/01/1960"
+4. Salary: float (default 1000.00)
+5. login time: time
+6. grade: A to E, default E
+7. Ranks: integer, increment, primary key
+
+Sol.
+
+mysql> create table if not exists employee_info (id int(10) not null unique, name varchar(30) not null, dob date default '1960-01-01', salary float(5,2) default '5000.00', login time default '09:30:00', grade enum('A','B','C','D','E') default 'E', ranks int(3) AUTO_INCREMENT, primary key(ranks));
+
+mysql> desc employee_info;
++--------+---------------------------+------+-----+------------+----------------+
+| Field  | Type                      | Null | Key | Default    | Extra          |
++--------+---------------------------+------+-----+------------+----------------+
+| id     | int(10)                   | NO   |     | NULL       |                |
+| name   | varchar(30)               | NO   |     | NULL       |                |
+| dob    | date                      | YES  |     | 1960-01-01 |                |
+| salary | float(5,2)                | YES  |     | 999.99     |                |
+| login  | time                      | YES  |     | 09:30:00   |                |
+| grade  | enum('A','B','C','D','E') | YES  |     | E          |                |
+| ranks  | int(3)                    | NO   | PRI | NULL       | auto_increment |
++--------+---------------------------+------+-----+------------+----------------+
+7 rows in set (0.01 sec)
+
+insert into employee_info values (1222,"avishek gurung",'1987-08-04',450.99,'10:30:00','A', 1);
+insert into employee_info (id,name,salary) values (1234,"Rajiv",2000.29);
+
+mysql> select * from employee_info;
++------+----------------+------------+--------+----------+-------+-------+
+| id   | name           | dob        | salary | login    | grade | ranks |
++------+----------------+------------+--------+----------+-------+-------+
+| 1222 | avishek gurung | 1987-08-04 | 450.99 | 10:30:00 | A     |     1 |
+| 1234 | Rajiv          | 1960-01-01 | 999.99 | 09:30:00 | E     |     2 |
++------+----------------+------------+--------+----------+-------+-------+
+2 rows in set (0.00 sec)
+
+Incase of Rajiv, we added only three column info which are id, name and salary. The rest are picked up as default. But the salary was added 2000.29 but its picked as 999.99
+This is because, while creating table we defined salary with float(5,2). This means, the total number of digits in salary will have 5. Out of which 2 will be after decimal point, hence only 3 digits can be there before decimal. So if we add 2000.29, the total no of digits is more than the column can hold so upper most value will be restored here. In no way, the number before decimal point can exceed 3 in this case.
+
+
+
+AUTO_INCREMENT
+
+1. A column should be of type int or float if we want to define auto_increment in it.
+2. If we define a column as auto_increment then we need to make it as primary key also. This is 
+mandatary.
+3. The start value is 1 by default and increases by 1.

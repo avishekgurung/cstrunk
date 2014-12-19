@@ -1,0 +1,3 @@
+Following:
+http://www.mysqltutorial.org/
+http://www.tutorialspoint.com/mysql/mysql-introduction.htm
