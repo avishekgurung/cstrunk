@@ -1,0 +1,32 @@
+
+ECLIPSE DEBUG
+
+1. Error Encountered: Spring MVC Rest: No mapping found for HTTP request with URI [/ecommerce-api/rest/checkout] in DispatcherServlet in Spring MVC Application. Web page was not getting displayed.
+
+Sol. No class was generated of the java file that was there in src folder. In project tab, there is an option of "Build Automatically", that should be checked.
+
+2. Server Tomcat v7.0 Server at localhost failed to start
+
+Sol. a. Goto ur workspace directory
+Goto <workspace-directory>\.metadata\.plugins\org.eclipse.core.resources
+and delete .snap file
+
+Remember these are all hidden files so we need to use ls -a to view them
+	
+	b. Goto <workspace-directory>\.metadata\.plugins\org.eclipse.wst.server.core
+		delete tmp folder
+
+Once the above steps are done, restart the eclipse
+
+Else if none of the above works, deleting the server and creating again new server could help.
+
+
+3. exception is org.apache.commons.dbcp.SQLNestedException: Cannot load JDBC driver class 'com.mysql.jdbc.Driver
+
+Sol. MYSQL connector J jar not present or not added to the classpath
+
+4. Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory
+
+Sol. Make sure that the sql server is running. You can run the server in linux by using the commandservice mysql start. Also, the database name, username and password should be correct.
+
+

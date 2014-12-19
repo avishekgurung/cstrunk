@@ -1,0 +1,164 @@
+
+SOME CONFIGURATION WITH ECLIPSE
+
+1. SERVER CONFIGURATION
+
+	a. Download any apache-tomcat version and keep it in some location.
+	b. In Eclipse, goto Windows -> Preferences -> Server -> Runtime Environment
+	c. Click Add -> Select the apache tomcat version that you have dowloaded -> Browse and give the installation directory (directory where it is kept) -> Finish
+
+	We have successfully added the server in Eclipse. Now we need to add our project in the server and run the server.
+
+	d. goto Windows -> Show View -> Servers
+	e. You will be able to find the list of servers that you have added. If no servers are there then you will have an option to create a new server.
+	f. So now create a new server, server's name and host name will appear automatically.
+	g. Click next and add your project from available to configured box. 
+	h. Now the recently added server will appear in the list.
+	i. Right Click -> Start (the status will now be changed to Started, Synchronized)
+
+	Now if you have not create the Project yet and just want to test the server. Create a simple dummy server as follows:
+
+	a. File -> New -> Dynamic Web Project
+	b. If web.xml file is not generated, create and add it inside WEB-INF
+	c. Create one JSP file inside WebContent folder.
+	d. Right Click Project -> Run As -> Server -> Next -> Next ->Finish
+	e. hit http://localhost:8080/ToDelete/blah.jsp
+
+
+2. Spring MVC Project Structure
+	
+	The folder and the files structure of Spring MVC and J2EE Project that we create in Java is the same.
+
+	The structure is as follows:
+
+    ProjectName
+	|
+	|-----Java Resources------src-----Cotains all our .java files
+	|
+	|-----WebContent----------WEB-INF------lib---All jar files
+	|                                  |
+	|                                  |---web.xml
+    
+	
+	here we can write any JSPs inside WebContent Folder
+     
+    This structure follows the one that I used for Asho project where all jsp and other files are properly protected from directly accessing from url.
+
+    ProjectName
+	|
+	|-----Java Resources------src-----Cotains all our .java files
+	|
+	|-----WebContent------|----WEB-INF-------lib---All jar files
+	|                     |              |
+    |                     |              |---web.xml
+    |                     |              |---JSP---All Jsp files
+    |                     |             
+    |                     |----images----All image files
+    |                     |----JS--------All javascript files
+    |                     |----CSS-------All Cascading Sheets
+
+
+    CONTROL FLOW DIAGRAMS.
+
+
+                                 |--------------Handler Mapping
+                                 |
+                                 |--------------Controller                        
+User -------RequestDispatcher----|
+                                 |--------------View Resolver                        
+                                 |
+                                 |--------------View                         
+
+All the requests from the user are handled by RequestDispatcher. The RequestDispatcher takes the help of the Handler Mapping and goes to the respective controller. The controller then does all the processing involving Business Logic, calling service methods, database access and then returns a Model and a View Object. The view Resolver uses the output of the controller logically and generates us the views.
+
+Create these files as per above directory structure.
+
+1. web.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>SpringMVC</display-name>
+  
+  <servlet>
+  	<servlet-name>mycontroller</servlet-name>
+  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>mycontroller</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
+
+2. mycontroller-servlet.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<context:component-scan base-package="com.avishek.gurung"></context:component-scan>
+	
+	<bean name="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+</beans>
+
+
+3. MainController.java in src folder inside com.avishek.gurung package
+package com.avishek.gurung;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainController {
+
+	@RequestMapping(value={"/","home","index","welcome"})
+	public String indexPage(Model model){
+		model.addAttribute("message", "Welcome to Spring MVC");
+		return "index";
+	}
+}
+
+4. Index.jsp inside JSP folder
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2 align="center">Home Page</h2>
+	<h3 align="center">${message}</h3>
+</body>
+</html>
+
+Explanation.
+
+When a user hits say "http://localhost:8080/SpringMVC/welcome" or "http://localhost:8080/SpringMVC/"
+Then the web.xml identifies the url pattern and maps it to the respective servlet as defined, here its mycontroller. The program then searches for mycontroller-servlet.xml. There it finds "<context:component-scan base-package="com.avishek.gurung"></context:component-scan>", so it goes to this package and then searches for classes that has @Controller annotation as this annotation declares that the classs is controller.
+
+The @RequestMapping annotation searches for those methodsin the controller class whose URL value should be "/" or "home" or "index" or "welcome". Meaning whatever is being passed after "http://localhost:8080/SpringMVC". In the above given url, since we are passing "/" or "welcome". So indexPage method is executed. This method then creates a model object which has to be shown in the view and returns "index" which can be called a view Object. 
+
+The bean named "viewResolver" in mycontroller-servlet.xml then takes this returned string, goes to the directory /WEB-INF/jsp/ and searches for the file(view) named index.jsp as the suffix value is .jsp. So its like, if "index" is returned, prefix+string+suffix is compiled. Like /WEB-INF/jsp/index.jsp. This page is finally shown in the view along with the model object.
+
+So the output will be
+
+Home Page
+
+Welcome to Spring MVC
+
+
+So in the above example,
+
+Handler Mapping are both the xml files, RequestDispatcher is already defined in the servlet tag. Controller is the java src code. View Resolver is defined again in the xml. And view is the JSP page rendered.

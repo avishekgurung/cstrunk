@@ -1,0 +1,245 @@
+DEPENDENCY INJECTION and INVERSION OF CONTROL (IOC) 
+
+One of the most important concept of Spring is Dependency Injection and Inversion of Control.
+We will start from the scratch and go in depth.
+
+Lets say we have a class called Address. Lets say our another class called Employee wants to 
+use this class called Address. So our normal implementation would be as follows:
+
+class Employee{
+	Address add;
+	Employee(){
+		add = new Address();
+	}
+}
+
+So we see that we are creating an Address object, to be used in Employee class. So if the Address
+class has some parameters in constructors, etc, then we need to pass them. So here, we can say
+that Employee is tightly coupled with Address class. i.e. we see that Employee is dependant on Address 
+and to use Employee we must always create Address object.
+
+But using Dependency Injection is like, as follows:
+
+class Employee{
+	Address add;
+	Employee(Address add){
+		this.add = add;
+	}
+}
+
+The class Employee does not worry about Address class, it does not have to create an object of Address class or worry about how to create it, how parameters its constructors takes and all. By DI the responsibility of creating objects of dependent class is shifted from our application code to Spring container hence the phenomenon is called IOC. All these things are taken care by Spring Container by this feature of Dependency Injection. So we see that DI is making the classes less dependent on one another. 
+
+So we can say that DI is like a glue that binds the two classes together yet at the same time make them independant from one another. So as a result of DI, we testing class Employee will be pretty easy as it does not depend upon Address and it also makes the class Address as resuable by other classes.
+
+Inversion of Control (IOC) and Dependency Injection (DI) are used interchangeably. IOC is achieved through DI. 
+
+The IoC container is responsible to instantiate, configure and assemble the objects. These objects are called Beans.
+
+
+Lets work on a same example as explained above using DI.
+
+File: Address.java
+
+package com.avishek;
+
+public class Address {
+	String city;
+	int pincode;
+	
+	Address(String city, int pincode){
+		this.city = city;
+		this.pincode = pincode;
+	}
+	
+	public String toString(){
+		return city+" "+pincode;
+	}
+}
+
+File: Employee.java
+
+package com.avishek;
+import com.avishek.Address;
+
+public class Employee {
+	Address add;
+	String name;
+	int age;
+	Employee(Address add, String name, int age){
+		this.add =  add;
+		this.name = name;
+		this.age = age;
+	}
+	
+	public String toString(){
+		return name+" : "+age+" : "+add;
+	}
+}
+
+File: beansInfoList.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id = "addressBean" class="com.avishek.Address">
+		<constructor-arg value="Bangalore"></constructor-arg>
+		<constructor-arg value="560095"></constructor-arg>
+	</bean>
+	
+	<bean id = "employeeBean" class="com.avishek.Employee">
+		<constructor-arg ref="addressBean"></constructor-arg>
+		<constructor-arg value="Avishek Gurung"></constructor-arg>
+		<constructor-arg value="25"></constructor-arg>
+	</bean>
+
+</beans>
+
+File: Main.java
+
+package com.avishek;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.avishek.Student;
+
+public class Main {
+	public static void main(String[] args) {		
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beansInfoList.xml");
+		Employee employee = (Employee)context.getBean("employeeBean");
+		System.out.println(employee);
+	}
+}
+
+
+Dependency Injection can be achieved by using three ways:
+1. 	Constructor Injection.
+2.	Setter Injection.
+3.	Interface Injection.
+
+1. 	Constructor Injection.
+	The constructor based injection is shown above.
+	We can also create bean configuration as follows for the above example, using contructor injection as follows:
+
+	<bean id = "employeeBean" class="com.avishek.Employee">
+		<constructor-arg>
+			<bean id = "addressBean" class="com.avishek.Address">
+				<constructor-arg value="Bangalore"></constructor-arg>
+				<constructor-arg value="560096"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg value="Avishek Gurung"></constructor-arg>
+		<constructor-arg value="25" type="int"></constructor-arg>
+	</bean>
+
+	Here the addressBean should be available only for the employeeBean.
+	And also if no type is defined in constructor-arg, then by default String is taken.
+
+
+2. Setter Injection
+	The class needs to have setter methods to initialize the members.
+	The spring bean configuration file is as follows:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+		<bean id = "addressBean" class="com.avishek.Address">
+			<constructor-arg value="Bangalore"></constructor-arg>
+			<constructor-arg value="560095"></constructor-arg>
+		</bean>
+		
+		<bean id = "employeeBean" class="com.avishek.Employee">
+			<property name="add" ref="addressBean"></property>
+			<property name="name" value="Avishek"></property>
+			<property name="age" value="22"></property>
+		</bean>
+
+	</beans>
+
+
+	We can also make them as to make the bean inner bean available only to the outer bean
+	<bean id = "employeeBean" class="com.avishek.Employee">
+		<property name="add">
+			<bean id = "addressBean" class="com.avishek.Address">
+				<constructor-arg value="Bangalore"></constructor-arg>
+				<constructor-arg value="560096"></constructor-arg>
+			</bean>
+		</property>
+		<property name="name" value="Avishek"></property>
+		<property name="age" value="22"></property>
+	</bean>
+
+3. Interface Injection
+	
+	Say if the members of the class are of type Set, List or Map.
+	Then we create beans as follows:
+
+	<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean id ="productBean" class = "com.avishek.Products">
+			<property name="fruits">
+				<map>
+					<entry key="apple" value="red"/>
+					<entry key="banana" value="yellow"/>
+					<entry key="orange" value="orange"/>
+				</map>
+			</property>
+			
+			<property name="bikes">
+				<set>
+					<value>CBR Honda</value>
+					<value>Bandit</value>
+				</set>
+			</property>
+			
+			<property name="places">
+				<list>
+					<value>Amsterdam</value>
+					<value>Darjeeling</value>
+				</list>
+			</property>
+		</bean>
+		
+	</beans>
+
+	File: Products.java
+	package com.avishek;
+
+	import java.util.List;
+	import java.util.Map;
+	import java.util.Set;
+
+	public class Products {
+		Map<String, String> fruits;
+		List <String> bikes;
+		Set<String> places;
+		public Map<String, String> getFruits() {
+			return fruits;
+		}
+		public void setFruits(Map<String, String> fruits) {
+			this.fruits = fruits;
+		}
+		public List<String> getBikes() {
+			return bikes;
+		}
+		public void setBikes(List<String> bikes) {
+			this.bikes = bikes;
+		}
+		public Set<String> getPlaces() {
+			return places;
+		}
+		public void setPlaces(Set<String> places) {
+			this.places = places;
+		}
+	}
+
+
+
+
+	
+
+
