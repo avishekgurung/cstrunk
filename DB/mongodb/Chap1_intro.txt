@@ -1,0 +1,78 @@
+
+Introduction
+
+MongoDB is an open-source document database. It provides high performance, high availability and automatic scability. MongoDB is a Big Data Technology, i.e. no SQL Technology. Mongo DB works on the concept of Collection and Document. So a Mongo DB has number of Collections (equivalent to tables of RDBMS). And each Collection can have number of Documents (Records or Tuples of DBMS).
+
+But the document (or the record) of Mongo DB has key-value pairs, very much similar to JSON objects. The values can be a String, Integer, Arrays, or another document, or arrays of documents. (So if we see properly then Documents here is basically a Javascript Object). Eg of Document:
+
+{
+	name: "Avishek",
+	age: 26,
+	status: "A",
+	groups: ["news","sports"]
+}
+
+Since the values can be arrays or can also point to other documents so it reduces the need for expensive joins. 
+
+
+Comparision with RDBMS
+
+RDBMS----------------------------------MongoDB
+  |                                       |
+  |                                       |
+Database-------------------------------Database
+  |                                       |
+  |                                       |
+Table----------------------------------Collection
+  |                                       |
+  |                                       |
+Tuple/Row------------------------------Document
+
+
+Installation in Linux: 
+
+1. Import public key used by the package management system
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+
+2. Create list file for MongoDB
+	echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+
+3. Reload local package database
+	sudo apt-get update
+
+4. Install Mongo DB package
+	sudo apt-get install -y mongodb-org
+	sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
+
+	To prevent upgrades of MongoDB to newer version use this if you want:
+	echo "mongodb-org hold" | sudo dpkg --set-selections
+	echo "mongodb-org-server hold" | sudo dpkg --set-selections
+	echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+	echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+	echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
+RUNNING 
+
+The MongoDB instance stores its data files in /var/lib/mongodb and its log files in /var/log/mongodb by default, and runs using the mongodb user account. You can specify alternate log and data file directories in /etc/mongodb.conf.
+
+1. Start MongoDB
+	sudo service mongod start
+
+2. Check that MongoDB has started successfully.
+	View this file /var/log/mongodb/mongod.log
+	We will get this line:
+	[initandlisten] waiting for connections on port [port_number]
+	The default port number is : 27017
+
+	This port number can be configured in /etc/mongod.conf file.
+
+3. To Stop MongoDB
+	sudo service mongod stop
+
+4. To restart MongoDB
+	sudo service mongod restart
+
+More information on installing and running can be found here
+http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+
+
