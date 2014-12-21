@@ -1,0 +1,57 @@
+
+INSERT
+
+So lets create a collection named 'testdata' inside a database with the name mydb.
+The sytax for inserting document into a collection is as follows:
+
+	db.collection_name.insert(document);
+
+
+1. use mydb;
+
+2. db.testdata.insert({name:"Avishek Gurung",age:27,designation:"engineer"});
+	Lets insert our first document inside testdata collection.
+
+3. Now that we have inserted data in testdata collection inside mydb database. So now, "show dbs", will list "mydb" as one of the database, and "show collections" will give "testdata" if we are inside mydb.
+
+	show dbs;
+	admin  (empty)
+	local  0.078GB
+	mydb   0.078GB
+
+	show collections;
+	testdata
+
+4. db.testdata.insert({cname:"Vizury",years:4,clients:["jabong","flipkart","amazon"]});
+	Inserting one more document inside testdata collection.
+
+5. Lets confirm that our documents are being inserted into testdata collection.
+	db.testdata.find();
+
+	{ "_id" : ObjectId("5494e3aac0ea3d01f5b38264"), "name" : "Avishek Gurung", "age" : 27, "designation" : "engineer" }
+	{ "_id" : ObjectId("5494e4b5c0ea3d01f5b38267"), "cname" : "Vizury", "years" : 4, "clients" : [ "jabong", "flipkart", "amazon" ] }
+
+	All documents must have a unique id. This unique id is represented by the key(field) _id. If we do not specify _id explicitly then Mongo, creates them for us.
+
+	So we create like JSON objects and insert them in collection.
+
+
+USING JAVASCRIPT SYNTAXES TO RETRIEVE DOCUMENTS FROM COLLECTIONS
+
+	Now we should know that Mongo supports lots of javascript syntaxes.
+	Retrieving information can be done as follows:
+
+	var arr = db.testdata.find();
+	printjson(arr[0]); // prints the first element
+	printjson(arr[1]); //prints the second element
+
+	Iterating through all the documents of collection can be done as follows:
+
+		while(arr.hasNext()) {printjson(arr.next())}
+
+	Else we can also use
+		
+		for(var i=0;i<arr.length();i++){printjson(arr[i])}
+	The syntax is very much similar to Javascript, very few differences, like length(). In javascript only "length" gives the length of an array but here length().
+
+	Here when we use var arr = db.testdata.find(); all the documents from testdata collection is loaded into RAM and then we process on it. So if the testdata collection is very large then mongo can run out of memory.

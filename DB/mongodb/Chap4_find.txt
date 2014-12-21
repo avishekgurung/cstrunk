@@ -1,0 +1,81 @@
+
+FIND
+
+	The find query is similar to select in RDBMS. The syntax of the "find" query is as follows:
+
+	db.collection_name.find(criteria).modifier
+	The modifier here can be sort, pretty, limit etc.
+
+	 The combinations of FIND operations are as follows:
+
+	1. Get all documents with where cname = Vizury
+		db.testdata.find({cname:"Vizury"});
+
+	2.  To access the first entry.
+		db.testdata.findOne();
+
+	3.	gives us the first two entries.
+		db.testdata.find().limit(2); 
+
+	4. To beautify the result.
+		db.testdata.find().pretty();
+
+	5. AND condition
+		db.employee.find({cname:"Vizury",desig:"Product Engineer"});
+		Gives us the documents where cname is Vizury and desig is Product Engineer.
+
+	6. OR condition
+		db.employee.find({$or:[{cname:"Vizury"},{cname:"DB"}]});
+		Simplyfying
+		db.employee.find({
+	   	$or:[
+		   		{  
+		         	cname:"Vizury"
+		      	},
+		      	{  
+		         	cname:"DB"
+		      	}
+	   		]
+		})
+
+	7. Using OR and AND condition together.
+		Access all employees whose cname is Vizury and desig is either hr or Product Engineer.
+
+		db.employee.find({  
+		   cname:"Vizury",
+		   $or:[  
+		      {  
+		         desig:"hr"
+		      },
+		      {  
+		         desig:"Product Engineer"
+		      }
+		   ]
+		})
+
+	Please put all the keys also in double quotes. Its a good practice.
+
+	8. Comparision is done as follows:
+
+		a. Equality	
+		{key:value}	
+
+		b. Less Than	
+		{key:{$lt:value}}
+
+		c. Less Than Equals	
+		{key:{$lte:value}}
+
+		d.	Greater Than	
+		{key:{$gt:value}}
+
+		e.	Greater Than Equals	
+		{key:{$gte:value}}
+
+		f. 	Not Equals	
+		{key:{$ne:value}}. 
+
+	Eg. Finding an employee whose height is greater than 5 inch can be written as follows:
+		db.employee.find({"height":{"$gt":"5"}});
+
+

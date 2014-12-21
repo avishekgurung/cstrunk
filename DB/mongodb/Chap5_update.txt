@@ -1,0 +1,22 @@
+
+UPDATE
+	We can use two methods to update documents in collection. The update() method and save(). The update() updates the existing document whereas the save() replaces the existing document by the document passed in the save method. If the save() does not contain _id then it acts like insert() else it works like update().
+
+	By default, mongo DB will update only single document in update(). To update multiple documents, we need to set the flag "multi" as "true".
+		
+		a. update()
+		Syntax:
+		db.collection_name.update({identifier_key:identifier_value},{$set:{key:new_value}},{multi:flag})
+		Eg, replacing all employee names of Vizury by Avishek Gurung, we can do it as follows:
+
+		db.employee.update({"cname":"Vizury"},{"$set":{"name":"Avishek Gurung"}},{"multi":"true"});
+
+		b. save()
+		Syntax:
+		db.COLLECTION_NAME.save({_id:ObjectId(),NEW_DATA})
+
+		Eg. db.employee.save({"name":"Santhosh","phone":"HTC"});
+		This statement will insert new document in the collection.
+
+		Eg.  db.employee.save({"_id" : ObjectId("54963688e8fd0b2edc2e6c5b"),"name":"Pritom Pal","phone":"HTC"});
+		This statement will update the existing document.

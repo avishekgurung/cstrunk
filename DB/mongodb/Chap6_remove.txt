@@ -1,0 +1,15 @@
+
+REMOVING
+
+	The syntax for removing the documents are as follows:
+	db.COLLECTION_NAME.remove(DELLETION_CRITTERIA)
+
+	if no deletion criteria is given then mongo will delete all the documents from the collection.
+
+	if we want to delete only one record then we need to specify 1 after deletion_criteria
+
+	a. db.employee.remove({"phone":"HTC"});
+		deletes document from employee collection where name is HTC.
+
+	b. db.employee.remove({"phone":"HTC"},1);
+		deletes only first document that satisfies the above criteria.

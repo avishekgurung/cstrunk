@@ -1,0 +1,30 @@
+
+Getting Started
+
+Once the MongoDB is installed as explained in the previous chapter. We can connect to the mongo DB server by using "mongo" in the terminal. Mongo looks for a DB server listening on port 27017 on the localhost interface. To use different host and port option we can give --port and --host options.
+
+The mongo shell opens for us once we give "mongo" command.
+
+mongo 			To connect to Mongo DB server.
+show dbs		shows all the databases.
+use db_name		uses the database with the name db_name if exits else creates a new db.
+db 				Gives the name of the current database. 
+help 			Usual help command.
+
+Now if we use "use avishek" (remember avishek database is not created), We will get the result as "Switched to avishek" and if we give "db", the current database will be "avishek". But if we give the command "show dbs", then "avishek" will not be listed in the list of databases because mongo DB does not create any permanent database until we insert the value in the database.
+
+DELETING A DATABASE
+use db_name;
+db.dropDatabase();
+
+To see the log files, we can go to the directory /var/log/mongodb
+tail -f mongod.log
+
+CRUD Operations on COLLECTIONS
+
+CRUD basically stands for Create, Read, Update and Delete Operations. Unlike sql, we do not explicitly create database and then create table defining its columns and finally insert proper values into the tables. The create operation can be executed by using createCollection() method but we know that the collection is created the moment we use insert(), hence we need not explicitly use create() to create collection.
+
+DELETING COLLECTION
+
+db.COLLECTION_NAME.drop()
+Returns true if the collection is removed successfully else returns false.
