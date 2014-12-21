@@ -10,8 +10,8 @@ Unicode covers (almost) all the characters, punctuations, and symbols in the wor
 
 ADVANTAGES
 
-Less server interaction: You can validate user input before sending the page off to the server. This saves server traffic, which means less load on your server. 
-Rich Interface and Immediate feedback to the visitors are few of them.
+Less server interaction: You can validate user input before sending the page off to the server. This saves server 
+traffic, which means less load on your server. Rich Interface and Immediate feedback to the visitors are few of them.
 
 
 DISADVANTAGES
