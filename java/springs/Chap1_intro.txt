@@ -21,8 +21,10 @@ Benefits of Spring
 	Actually for writing the spring application, server [Container] is not mandatory, but for  struts
 	applications we need a server, and for EJB too.  If we want to test the application it may need 
 	lot of changes in the source and each time we must restart the server to view the changes, which 
-	is little tedious and time taking but we can over come this in Spring,as for testing spring application server is not mandatory spring has it own container to run the applications.
-	Spring can be used to develop any kind of java application, meaning we can develop  console application to enterprise level application
+	is little tedious and time taking but we can over come this in Spring,as for testing spring application 
+	server is not mandatory spring has it own container to run the applications.
+	Spring can be used to develop any kind of java application, meaning we can develop  console application to 
+	enterprise level application
 
 2. Organize
 	Spring is organized in a modular fashion. Even though the number of packages and classes are 
@@ -103,14 +105,16 @@ Creating and running simple program in Spring.
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 	</beans>
 
 12. Now add the bean properties as follows:
 	<?xml version="1.0" encoding="UTF-8"?>
 	<beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 		<bean id="studentBean" class = "com.avishek.Student">
 			<property name="name" value = "Avishek Gurung"> </property>
 			<property name="age" value = "25"></property>
