@@ -1,9 +1,14 @@
 
 Introduction
 
-MongoDB is an open-source document database. It provides high performance, high availability and automatic scability. MongoDB is a Big Data Technology, i.e. no SQL Technology. Mongo DB works on the concept of Collection and Document. So a Mongo DB has number of Collections (equivalent to tables of RDBMS). And each Collection can have number of Documents (Records or Tuples of DBMS).
+MongoDB is an open-source document database. It provides high performance, high availability and automatic scability.
+MongoDB is a Big Data Technology, i.e. no SQL Technology. Mongo DB works on the concept of Collection and Document. 
+So a Mongo DB has number of Collections (equivalent to tables of RDBMS). And each Collection can have number of 
+Documents (Records or Tuples of DBMS).
 
-But the document (or the record) of Mongo DB has key-value pairs, very much similar to JSON objects. The values can be a String, Integer, Arrays, or another document, or arrays of documents. (So if we see properly then Documents here is basically a Javascript Object). Eg of Document:
+But the document (or the record) of Mongo DB has key-value pairs, very much similar to JSON objects. The values can 
+be a String, Integer, Arrays, or another document, or arrays of documents. (So if we see properly then Documents 
+here is basically a Javascript Object). Eg of Document:
 
 {
 	name: "Avishek",
@@ -35,15 +40,19 @@ Installation in Linux:
 	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 
 2. Create list file for MongoDB
-	echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
-
+	echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | 
+	sudo tee /etc/apt/sources.list.d/mongodb.list
+	//in the same line
+	
 3. Reload local package database
 	sudo apt-get update
 
 4. Install Mongo DB package
 	sudo apt-get install -y mongodb-org
-	sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
-
+	sudo apt-get install -y mongodb-org=2.6.1 mongodb-org-server=2.6.1 
+	mongodb-org-shell=2.6.1 mongodb-org-mongos=2.6.1 mongodb-org-tools=2.6.1
+	//in the same line
+	
 	To prevent upgrades of MongoDB to newer version use this if you want:
 	echo "mongodb-org hold" | sudo dpkg --set-selections
 	echo "mongodb-org-server hold" | sudo dpkg --set-selections
@@ -53,7 +62,9 @@ Installation in Linux:
 
 RUNNING 
 
-The MongoDB instance stores its data files in /var/lib/mongodb and its log files in /var/log/mongodb by default, and runs using the mongodb user account. You can specify alternate log and data file directories in /etc/mongodb.conf.
+The MongoDB instance stores its data files in /var/lib/mongodb and its log files in /var/log/mongodb by default, 
+and runs using the mongodb user account. You can specify alternate log and data file directories in 
+/etc/mongodb.conf.
 
 1. Start MongoDB
 	sudo service mongod start
