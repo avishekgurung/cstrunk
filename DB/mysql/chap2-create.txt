@@ -37,7 +37,9 @@ The column properties will be as follows:
 
 Sol.
 
-mysql> create table if not exists employee_info (id int(10) not null unique, name varchar(30) not null, dob date default '1960-01-01', salary float(5,2) default '5000.00', login time default '09:30:00', grade enum('A','B','C','D','E') default 'E', ranks int(3) AUTO_INCREMENT, primary key(ranks));
+mysql> create table if not exists employee_info (id int(10) not null unique, name varchar(30) not null, dob date 
+default '1960-01-01', salary float(5,2) default '5000.00', login time default '09:30:00', grade 
+enum('A','B','C','D','E') default 'E', ranks int(3) AUTO_INCREMENT, primary key(ranks));
 
 mysql> desc employee_info;
 +--------+---------------------------+------+-----+------------+----------------+
@@ -65,8 +67,12 @@ mysql> select * from employee_info;
 +------+----------------+------------+--------+----------+-------+-------+
 2 rows in set (0.00 sec)
 
-Incase of Rajiv, we added only three column info which are id, name and salary. The rest are picked up as default. But the salary was added 2000.29 but its picked as 999.99
-This is because, while creating table we defined salary with float(5,2). This means, the total number of digits in salary will have 5. Out of which 2 will be after decimal point, hence only 3 digits can be there before decimal. So if we add 2000.29, the total no of digits is more than the column can hold so upper most value will be restored here. In no way, the number before decimal point can exceed 3 in this case.
+Incase of Rajiv, we added only three column info which are id, name and salary. The rest are picked up as default. 
+But the salary was added 2000.29 but its picked as 999.99
+This is because, while creating table we defined salary with float(5,2). This means, the total number of digits in 
+salary will have 5. Out of which 2 will be after decimal point, hence only 3 digits can be there before decimal. 
+So if we add 2000.29, the total no of digits is more than the column can hold so upper most value will be restored 
+here. In no way, the number before decimal point can exceed 3 in this case.
 
 
 
