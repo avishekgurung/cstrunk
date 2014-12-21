@@ -1,8 +1,11 @@
 
 UPDATE
-	We can use two methods to update documents in collection. The update() method and save(). The update() updates the existing document whereas the save() replaces the existing document by the document passed in the save method. If the save() does not contain _id then it acts like insert() else it works like update().
+	We can use two methods to update documents in collection. The update() method and save(). The update() updates
+	the existing document whereas the save() replaces the existing document by the document passed in the save 
+	method. If the save() does not contain _id then it acts like insert() else it works like update().
 
-	By default, mongo DB will update only single document in update(). To update multiple documents, we need to set the flag "multi" as "true".
+	By default, mongo DB will update only single document in update(). To update multiple documents, we need to 
+	set the flag "multi" as "true".
 		
 		a. update()
 		Syntax:
