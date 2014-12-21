@@ -1,18 +1,19 @@
+
 Introduction
 
-Spring is a light weight and open source framework created by Rod Johnson in 2003.	Spring is a 
-complete and a modular framework, meaning Spring can used to implement all the layers of an 
-application or it can be used to implement only particular layer of an application. Eg, Struts
-is basically used for front end layers and Hybernate is basically used for database layer, but
-Spring can be used for any layers. 
-
-Spring is light weight framework because of its POJO model. POJO is an acronym for Plain Old
-Java Object, meaning, its just a simple class that does not follow any Object models or any 
-conventions.
-
-If we consider Java Beans, then they are classes that follow specific rules like constructor 
-should not have any arguements, the properties of the class are set and accessed by using only
-getter and setter methods and the class must be Serializable. 
+	Spring is a light weight and open source framework created by Rod Johnson in 2003.	Spring is a 
+	complete and a modular framework, meaning Spring can used to implement all the layers of an 
+	application or it can be used to implement only particular layer of an application. Eg, Struts
+	is basically used for front end layers and Hybernate is basically used for database layer, but
+	Spring can be used for any layers. 
+	
+	Spring is light weight framework because of its POJO model. POJO is an acronym for Plain Old
+	Java Object, meaning, its just a simple class that does not follow any Object models or any 
+	conventions.
+	
+	If we consider Java Beans, then they are classes that follow specific rules like constructor 
+	should not have any arguements, the properties of the class are set and accessed by using only
+	getter and setter methods and the class must be Serializable. 
 
 
 Benefits of Spring
