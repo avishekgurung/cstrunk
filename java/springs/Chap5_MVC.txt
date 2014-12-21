@@ -1,13 +1,17 @@
 
 MVC Spring and SpringMVC Project Explanation.
 
-Please refer to the Project SpringMVC attached. The project just takes the employee information (id,name and company) from the form, inserts them in database and performs operations like deleting the employee records and show all the employee records. The project is very basic but implements MVC architecture properly.
+Please refer to the Project SpringMVC attached. The project just takes the employee information (id,name and company)
+from the form, inserts them in database and performs operations like deleting the employee records and show all the 
+employee records. The project is very basic but implements MVC architecture properly.
 
 We start by developing three layers in the backend. Controller Layer, Service Layer and DataLayer. 
 
-The Controller Layer just does the controlling part, meaning it just calls the proper methods that are there in the Service Layer. 
+The Controller Layer just does the controlling part, meaning it just calls the proper methods that are there in the 
+Service Layer. 
 
-The Service Layer is the one where we put all business logics. Logics before pulling data from DB and also logics after pulling data from DB can be used here.
+The Service Layer is the one where we put all business logics. Logics before pulling data from DB and also logics 
+after pulling data from DB can be used here.
 
 Finally we have DataLayer that helps in accessing data from DB.
 
@@ -29,13 +33,19 @@ In mycontroller-servlet.xml, we see this code snippet
 		<property name="initialSize" value="1"></property>
 	</bean>
 
-	We create a bin called jdbcTemplate,giving its respective path as org.springframework.jdbc.core.JdbcTemplate. Now this class JdbcTemplate has a constructor that takes BasicDataSource Object as argument. So a bean with the name "dataSource" has been defined for this class BasicDataSource. So we see that one full complete bean with the name "dataSource" has been created.
+	We create a bin called jdbcTemplate,giving its respective path as org.springframework.jdbc.core.JdbcTemplate.
+	Now this class JdbcTemplate has a constructor that takes BasicDataSource Object as argument. So a bean with 
+	the name "dataSource" has been defined for this class BasicDataSource. So we see that one full complete bean
+	with the name "dataSource" has been created.
 
 	Now looking at the DataLayer code snippet, 
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	Here we are just creating a JdbcTemplate property and using autowiring by property. This code will search for the bean whose type is JdbcTemplate and wires it. Meaning, in this case, this property will be mapped to "jdbcTemplate" bean that we created above.
+	Here we are just creating a JdbcTemplate property and using autowiring by property. This code will search for
+	the bean whose type is JdbcTemplate and wires it. Meaning, in this case, this property will be mapped to 
+	"jdbcTemplate" bean that we created above.
 
-	We can also see that the names in the form field must match our Employee property name. This makes things easy to access.
+	We can also see that the names in the form field must match our Employee property name. This makes things 
+	easy to access.
