@@ -1,0 +1,18 @@
+1. Find the name of the deleted file.
+
+	git log --diff-filter=D --summary | grep delete
+	Gives the list of all deleted files. 
+
+	Else we can also use 
+	git log --diff-filter=D --summary
+	to find the list of all deleted files.
+
+
+2. Get the version number.
+	git rev-list -n 1 HEAD -- path-of-the-file/deleted-file-name
+	Eg: git rev-list -n 1 HEAD -- mysql/chap1-intro.txt
+	The result of this line will give us some long alphanumeric values like "3c0d5610515b5e033d1b679386707f484d044bd1"
+
+3. Retrieve the deleted file now using the above committed version.
+	git checkout [REVISON_NUMBER]^ -- ./path/to/file/
+	Eg. git checkout 3c0d5610515b5e033d1b679386707f484d044bd1^ -- mysql/chap1-intro.txt
