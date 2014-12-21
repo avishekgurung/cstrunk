@@ -1,8 +1,9 @@
 Introduction
 
 The software application that enables the users to store the data is known as a database. The
-database that simply stores the data in the form of tables is called Database Management System or DBMS. But if the database allows the tables to have some relationship between them then its called
-RDBMS or Relational Database Management System.
+database that simply stores the data in the form of tables is called Database Management System or DBMS. But if the 
+database allows the tables to have some relationship between them then its called RDBMS or Relational Database 
+Management System.
 
 Hence, in RDBMS, a relationship is established between tables by using some primary key or foreign 
 keys. So if we have a database where we simply have tables with no relationship between them, then 
