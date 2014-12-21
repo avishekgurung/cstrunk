@@ -57,14 +57,16 @@ mysql> select * from employee where id IN (124,125,130) AND company IN ("VIZURY"
 
 SELECT with ORDER
 
-Whenever we want to sort the results given by select query in ascending or decending order, we use "order by" query. We need to specify ascending by ASC and descending by DESC. If nothing is specified then by default its ASC.
+Whenever we want to sort the results given by select query in ascending or decending order, we use "order by" query.
+We need to specify ascending by ASC and descending by DESC. If nothing is specified then by default its ASC.
 
 mysql> select * from employee ORDER BY id ASC;
 mysql> select * from employee ORDER BY id DESC;
 mysql> select * from employee ORDER BY company ASC, occupation DESC;
 mysql> select id * salary AS total from employee ORDER BY total DESC;
 
-So if we want to customize the sort on the basis of say company where  I want in the order "vizury", then "oracle", then "flipkart" and finally "amazon".then we need to use FIELD with SELECT query,
+So if we want to customize the sort on the basis of say company where  I want in the order "vizury", then "oracle",
+then "flipkart" and finally "amazon".then we need to use FIELD with SELECT query,
 
 mysql> select * from employee ORDER BY FIELD (company,"oracle","vizury","Flipkart","Amazon");
 
