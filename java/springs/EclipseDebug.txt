@@ -1,9 +1,11 @@
 
 ECLIPSE DEBUG
 
-1. Error Encountered: Spring MVC Rest: No mapping found for HTTP request with URI [/ecommerce-api/rest/checkout] in DispatcherServlet in Spring MVC Application. Web page was not getting displayed.
+1. Error Encountered: Spring MVC Rest: No mapping found for HTTP request with URI [/ecommerce-api/rest/checkout] in 
+DispatcherServlet in Spring MVC Application. Web page was not getting displayed.
 
-Sol. No class was generated of the java file that was there in src folder. In project tab, there is an option of "Build Automatically", that should be checked.
+Sol. No class was generated of the java file that was there in src folder. In project tab, there is an option of 
+"Build Automatically", that should be checked.
 
 2. Server Tomcat v7.0 Server at localhost failed to start
 
@@ -25,8 +27,10 @@ Else if none of the above works, deleting the server and creating again new serv
 
 Sol. MYSQL connector J jar not present or not added to the classpath
 
-4. Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory
+4. Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create 
+PoolableConnectionFactory
 
-Sol. Make sure that the sql server is running. You can run the server in linux by using the commandservice mysql start. Also, the database name, username and password should be correct.
+Sol. Make sure that the sql server is running. You can run the server in linux by using the commandservice mysql
+start. Also, the database name, username and password should be correct.
 
 
