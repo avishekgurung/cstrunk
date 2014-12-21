@@ -2,13 +2,21 @@ MYSQL INDEX
 
 Mysql Index helps us to speed up the retrievel of data from the table. 
 
-When you query data from a table, first MySQL checks if the indexes exist, then MySQL uses the indexes to select exact physical corresponding rows of the table instead of scanning the whole table. (Concept like that of hashing).
+When you query data from a table, first MySQL checks if the indexes exist, then MySQL uses the indexes to select exact
+physical corresponding rows of the table instead of scanning the whole table. (Concept like that of hashing).
 
-A database index is similar to an index of a book. If you want to find a topic, you look up in the index first, and then you open the page that has the topic without scanning the whole book.
+A database index is similar to an index of a book. If you want to find a topic, you look up in the index first, and 
+then you open the page that has the topic without scanning the whole book.
 
-It is highly recommended that you should create index on COLUMNS of table from which you often query the data. Notice that all primary key columns are in the primary index of the table automatically. For eg, we have a student table consisting of various columns like id,name,age,class,total marks,avg,rank,address. Now most of the time we search student records either by using id or rank then we should attach index to id and rank, as it will help our query to execute fast.
+It is highly recommended that you should create index on COLUMNS of table from which you often query the data. Notice
+that all primary key columns are in the primary index of the table automatically. For eg, we have a student table
+consisting of various columns like id,name,age,class,total marks,avg,rank,address. Now most of the time we search
+student records either by using id or rank then we should attach index to id and rank, as it will help our query to
+execute fast.
 
-If index helps speed up the querying data, why don’t we use indexes for all columns? If you create an index for every column, MySQL has to build and maintain the index table. Whenever a change is made to the records of the table, MySQL has to rebuild the index, which takes time as well as decreases the performance of the database server.
+If index helps speed up the querying data, why don’t we use indexes for all columns? If you create an index for every 
+column, MySQL has to build and maintain the index table. Whenever a change is made to the records of the table, MySQL 
+has to rebuild the index, which takes time as well as decreases the performance of the database server.
 
 Eg.
 create index index_name on table_name (column1,column2,...);
