@@ -76,6 +76,9 @@ and runs using the mongodb user account. You can specify alternate log and data 
 	The default port number is : 27017
 
 	This port number can be configured in /etc/mongod.conf file.
+	
+	To see the log files, we can go to the directory /var/log/mongodb
+	tail -f mongod.log
 
 3. To Stop MongoDB
 	sudo service mongod stop
