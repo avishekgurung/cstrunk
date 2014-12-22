@@ -13,7 +13,7 @@ use db_name		uses the database with the name db_name if exits else creates a new
 db 				Gives the name of the current database. 
 help 			Usual help command.
 
-Now if we use "use avishek" (remember avishek database is not created), We will get the result as "Switched to 
+Now if we use "use avishek" (remember avishek database is not created yet), We will get the result as "Switched to 
 avishek" and if we give "db", the current database will be "avishek". But if we give the command "show dbs", then 
 "avishek" will not be listed in the list of databases because mongo DB does not create any permanent database until 
 we insert the value in the database.
@@ -21,9 +21,6 @@ we insert the value in the database.
 DELETING A DATABASE
 use db_name;
 db.dropDatabase();
-
-To see the log files, we can go to the directory /var/log/mongodb
-tail -f mongod.log
 
 CRUD Operations on COLLECTIONS
 
