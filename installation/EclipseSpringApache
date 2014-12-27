@@ -1,0 +1,40 @@
+
+Installing and Configuring eclipse in Windows 8
+
+1. Go to the usual eclipse download site and download the zip file.
+2. Extract and store the folder in any directory.
+3. Create a short cut in desktop.
+
+Installing Spring plugins in eclipse
+1.	Go go the help ---> Install new Software
+2.	Enter the url "http://www.springide.org/updatesite"
+3.	Choose the ones that you need else choose everything 
+4. 	Install 
+
+
+APACHE-TOMCAT INTEGRATION IN ECLIPSE
+
+	a. Download any apache-tomcat version and keep it in some location.
+	b. In Eclipse, goto Windows -> Preferences -> Server -> Runtime Environment
+	c. Click Add -> Select the apache tomcat version that you have dowloaded -> Browse and give the installation
+	directory (directory where it is kept) -> Finish
+
+	We have successfully added the server in Eclipse. Now we need to add our project in the server and run the 
+	server.
+
+	d. goto Windows -> Show View -> Servers
+	e. You will be able to find the list of servers that you have added. If no servers are there then you will 
+	have an option to create a new server.
+	f. So now create a new server, server's name and host name will appear automatically.
+	g. Click next and add your project from available to configured box. 
+	h. Now the recently added server will appear in the list.
+	i. Right Click -> Start (the status will now be changed to Started, Synchronized)
+
+	Now if you have not create the Project yet and just want to test the server. Create a simple dummy server 
+	as follows:
+
+	a. File -> New -> Dynamic Web Project
+	b. If web.xml file is not generated, create and add it inside WEB-INF
+	c. Create one JSP file inside WebContent folder.
+	d. Right Click Project -> Run As -> Server -> Next -> Next ->Finish
+	e. hit http://localhost:8080/ToDelete/blah.jsp
