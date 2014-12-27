@@ -1,0 +1,21 @@
+
+Installing Java in Windows
+
+1. Go to the oracle link and download the latest exe file for java w.r.t to ur OS
+2. Install it just by clicking the exe file.
+3. Once installed, the folder called "java" will be formed in Program Files.
+4. Inside this folder we have JDK and JRE folders.
+
+Now we need to set the path
+
+1. my computer -> properties -> advanced system properties -> environment variables
+2. In the user variable, see there is any varible with the name "path".
+3. If its there, edit it if not create it, and add the location of jdk bin.
+4. In my case its located in "C:\Program Files\Java\jdk1.8.0_25\bin"
+5. So just add "C:\Program Files\Java\jdk1.8.0_25\bin\", see \ is added at last
+6. if "path" variable is already present and some values are already there, then edit it
+   add "C:\Program Files\Java\jdk1.8.0_25\bin\;". Remember colon ";" is added for seperator.
+7. go to desktop and REFRESH 
+8. Now "java" and "javac" will give output in prompt.
+
+If this does not work, try adding same path in the "path" variable of system variables too.
