@@ -1,0 +1,28 @@
+
+MYSQL INSTALLATION
+
+For Linux, we download from terminal. But for Windows, we need to download the ".msi" file. As this is the  executable file 
+and all the wizards for installation comes here. 
+I downloaded from "http://dev.mysql.com/downloads/file.php?id=454873".
+
+Installation
+1. Just use the "msi" file and follow the wizard to install the mysql.
+2. Note that for windows, we are using "msi" executable file to install.
+3. Now in the terminal, type "mysql"
+4. If the command is not recognized, then we need to set the path (follow setting path)
+5. Else "mysql -u root -p" , and then the correct password will allow us to login.
+
+There are couple of steps that I did to set the path and I have set couple of paths. And finally it worked.
+But what I would suggest is, after completing every step, do "refresh" in desktop and after that open new command
+prompt and then try in that command prompt. So some steps, I might have done un-necessary also.
+
+Setting the path
+1. Once the mysql is installed, a mysql folder will be generated in Program Files.
+2. Go to the bin directory and copy the path.
+3. Now like that of Java path setting, go to enviroment variables section, and use the above said bin path in user variable 
+   section.
+4. Refresh and check properly in new command prompt
+5. If not working, set this same path in system variable section in "path" value.
+6. Refresh and check properly in new commadn prompt.
+7. If not working, create new system variable with the name "MYSQL_HOME" and give the value as "bin" path and then check.
+8. We will be able to login into mysql through command prompt.
