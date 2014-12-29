@@ -68,6 +68,8 @@ Installing Spring plugins in eclipse
 3.	Choose the ones that you need else choose everything 
 4. 	Install
 
+Download spring libraries from here "http://repo.spring.io/release/org/springframework/spring/"
+
 Creating and running simple program in Spring.
 
 1.	File
