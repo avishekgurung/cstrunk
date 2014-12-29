@@ -33,4 +33,7 @@ PoolableConnectionFactory
 Sol. Make sure that the sql server is running. You can run the server in linux by using the commandservice mysql
 start. Also, the database name, username and password should be correct.
 
+5. If we have red exclamantion (!) mark in eclipse project, then it basically says that something is wrong with respect
+to jars. Something is not proper with build path. I solved it by creating new project.
+
 
