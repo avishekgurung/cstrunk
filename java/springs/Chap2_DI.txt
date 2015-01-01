@@ -124,6 +124,10 @@ public class Main {
 }
 
 
+See the above code. We are creating an Object of ApplicationContext from the xml file. Meaning, this application context
+object will contain two beans of Student and Address. Now this application context can be used throughout the application.
+So we can access these two beans from Application Context anywhere in the application.
+
 Dependency Injection can be achieved by using three ways:
 1. 	Constructor Injection.
 2.	Setter Injection.
