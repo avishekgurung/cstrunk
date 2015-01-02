@@ -63,6 +63,7 @@ console.log(str.match(/sex=([^/]*)/)[1]);
 console.log(str.match(/salary=([^#]*)/)[1]); **
 console.log(str.match(/salary=([0-9\.]+)/)[1]); ** Check it out
 console.log(str.match(/phone=([0-9]+)/)[1]);
+str.match(/salary=([\d\.]+)/); //gives me salary. It says take anything after "salary" which is digit and dot
 
 
 Replacing salary
