@@ -139,11 +139,11 @@ Creating and running simple program in Spring.
 
 14. Run it to get the required result.
 
-
-
-
-
-
+*** Explanation:
+We have a class Student. The object of this class, normally called Bean here, is created in XML file. So we can say that the 
+bean is created in XML file. Now this Bean of Student is loaded into Spring Container by ApplicationContext. So whenever
+we want to use Student Bean, we can simply get the Student bean from Spring Container using ApplicationContext reference and 
+use them in our programs.
 
 
 Links
