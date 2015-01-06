@@ -77,5 +77,10 @@ FIND
 
 	Eg. Finding an employee whose height is greater than 5 inch can be written as follows:
 		db.employee.find({"height":{"$gt":"5"}});
+		
+		Some more basic and efficient find()
+		db.student.find({},{"name":0}); //Dont show name field
+		db.student.find({},{"name":1}); //show only name (_id will come by default)
+		db.student.find({},{"_id":0,"name":1}); //show only name (not even _id)
 
 
