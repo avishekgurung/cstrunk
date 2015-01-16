@@ -1,2 +1,7 @@
 1. Viewing Log files
 	tail -f file_name.log
+
+2. Disable and Enable touch pad.
+	xinput list  //Gives list of input devices
+	xinput set-prop 9 "Device Enabled" 0 //where 9 is the touchpad id
+	set 1 to enable
