@@ -5,3 +5,9 @@
 	xinput list  //Gives list of input devices
 	xinput set-prop 9 "Device Enabled" 0 //where 9 is the touchpad id
 	set 1 to enable
+3. Find where is the program installed
+	which program_name
+	Eg. which nodejs
+	
+	We can also use
+	whereis program_name to get full info.
