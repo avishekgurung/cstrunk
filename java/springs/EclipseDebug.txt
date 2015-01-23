@@ -36,4 +36,7 @@ start. Also, the database name, username and password should be correct.
 5. If we have red exclamantion (!) mark in eclipse project, then it basically says that something is wrong with respect
 to jars. Something is not proper with build path. I solved it by creating new project.
 
+6. The superclass “javax.servlet.http.HttpServlet” was not found on the Java Build Path
+
+Sol. Project->Properties->Target Runtimes->Apache Tomcat
 
