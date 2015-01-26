@@ -20,4 +20,4 @@
 
 6. See which process is using port 300
 	fuser 3000/tcp
-	Kill it : kill -9 3000
+	Kill it : kill -9 p_id
