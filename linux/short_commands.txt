@@ -14,3 +14,6 @@
 	
 4. Create symblic link
 	sudo ln -s /home/avishek/Desktop/apps/eclipse/eclipse/eclipse /usr/local/bin
+	
+5. Find the directory with the name 'meteor'
+	sudo find / -type d -name 'meteor'
