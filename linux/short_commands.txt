@@ -11,3 +11,6 @@
 	
 	We can also use
 	whereis program_name to get full info.
+	
+4. Create symblic link
+	sudo ln -s /home/avishek/Desktop/apps/eclipse/eclipse/eclipse /usr/local/bin
