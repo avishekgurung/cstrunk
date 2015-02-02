@@ -21,3 +21,6 @@
 6. See which process is using port 300
 	fuser 3000/tcp
 	Kill it : kill -9 p_id
+	
+7. Search in hidden files recursively
+	grep -r "Organize your Meteor application" * .*
