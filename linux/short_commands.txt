@@ -28,3 +28,6 @@
 8. Change the permission of directories or files recursively
 	find local/ -type f -exec chmod 777 {} \; //for file
 	find local/ -type d -exec chmod 777 {} \; //for direc
+	
+9. System Details
+	sudo dmidecode | less
