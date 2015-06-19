@@ -31,3 +31,6 @@
 	
 9. System Details
 	sudo dmidecode | less
+
+10. Open any kind of file from terminal
+ 	gnome-open filename.extension
