@@ -112,6 +112,17 @@ class Tree
 			node = node.right;
 		}
 	}
+	
+	/*Better Approach
+	temp = None
+	def utility(self,root):
+		if root == None:
+			return
+		self.utility(root.right)
+		self.utility(root.left)
+		root.right = self.temp
+		self.temp = root
+	*/
 }
 
 
