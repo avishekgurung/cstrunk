@@ -1,1 +1,2 @@
-#Javascript#
+#Javascript ~ DON'T IMMITATE, UNDERSTAND#
+
