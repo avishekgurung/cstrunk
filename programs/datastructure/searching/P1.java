@@ -21,6 +21,22 @@ class P1
 		else
 			System.out.println("Duplicates NOT present");
 	}
+	
+	//alternative more simpler logic
+	public static void searchDuplicates(int arr[]){
+		int n = arr.length-1;
+		int mathSum = (n*(n+1))/2;
+		int sum = 0;
+		for(int i=0;i<arr.length;i++){
+			sum = sum+arr[i];
+		}
+		if(sum == mathSum){
+			System.out.println("NO Duplicates present");	
+		}
+		else{
+			System.out.println("Duplicates present");
+		}
+	}
 }
 
 /*
