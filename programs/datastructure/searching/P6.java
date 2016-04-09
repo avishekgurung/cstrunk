@@ -32,4 +32,9 @@ class P6
  * Time Complexity = O(n)
  * Space Complexity = O(1)
  * But if we are asked to find all possible pairs then its necessary to sort the array
+ 
+ The above logic will not work. Solution
+ 1. If the array is sorted follow the above condition.
+ 2. Else use a map
+ 
  */
