@@ -69,6 +69,42 @@ class P2
 		
 		return maxVal;
 	}
+	
+	//Brute Force way
+	public static void longestSubstring(String s, String t){
+		if(s.length() < t.length()){
+			String temp = s;
+			s = t;
+			t = temp;
+		}
+		int length = s.length();
+		int window = t.length();
+
+		char x[] = s.toCharArray();
+		char y[] = t.toCharArray();
+
+		while(window != 0){
+			for(int i=0;i<length-window+1;i++){
+				String longString = "";
+				for(int j=i;j<i+window;j++){
+					longString = longString+x[j];
+				}
+
+				for(int k=0;k<y.length-window+1;k++){
+					String shortString = "";
+					for(int m=k;m<k+window;m++){
+						shortString = shortString+y[m];
+					}
+					if(shortString.equals(longString)){
+						System.out.print("Longest substring: "+longString);
+						System.out.println();
+						return;
+					}
+				}
+			}
+			window--;
+		}
+	}
 }
 //Time Complexity = O(m*n)
 //Space Complexity = O(m*n)
